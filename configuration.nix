@@ -8,6 +8,7 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
+      ./vscode.nix
     ];
 
   # Allow unfree at system level
@@ -76,7 +77,11 @@
   users.users.lukas = {
     isNormalUser = true;
     extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
+    shell = pkgs.fish;
   };
+
+  programs.fish.enable = true;
+  users.defaultUserShell = /run/current-system/sw/bin/fish;
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
@@ -84,6 +89,7 @@
     vim git
     wget
     firefox
+    vscode spotify discord
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
