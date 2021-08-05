@@ -4,7 +4,7 @@
   networking.hostName = "nixos"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
-  #imports = [ ../dwm.nix ];
+  imports = [ ../suckless.nix ];
 
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
@@ -13,7 +13,8 @@
 
   networking.interfaces.wlp0s20f3.useDHCP = true;
 
-  # networking.wireless.enable = true;
+  networking.wireless.enable = true;
+  networking.wireless.interfaces = [ "wlp0s20f3" ];
 
   networking.wireless.networks = {
     Salami = { # SSID with no spaces or special characters
@@ -25,6 +26,6 @@
   services.xserver.enable = true;
 
   # Enable the GNOME Desktop Environment.
-  services.xserver.displayManager.gdm.enable = true;
-  services.xserver.desktopManager.gnome.enable = true;
+  # services.xserver.displayManager.gdm.enable = true;
+  # services.xserver.desktopManager.gnome.enable = true;
 }
