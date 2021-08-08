@@ -5,6 +5,9 @@ let larbs = pkgs.callPackage ./pkgs/larbs_scripts.nix { };
 in {
   # Enable touchpad support (enabled default in most desktopManager).
   services.xserver.libinput.enable = true;
+  
+  # Enable the X11 windowing system.
+  services.xserver.enable = true;
 
   services.xserver.displayManager.lightdm.enable = false;
   services.xserver.displayManager.startx.enable = true;
@@ -12,6 +15,8 @@ in {
 
   environment.systemPackages = with pkgs; [
     larbs
+
+    pamixer
 
     (dwm.overrideAttrs (oldAttrs: rec {
       src = builtins.fetchTarball {

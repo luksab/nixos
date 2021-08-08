@@ -11,6 +11,7 @@ stdenv.mkDerivation rec {
   installPhase = ''
     mkdir -p $out/bin/
     cp -r .local/bin/* $out/bin/
+    cp -r .local/bin/statusbar/* $out/bin/
     ls -lah $out
   '';
     #   mkdir -p $out/share/zsh/site-functions

@@ -14,4 +14,5 @@
     spotify
     discord
   ];
+  services.gnome.gnome-keyring.enable = true;
 }
