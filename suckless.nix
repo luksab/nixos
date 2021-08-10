@@ -22,21 +22,17 @@ in {
       src = builtins.fetchTarball {
         url = "https://github.com/luksab/dwm/archive/master.tar.gz";
       };
+      SUDO_ASKPASS="$(which sudo)";
     }))
 
     (dwmblocks.overrideAttrs (oldAttrs: rec {
       src = builtins.fetchTarball {
         url = "https://github.com/LukeSmithxyz/dwmblocks/archive/master.tar.gz";
-        configFile = writeText "config.def.h" (builtins.readFile "${
-            fetchFromGitHub{
-              owner = "luksab";
-              repo = "nixos";
-              rev = "b402a94d865ae5ddc18278119de203f1d6eec4fb";
-              sha256 = "f066f53a852e6fdde975eee0ecbac25f6659bfe061e4b2890b8cefdd033b953b";
-            }
-          }/config.h");
       };
+      patches = [ ./dwmblocks.patch ];
     }))
+
+    lm_sensors
 
     (dmenu.overrideAttrs (oldAttrs: rec {
       src = builtins.fetchTarball {
