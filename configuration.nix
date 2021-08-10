@@ -45,7 +45,15 @@
     openssh.authorizedKeys.keyFiles = [
       (builtins.fetchurl {
         url = "https://github.com/luksab.keys";
-        #sha256 = "sha256:0lhvhdrzp2vphqhkcgl34xzn0sill6w7mgq8xh1akm1z1rsvd9v4";
+      })
+    ];
+  };
+
+  users.users.root = {
+    shell = pkgs.fish;
+    openssh.authorizedKeys.keyFiles = [
+      (builtins.fetchurl {
+        url = "https://github.com/luksab.keys";
       })
     ];
   };
@@ -65,12 +73,6 @@
 
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
-
-  # Open ports in the firewall.
-  # networking.firewall.allowedTCPPorts = [ ... ];
-  # networking.firewall.allowedUDPPorts = [ ... ];
-  # Or disable the firewall altogether.
-  # networking.firewall.enable = false;
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
