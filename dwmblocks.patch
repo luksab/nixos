@@ -1,5 +1,5 @@
---- test/source/config.h	1970-01-01 01:00:01.000000000 +0100
-+++ config.h	2021-08-10 22:12:45.305292743 +0200
+--- source/config.h	1970-01-01 01:00:01.000000000 +0100
++++ source/config.h	2021-08-10 22:12:45.305292743 +0200
 @@ -1,33 +1,29 @@
  //Modify this file to change what commands output to your statusbar, and recompile using the make command.
  static const Block blocks[] = {
