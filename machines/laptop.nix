@@ -5,7 +5,7 @@
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   imports = [ ../suckless.nix ];
-
+  environment.systemPackages = with pkgs; [ firefox brave spotify discord ];
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
