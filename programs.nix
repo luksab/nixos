@@ -5,7 +5,9 @@
     maim
     git
     wget
+    unzip
     gcc
+    screen
     cargo
     rustc
     nixfmt
