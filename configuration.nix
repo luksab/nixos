@@ -7,6 +7,7 @@
 {
   imports = [ # Include the results of the hardware scan.
     ./programs.nix
+    ./users.nix
 
     ./machines/arm.nix
   ];
@@ -36,28 +37,6 @@
   # Enable CUPS to print documents.
   # services.printing.enable = true;
 
-  # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.lukas = {
-    isNormalUser = true;
-    home = "/home/lukas";
-    extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
-    shell = pkgs.fish;
-    openssh.authorizedKeys.keyFiles = [
-      (builtins.fetchurl {
-        url = "https://github.com/luksab.keys";
-      })
-    ];
-  };
-
-  users.users.root = {
-    shell = pkgs.fish;
-    openssh.authorizedKeys.keyFiles = [
-      (builtins.fetchurl {
-        url = "https://github.com/luksab.keys";
-      })
-    ];
-  };
-  nix.allowedUsers = [ "lukas" ];
 
   programs.fish.enable = true;
 

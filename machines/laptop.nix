@@ -17,6 +17,11 @@
   networking.wireless.enable = true;
   networking.wireless.interfaces = [ "wlp0s20f3" ];
 
+  home-manager.users.lukas = {
+    xsession.enable = true;
+    xsession.windowManager.command = "dwm";
+  };
+
   networking.wireless.networks = {
     Salami = { # SSID with no spaces or special characters
       psk = "ckqc-go05-m2kn";
