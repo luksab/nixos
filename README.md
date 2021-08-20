@@ -16,4 +16,3 @@ sudo nixos-rebuild switch -I nixos-config=./nixos/configuration.nix
 - configuration options
 ## Fix:
 - invert trackpad scrolling on laptop
-- map `caps-lock` to `esc`
