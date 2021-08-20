@@ -31,8 +31,6 @@ in {
 
     pamixer
 
-    brightnessctl
-
     (dwm.overrideAttrs (oldAttrs: rec {
       src = builtins.fetchTarball {
         url = "https://github.com/luksab/dwm/archive/master.tar.gz";

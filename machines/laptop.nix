@@ -1,10 +1,15 @@
 { config, lib, pkgs, modulesPath, ... }: {
   networking.hostName = "nixos"; # Define your hostname.
-  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   imports =
     [ (modulesPath + "/installer/scan/not-detected.nix") ../suckless.nix ];
-  environment.systemPackages = with pkgs; [ firefox brave spotify discord ];
+  environment.systemPackages = with pkgs; [
+    firefox
+    brave
+    spotify
+    discord
+    brightnessctl
+  ];
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
@@ -33,10 +38,6 @@
   # Enable sound.
   sound.enable = true;
   hardware.pulseaudio.enable = true;
-
-  # Enable the GNOME Desktop Environment.
-  # services.xserver.displayManager.gdm.enable = true;
-  # services.xserver.desktopManager.gnome.enable = true;
 
   boot.initrd.availableKernelModules =
     [ "xhci_pci" "nvme" "usb_storage" "sd_mod" "rtsx_pci_sdmmc" ];
