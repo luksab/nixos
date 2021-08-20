@@ -1,8 +1,11 @@
 { config, lib, pkgs, modulesPath, ... }: {
   networking.hostName = "nixos"; # Define your hostname.
 
-  imports =
-    [ (modulesPath + "/installer/scan/not-detected.nix") ../suckless.nix ];
+  imports = [
+    (modulesPath + "/installer/scan/not-detected.nix")
+    ../modules/suckless
+    ../modules/vscode
+  ];
   environment.systemPackages = with pkgs; [
     firefox
     brave
@@ -24,6 +27,8 @@
     xsession.enable = true;
     xsession.windowManager.command = "dwm";
     #xsession.scriptPath = ".hm-xsession";
+
+    home.packages = [ pkgs.htop pkgs.multimc ];
   };
 
   hardware.acpilight.enable = true;

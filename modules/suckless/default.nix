@@ -1,6 +1,6 @@
 { config, pkgs, ... }:
 
-let larbs = pkgs.callPackage ./pkgs/larbs_scripts.nix { };
+let larbs = pkgs.callPackage ../../pkgs/larbs_scripts { };
 
 in {
   # Enable touchpad support (enabled default in most desktopManager).

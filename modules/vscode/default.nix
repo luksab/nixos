@@ -16,6 +16,4 @@ let
   }];
   vscode-with-extensions =
     pkgs.vscode-with-extensions.override { vscodeExtensions = extensions; };
-in {
-  config = { environment.systemPackages = [ vscode-with-extensions ]; };
-}
+in { config = { environment.systemPackages = [ vscode-with-extensions ]; }; }

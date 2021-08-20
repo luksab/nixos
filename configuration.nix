@@ -6,7 +6,6 @@
 
 {
   imports = [ # Include the results of the hardware scan.
-    ./programs.nix
     ./users.nix
 
     ./machines/arm.nix
@@ -37,6 +36,22 @@
   # Enable CUPS to print documents.
   # services.printing.enable = true;
 
+  # Systemwide packages
+  environment.systemPackages = with pkgs; [
+    vim
+    killall
+    maim
+    git
+    wget
+    unzip
+    gcc
+    screen
+    cargo
+    rustc
+    nixfmt
+  ];
+  services.gnome.gnome-keyring.enable = true;
+
   programs.fish.enable = true;
 
   # Some programs need SUID wrappers, can be configured further or are
@@ -53,7 +68,6 @@
   services.openssh.enable = true;
 
   nix = {
-
     package = pkgs.nixFlakes;
     extraOptions = ''
       experimental-features = nix-command flakes ca-references
