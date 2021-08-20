@@ -12,7 +12,7 @@ in {
   users.users.lukas = {
     isNormalUser = true;
     home = "/home/lukas";
-    extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
+    extraGroups = [ "wheel" "video" ]; # Enable ‘sudo’ and backlight for the user.
     shell = pkgs.fish;
     openssh.authorizedKeys.keyFiles =
       [ (builtins.fetchurl { url = "https://github.com/luksab.keys"; }) ];

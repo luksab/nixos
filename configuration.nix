@@ -27,16 +27,15 @@
   i18n.defaultLocale = "en_US.UTF-8";
   console = {
     font = "Lat2-Terminus16";
-    keyMap = "de";
+    useXkbConfig = true;
   };
 
   # Configure keymap in X11
   services.xserver.layout = "de";
-  services.xserver.xkbOptions = "eurosign:e";
+  services.xserver.xkbOptions = "eurosign:e,caps:swapescape";
 
   # Enable CUPS to print documents.
   # services.printing.enable = true;
-
 
   programs.fish.enable = true;
 
@@ -52,6 +51,24 @@
 
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
+
+  nix = {
+
+    package = pkgs.nixFlakes;
+    extraOptions = ''
+      experimental-features = nix-command flakes ca-references
+    '';
+
+    # Save space by hardlinking store files
+    autoOptimiseStore = true;
+
+    # Clean up old generations after 30 days
+    gc = {
+      automatic = true;
+      dates = "weekly";
+      options = "--delete-older-than 30d";
+    };
+  };
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions

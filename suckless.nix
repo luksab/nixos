@@ -8,21 +8,35 @@ in {
 
   # Enable the X11 windowing system.
   services.xserver.enable = true;
+  services.xserver.autorun = true;
 
-  services.xserver.displayManager.lightdm.enable = false;
-  services.xserver.displayManager.startx.enable = true;
-  #services.xserver.windowManager.dwm.enable = true;
+  # Use the home-manager config as xsession
+  services.xserver.desktopManager.session = [{
+    name = "home-manager";
+    start = ''
+      ${pkgs.runtimeShell} $HOME/.hm-xsession &
+      waitPID=$!
+    '';
+  }];
+
+  # system.activationScripts = {
+  #   text = ''
+  #     chmod 0664 /sys/class/backlight/intel_backlight/brightness
+  #     chown -cR root:video /sys/class/backlight/intel_backlight/brightness
+  #   '';
+  # };
 
   environment.systemPackages = with pkgs; [
     larbs
 
     pamixer
 
+    brightnessctl
+
     (dwm.overrideAttrs (oldAttrs: rec {
       src = builtins.fetchTarball {
         url = "https://github.com/luksab/dwm/archive/master.tar.gz";
       };
-      SUDO_ASKPASS="$(which sudo)";
     }))
 
     (dwmblocks.overrideAttrs (oldAttrs: rec {

@@ -1,6 +1,4 @@
-{ config, lib, pkgs, modulesPath, ... }:
-
-{
+{ config, lib, pkgs, modulesPath, ... }: {
   networking.hostName = "nixos"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
@@ -20,7 +18,11 @@
   home-manager.users.lukas = {
     xsession.enable = true;
     xsession.windowManager.command = "dwm";
+    #xsession.scriptPath = ".hm-xsession";
   };
+
+  hardware.acpilight.enable = true;
+  security.sudo.wheelNeedsPassword = false;
 
   networking.wireless.networks = {
     Salami = { # SSID with no spaces or special characters
