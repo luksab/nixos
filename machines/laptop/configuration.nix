@@ -2,7 +2,7 @@
 { self, ... }: {
   networking.hostName = "laptop"; # Define your hostname.
 
-  imports = [ ../../modules/suckless ../../modules/vscode ];
+  #imports = [ ../../users.nix ];
 
   luksab = { firmware.enable = true; };
 
