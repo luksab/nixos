@@ -1,6 +1,7 @@
 { lib, pkgs, config, ... }:
-
+with lib;
 let cfg = config.luksab.programs.vscode;
+
 in {
   options.luksab.programs.vscode.enable = mkEnableOption "enable vscode";
   config = mkIf cfg.enable {

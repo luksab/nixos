@@ -1,5 +1,10 @@
 # { config, lib, pkgs, modulesPath, ... }: {
 { self, ... }: {
+  imports = [
+    ../../home-manager/home.nix
+    { nixpkgs.overlays = [ self.overlay self.overlay-unstable ]; }
+  ];
+
   networking.hostName = "laptop"; # Define your hostname.
 
   #imports = [ ../../users.nix ];

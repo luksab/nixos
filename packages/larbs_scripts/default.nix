@@ -1,11 +1,13 @@
 { stdenv }:
 
 stdenv.mkDerivation rec {
-  name = "larbs-scripts-${version}";
-  version = "2021-05-08";
+  pname = "larbs-scripts";
+  version = "0a6982f1e11a2a528ea110def6fc10da6574a595";
 
-  src = builtins.fetchTarball {
-    url = "https://github.com/LukeSmithxyz/voidrice/archive/master.tar.gz";
+  src = fetchFromGitHub {
+    owner = "LukeSmithxyz";
+    repo = "voidrice";
+    rev = version;
   };
 
   installPhase = ''
