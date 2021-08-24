@@ -20,11 +20,11 @@ steps:
 
 - name: Build laptop
   commands:
-  - nix build -v '.#nixosConfigurations.laptop.config.system.build.toplevel'
+  - nix build -v '.#nixosConfigurations.laptop.config.system.build.toplevel' --show-trace
 
 - name: Build arm
   commands:
-  - nix build -v '.#nixosConfigurations.arm.config.system.build.toplevel'
+  - nix build -v '.#nixosConfigurations.arm.config.system.build.toplevel' --show-trace
 
 trigger:
   event:
