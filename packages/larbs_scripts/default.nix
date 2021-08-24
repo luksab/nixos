@@ -1,4 +1,4 @@
-{ stdenv }:
+{ stdenv, fetchFromGitHub }:
 
 stdenv.mkDerivation rec {
   pname = "larbs-scripts";
