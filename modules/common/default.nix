@@ -1,4 +1,4 @@
-{ lib, config, ... }:
+{ self, lib, config, ... }:
 with lib;
 let cfg = config.luksab.common;
 in {

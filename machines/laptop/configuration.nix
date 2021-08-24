@@ -4,12 +4,12 @@
 
   #imports = [ ../../users.nix ];
 
-  home-manager.users.lukas = {
-    imports = [
-      ../../home-manager/home.nix
-      { nixpkgs.overlays = [ self.overlay self.overlay-unstable ]; }
-    ];
-  };
+  # home-manager.users.lukas = {
+  #   imports = [
+  #     ../../home-manager/home.nix
+  #     { nixpkgs.overlays = [ self.overlay self.overlay-unstable ]; }
+  #   ];
+  # };
 
   luksab = {
     firmware.enable = true;
