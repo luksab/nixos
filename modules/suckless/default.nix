@@ -1,4 +1,4 @@
-{ lib, config, pkgs, ... }:
+{ lib, config, pkgs, fetchFromGitHub, ... }:
 with lib;
 
 let cfg = config.luksab.suckless;
@@ -33,13 +33,16 @@ in {
     # };
 
     environment.systemPackages = with pkgs; [
-      larbs
+      larbs_scripts
 
       pamixer
 
       (dwm.overrideAttrs (oldAttrs: rec {
-        src = builtins.fetchTarball {
-          url = "https://github.com/luksab/dwm/archive/master.tar.gz";
+        src = builtins.fetchFromGitHub {
+          owner = "luksab";
+          repo = "dwm";
+          rev = "903a44eedcfd929f977a563482105436041daeaa";
+          sha256 = "sha256-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=";
         };
       }))
 

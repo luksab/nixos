@@ -4,7 +4,10 @@
 
   #imports = [ ../../users.nix ];
 
-  luksab = { firmware.enable = true; };
+  luksab = {
+    firmware.enable = true;
+    desktop.enable = true;
+  };
 
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
