@@ -1,18 +1,11 @@
-{ config, lib, pkgs, modulesPath, ... }: {
-  networking.hostName = "nixos"; # Define your hostname.
+# { config, lib, pkgs, modulesPath, ... }: {
+{ self, ... }: {
+  networking.hostName = "laptop"; # Define your hostname.
 
-  imports = [
-    (modulesPath + "/installer/scan/not-detected.nix")
-    ../modules/suckless
-    ../modules/vscode
-  ];
-  environment.systemPackages = with pkgs; [
-    firefox
-    brave
-    spotify
-    discord
-    brightnessctl
-  ];
+  imports = [ ../../modules/suckless ../../modules/vscode ];
+
+  luksab = { firmware.enable = true; };
+
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
@@ -27,8 +20,6 @@
     xsession.enable = true;
     xsession.windowManager.command = "dwm";
     #xsession.scriptPath = ".hm-xsession";
-
-    home.packages = [ pkgs.htop pkgs.multimc ];
   };
 
   hardware.acpilight.enable = true;
@@ -62,6 +53,4 @@
 
   swapDevices =
     [{ device = "/dev/disk/by-uuid/3a854087-060e-4cc8-ab64-9045c31d26d0"; }];
-
-  powerManagement.cpuFreqGovernor = lib.mkDefault "powersave";
 }

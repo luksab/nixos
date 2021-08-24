@@ -1,0 +1,32 @@
+---
+kind: pipeline
+type: exec
+name: Build all hosts
+
+platform:
+  os: linux
+  arch: amd64
+
+clone:
+  depth: 1
+
+steps:
+
+- name: Show flake info
+  commands:
+  - nix flake show
+  - nix flake metadata
+  - nix flake check
+
+- name: Build HOST1
+  commands:
+  - nix build -v '.#nixosConfigurations.HOST1.config.system.build.toplevel'
+
+- name: Build HOST2
+  commands:
+  - nix build -v '.#nixosConfigurations.HOST2.config.system.build.toplevel'
+
+trigger:
+  event:
+  - push
+  - pull_request
