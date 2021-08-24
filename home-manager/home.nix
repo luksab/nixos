@@ -45,6 +45,8 @@ in {
     vlc
     youtube-dl
     zoom-us
+
+    jdk
   ];
 
   # Imports

@@ -95,6 +95,7 @@
       in rec {
 
         packages = flake-utils.lib.flattenTree {
+          larbs_scripts = pkgs.larbs_scripts;
           #   anki-bin = pkgs.anki-bin;
           #   darknet = pkgs.darknet;
           #   plex = pkgs.plex;

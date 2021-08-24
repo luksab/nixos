@@ -1,5 +1,5 @@
-{ modulesPath, lib, pkgs, ... }:{
-  imports = [ (modulesPath + "/profiles/qemu-guest.nix") ];
+{ self, ... }:{
+  luksab = { qemu-guest.enable = true; };
 
   boot.loader.grub = {
     efiSupport = true;
@@ -10,10 +10,9 @@
   boot.initrd.kernelModules = [ "nvme" ];
   fileSystems."/" = { device = "/dev/sda3"; fsType = "xfs"; };
   systemd.units."dev-sda2.swap".enable = false;
-  swapDevices = lib.mkForce [ ];
 
   boot.cleanTmpDir = true;
-  networking.hostName = "nixostest";
+  networking.hostName = "arm";
   networking.interfaces.enp0s3.useDHCP = true;
   #  address = "158.101.213.105";
   #  prefixLength = 24;
@@ -47,10 +46,5 @@
       "0 * * * *      root    . /etc/profile; /home/lukas/teddy/overviewer/render.sh  >> /tmp/cron.log"
     ];
   };
-
-  environment.systemPackages = with pkgs; [
-    jdk
-  ];
-
 }
 
