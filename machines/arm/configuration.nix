@@ -1,6 +1,13 @@
 { self, ... }:{
   luksab = { qemu-guest.enable = true; };
 
+  home-manager.users.lukas = {
+    imports = [
+      ../../home-manager/home-server.nix
+      { nixpkgs.overlays = [ self.overlay self.overlay-unstable ]; }
+    ];
+  };
+
   boot.loader.grub = {
     efiSupport = true;
     efiInstallAsRemovable = true;
