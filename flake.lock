@@ -15,6 +15,21 @@
         "type": "github"
       }
     },
+    "flake-utils_2": {
+      "locked": {
+        "lastModified": 1623875721,
+        "narHash": "sha256-A8BU7bjS5GirpAUv4QA+QnJ4CceLHkcXdRp4xITDB0s=",
+        "owner": "numtide",
+        "repo": "flake-utils",
+        "rev": "f7e004a55b120c02ecb6219596820fcd32ca8772",
+        "type": "github"
+      },
+      "original": {
+        "owner": "numtide",
+        "repo": "flake-utils",
+        "type": "github"
+      }
+    },
     "home-manager": {
       "inputs": {
         "nixpkgs": [
@@ -33,6 +48,33 @@
         "owner": "nix-community",
         "ref": "release-21.05",
         "repo": "home-manager",
+        "type": "github"
+      }
+    },
+    "mayniklas": {
+      "inputs": {
+        "flake-utils": "flake-utils_2",
+        "home-manager": [
+          "home-manager"
+        ],
+        "nixpkgs": [
+          "nixpkgs"
+        ],
+        "nixpkgs-unstable": [
+          "nixpkgs-unstable"
+        ]
+      },
+      "locked": {
+        "lastModified": 1629821234,
+        "narHash": "sha256-d92mBGJ0AZaLjYVjUtKANcm+1WqhNp1uftysd33uYwQ=",
+        "owner": "mayniklas",
+        "repo": "nixos",
+        "rev": "3764889b3a0f575f7958a8a7eb780c322cabd204",
+        "type": "github"
+      },
+      "original": {
+        "owner": "mayniklas",
+        "repo": "nixos",
         "type": "github"
       }
     },
@@ -72,6 +114,7 @@
       "inputs": {
         "flake-utils": "flake-utils",
         "home-manager": "home-manager",
+        "mayniklas": "mayniklas",
         "nixpkgs": "nixpkgs",
         "nixpkgs-unstable": "nixpkgs-unstable"
       }

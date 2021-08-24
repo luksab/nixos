@@ -7,13 +7,11 @@ in {
   options.luksab.common = { enable = mkEnableOption "enable basics"; };
 
   config = mkIf cfg.enable {
-    environment.systemPackages = with pkgs; [ git ];
+    luksab.zsh.enable = true;
+    
+    environment.systemPackages = with pkgs; [ git nixfmt ];
 
     programs.mtr.enable = true;
-    
-    # Configure keymap in X11
-    services.xserver.layout = "de";
-    services.xserver.xkbOptions = "eurosign:e,caps:swapescape";
 
     # Allow unfree at system level
     nixpkgs.config.allowUnfree = true;

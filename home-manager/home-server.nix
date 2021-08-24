@@ -30,13 +30,14 @@ in {
   ];
 
   # Imports
-  # imports = [
-  #   #./modules/devolopment
-  #   #./modules/git
-  #   #./modules/gtk
-  #   #./modules/vim
-  #   ./modules/vscode
-  # ];
+  imports = [
+    #   #./modules/devolopment
+    #   #./modules/git
+    #   #./modules/gtk
+    #   #./modules/vim
+    #   ./modules/vscode
+    ./modules/zsh
+  ];
 
   # This value determines the Home Manager release that your
   # configuration is compatible with. This helps avoid breakage

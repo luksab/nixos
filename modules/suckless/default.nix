@@ -9,21 +9,7 @@ in {
   };
 
   config = mkIf cfg.enable {
-    # Enable touchpad support (enabled default in most desktopManager).
-    services.xserver.libinput.enable = true;
-
-    # Enable the X11 windowing system.
-    services.xserver.enable = true;
-    services.xserver.autorun = true;
-
-    # Use the home-manager config as xsession
-    services.xserver.desktopManager.session = [{
-      name = "home-manager";
-      start = ''
-        ${pkgs.runtimeShell} $HOME/.hm-xsession &
-        waitPID=$!
-      '';
-    }];
+    
 
     # system.activationScripts = {
     #   text = ''

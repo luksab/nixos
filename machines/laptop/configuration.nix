@@ -4,6 +4,8 @@
 
   imports = [ ../../users/lukas.nix ../../users/root.nix ];
 
+  mayniklas.xserver = {enable = true; dpi = 320;};
+
   home-manager.users.lukas = {
     imports = [
       ../../home-manager/home.nix

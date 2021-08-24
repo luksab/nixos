@@ -58,7 +58,7 @@ in {
     #./modules/devolopment
     #./modules/git
     #./modules/gtk
-    #./modules/vim
+    ./modules/zsh
     ./modules/vscode
   ];
 
