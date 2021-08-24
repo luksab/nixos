@@ -30,3 +30,60 @@ trigger:
   event:
   - push
   - pull_request
+
+---
+kind: pipeline
+type: exec
+name: build flake update
+
+platform:
+  os: linux
+  arch: amd64
+
+clone:
+  depth: 1
+
+steps:
+
+- name: create result-old files
+  commands:
+  - nix build -v '.#nixosConfigurations.laptop.config.system.build.toplevel' --option binary-caches "https://cache.nixos.org"
+  - mv result laptop-old
+  - nix build -v '.#nixosConfigurations.arm.config.system.build.toplevel' --option binary-caches "https://cache.nixos.org"
+  - mv result arm-old
+
+- name: flake update
+  commands:
+  - nix --experimental-features "nix-command flakes" flake update
+  
+- name: Show git diff
+  commands:
+  - git diff
+
+- name: Show flake info
+  commands:
+  - nix --experimental-features "nix-command flakes" flake show
+  - nix --experimental-features "nix-command flakes" flake metadata
+  - nix --experimental-features "nix-command flakes" flake check
+
+- name: Build laptop
+  commands:
+  - nix build -v '.#nixosConfigurations.laptop.config.system.build.toplevel'
+  - mv result laptop-new
+
+- name: Build arm
+  commands:
+  - nix build -v '.#nixosConfigurations.arm.config.system.build.toplevel' --option binary-caches "https://cache.nixos.org"
+  - mv result arm-new
+
+- name: Print report
+  commands:
+  - echo "laptop:" && nix store diff-closures $(readlink -f laptop-old) $(readlink -f laptop-new)
+  - echo "arm:" && nix store diff-closures $(readlink -f arm-old) $(readlink -f arm-new)
+
+trigger:
+  branch:
+  - main
+  event:
+  - pull_request
+  - cron
