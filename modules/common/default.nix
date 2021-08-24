@@ -2,7 +2,7 @@
 with lib;
 let cfg = config.luksab.common;
 in {
-  imports = [ ../../users.nix ];
+  imports = [ ../../users/lukas.nix ../../users/root.nix ];
 
   options.luksab.common = { enable = mkEnableOption "enable basics"; };
 
