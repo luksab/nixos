@@ -7,6 +7,8 @@ in {
   options.luksab.common = { enable = mkEnableOption "enable basics"; };
 
   config = mkIf cfg.enable {
+    environment.systemPackages = with pkgs; [ git ];
+
     programs.mtr.enable = true;
     
     # Configure keymap in X11
