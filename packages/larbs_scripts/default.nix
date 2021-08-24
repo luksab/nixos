@@ -8,6 +8,7 @@ stdenv.mkDerivation rec {
     owner = "LukeSmithxyz";
     repo = "voidrice";
     rev = version;
+    sha256 = "sha256-qaYc2OZRoafB0SuSiI2cOhYbDfFk+7uwUTpOpE+hGW4=";
   };
 
   installPhase = ''

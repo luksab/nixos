@@ -38,18 +38,24 @@ in {
       pamixer
 
       (dwm.overrideAttrs (oldAttrs: rec {
-        src = builtins.fetchFromGitHub {
-          owner = "luksab";
-          repo = "dwm";
-          rev = "903a44eedcfd929f977a563482105436041daeaa";
-          sha256 = "sha256-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=";
+        # src = pkgs.fetchFromGitHub {
+        #   owner = "luksab";
+        #   repo = "dwm";
+        #   rev = "903a44eedcfd929f977a563482105436041daeaa";
+        #   sha256 = "sha256-j3wCRyl1+0D2XcdqhE5Zgf53bEXhcaU4dvdyYG9LZ2g=";
+        # };
+        src = builtins.fetchTarball {
+          url = "https://github.com/luksab/dwm/archive/master.tar.gz";
+          sha256 = "sha256:0d8mvjd4x2s3j82q2wr4h6pwnqh5s7xw4iadxjhvw3fq1cqx9fpf";
         };
       }))
 
       (dwmblocks.overrideAttrs (oldAttrs: rec {
-        src = builtins.fetchTarball {
-          url =
-            "https://github.com/LukeSmithxyz/dwmblocks/archive/master.tar.gz";
+        src = pkgs.fetchFromGitHub {
+          owner = "LukeSmithxyz";
+          repo = "dwmblocks";
+          rev = "66f31c307adbdcc2505239260ecda24a49eea7af";
+          sha256 = "sha256-j3wCRyl1+0D2XcdqhE5Zgf53bEXhcaU4dvdyYG9LZ2g=";
         };
         patches = [ ./dwmblocks.patch ];
       }))
@@ -57,8 +63,11 @@ in {
       lm_sensors
 
       (dmenu.overrideAttrs (oldAttrs: rec {
-        src = builtins.fetchTarball {
-          url = "https://github.com/LukeSmithxyz/dmenu/archive/master.tar.gz";
+        src = pkgs.fetchFromGitHub {
+          owner = "LukeSmithxyz";
+          repo = "dmenu";
+          rev = "3a6bc67fbd6df190b002d33f600a6465cad9cfb8";
+          sha256 = "sha256-qwOcJqYGMftFwayfYA3XM0xaOo6ALV4gu1HpFRapbFg=";
         };
       }))
 
@@ -68,6 +77,7 @@ in {
         # If you want it to be always up to date use fetchTarball instead of fetchFromGitHub
         src = builtins.fetchTarball {
           url = "https://github.com/luksab/st/archive/master.tar.gz";
+          sha256 = "sha256:127wxailsfqjlycjad7jaxx1ib4655k3w6c03fc7q3q8y9fd7j4x";
         };
         fetchSubmodules = true;
       }))
