@@ -1,10 +1,5 @@
 # { config, lib, pkgs, modulesPath, ... }: {
 { self, ... }: {
-  imports = [
-    ../../home-manager/home.nix
-    { nixpkgs.overlays = [ self.overlay self.overlay-unstable ]; }
-  ];
-
   networking.hostName = "laptop"; # Define your hostname.
 
   #imports = [ ../../users.nix ];
@@ -21,11 +16,11 @@
   networking.wireless.enable = true;
   networking.wireless.interfaces = [ "wlp0s20f3" ];
 
-  home-manager.users.lukas = {
-    xsession.enable = true;
-    xsession.windowManager.command = "dwm";
-    #xsession.scriptPath = ".hm-xsession";
-  };
+  # {
+  #   xsession.enable = true;
+  #   xsession.windowManager.command = "dwm";
+  #   #xsession.scriptPath = ".hm-xsession";
+  # };
 
   hardware.acpilight.enable = true;
   security.sudo.wheelNeedsPassword = false;

@@ -8,7 +8,7 @@ in {
   programs.command-not-found.enable = true;
 
   luksab = {
-    programs.vim.enable = true;
+    #programs.vim.enable = true;
     programs.vscode.enable = true;
   };
 
