@@ -18,13 +18,13 @@ steps:
   - nix flake metadata
   - nix flake check
 
-- name: Build HOST1
+- name: Build laptop
   commands:
-  - nix build -v '.#nixosConfigurations.HOST1.config.system.build.toplevel'
+  - nix build -v '.#nixosConfigurations.laptop.config.system.build.toplevel'
 
-- name: Build HOST2
+- name: Build arm
   commands:
-  - nix build -v '.#nixosConfigurations.HOST2.config.system.build.toplevel'
+  - nix build -v '.#nixosConfigurations.arm.config.system.build.toplevel'
 
 trigger:
   event:
