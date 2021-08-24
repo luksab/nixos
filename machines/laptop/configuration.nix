@@ -2,7 +2,7 @@
 { self, ... }: {
   networking.hostName = "laptop"; # Define your hostname.
 
-  #imports = [ ../../users.nix ];
+  imports = [ ../../users/lukas.nix ../../users/root.nix ];
 
   home-manager.users.lukas = {
     imports = [
@@ -14,6 +14,7 @@
   luksab = {
     firmware.enable = true;
     desktop.enable = true;
+    openssh.enable = true;
   };
 
   # Use the systemd-boot EFI boot loader.

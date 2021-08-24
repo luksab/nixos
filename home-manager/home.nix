@@ -17,6 +17,10 @@ in {
   home.username = "lukas";
   home.homeDirectory = "/home/lukas";
 
+  xsession.enable = true;
+  xsession.windowManager.command = "dwm";
+  #xsession.scriptPath = ".hm-xsession";
+
   # Allow "unfree" licenced packages
   nixpkgs.config = { allowUnfree = true; };
 
