@@ -16,9 +16,9 @@
     let
 
       # Function to create defult (common) system config options
-      defFlakeSystem = baseCfg:
+      defFlakeSystem = systemArch: baseCfg:
         nixpkgs.lib.nixosSystem {
-          system = "x86_64-linux";
+          system = "${systemArch}";
           modules = [
             # Add home-manager option to all configs
             ({ ... }: {
@@ -71,14 +71,23 @@
       # Each subdirectory in ./machins is a host. Add them all to
       # nixosConfiguratons. Host configurations need a file called
       # configuration.nix that will be read first
-      nixosConfigurations = builtins.listToAttrs (map (x: {
-        name = x;
-        value = defFlakeSystem {
+      nixosConfigurations = {
+
+        laptop = defFlakeSystem "x86_64-linux" {
           imports = [
-            (import (./machines + "/${x}/configuration.nix") { inherit self; })
+            # Machine specific config
+            (import (./machines/laptop/configuration.nix) { inherit self; })
           ];
         };
-      }) (builtins.attrNames (builtins.readDir ./machines)));
+
+        arm = defFlakeSystem "aarch64-linux" {
+          imports = [
+            # Machine specific config
+            (import (./machines/arm/configuration.nix) { inherit self; })
+          ];
+        };
+
+      };
     } //
 
     # (flake-utils.lib.eachSystem [ "aarch64-linux" "i686-linux" "x86_64-linux" ])
