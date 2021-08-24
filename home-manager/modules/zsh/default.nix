@@ -8,11 +8,13 @@ in {
     autocd = true;
     dotDir = ".config/zsh";
 
-    sessionVariables = { ZDOTDIR = "/home/nik/.config/zsh"; };
+    sessionVariables = { ZDOTDIR = "/home/lukas/.config/zsh"; };
 
     initExtra = ''
-      bindkey "^[[1;5C" forward-word
-      bindkey "^[[1;5D" backward-word
+      bindkey '^k' up-line-or-search
+      bindkey '^j' down-line-or-search
+      bindkey '^r' fzf-history-widget
+      bindkey '^f' fzf-file-widget
     '';
 
     history = {
