@@ -56,7 +56,7 @@
 
       overlay-unstable = final: prev: {
         unstable = import nixpkgs-unstable {
-          system = "${systemArch}";
+          system = "x86_64-linux";
           config.allowUnfree = true;
         };
       };
