@@ -8,6 +8,10 @@ in {
     luksab = {
       suckless.enable = true;
       common.enable = true;
+      xserver = {
+        enable = true;
+        dpi = 100;
+      };
     };
   };
 }

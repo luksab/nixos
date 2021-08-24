@@ -10,10 +10,10 @@
     home-manager.url = "github:nix-community/home-manager/release-21.05";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
-    mayniklas.url = "github:mayniklas/nixos";
-    mayniklas.inputs.nixpkgs.follows = "nixpkgs";
-    mayniklas.inputs.nixpkgs-unstable.follows = "nixpkgs-unstable";
-    mayniklas.inputs.home-manager.follows = "home-manager";
+    # mayniklas.url = "github:mayniklas/nixos";
+    # mayniklas.inputs.nixpkgs.follows = "nixpkgs";
+    # mayniklas.inputs.nixpkgs-unstable.follows = "nixpkgs-unstable";
+    # mayniklas.inputs.home-manager.follows = "home-manager";
   };
 
   outputs = { self, ... }@inputs:
@@ -28,7 +28,8 @@
             # Add home-manager option to all configs
             ({ ... }: {
               imports = builtins.attrValues self.nixosModules
-                ++ [ mayniklas.nixosModules.xserver ] ++ [
+                #++ [ mayniklas.nixosModules.xserver ]
+                ++ [
                   {
                     # Set the $NIX_PATH entry for nixpkgs. This is necessary in
                     # this setup with flakes, otherwise commands like `nix-shell
