@@ -49,5 +49,5 @@ in rec {
   # Groups
   all = pkgs.writeScript "deploy-all" (lib.concatStringsSep "\n" [ laptop ]);
 
-  servers = pkgs.writeScript "deploy-servers" (lib.concatStringsSep "\n" [ ]);
+  servers = pkgs.writeScript "deploy-servers" (lib.concatStringsSep "\n" [ arm ]);
 }
