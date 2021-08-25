@@ -48,8 +48,6 @@ in {
       };
     };
 
-    programs.fish.enable = true;
-
     system.stateVersion = "21.05";
   };
 }
