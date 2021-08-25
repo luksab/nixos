@@ -26,15 +26,12 @@ in {
       xclip
 
       (dwm.overrideAttrs (oldAttrs: rec {
-        # src = pkgs.fetchFromGitHub {
-        #   owner = "luksab";
-        #   repo = "dwm";
-        #   rev = "903a44eedcfd929f977a563482105436041daeaa";
-        #   sha256 = "sha256-j3wCRyl1+0D2XcdqhE5Zgf53bEXhcaU4dvdyYG9LZ2g=";
-        # };
-        src = builtins.fetchTarball {
-          url = "https://github.com/luksab/dwm/archive/master.tar.gz";
-          sha256 = "sha256:0d8mvjd4x2s3j82q2wr4h6pwnqh5s7xw4iadxjhvw3fq1cqx9fpf";
+        src = pkgs.fetchFromGitHub {
+          owner = "luksab";
+          repo = "dwm";
+          rev = "5bb0ac1c7c9dd9917519f013bc84ce9f9fb49a43";
+          sha256 = "sha256-+eXQeqC5OTJ9YS0SR9N39ekeaiiIEgvDDY+hJyfWChs=";
+          name = "dwm";
         };
       }))
 
@@ -60,13 +57,15 @@ in {
       }))
 
       (st.overrideAttrs (oldAttrs: rec {
-        # Make sure you include whatever dependencies the fork needs to build properly!
         buildInputs = oldAttrs.buildInputs ++ [ git harfbuzz ];
-        # If you want it to be always up to date use fetchTarball instead of fetchFromGitHub
-        src = builtins.fetchTarball {
-          url = "https://github.com/luksab/st/archive/master.tar.gz";
-          sha256 = "sha256:127wxailsfqjlycjad7jaxx1ib4655k3w6c03fc7q3q8y9fd7j4x";
+        src = pkgs.fetchFromGitHub {
+          owner = "LukeSmithxyz";
+          repo = "st";
+          rev = "e053bd6036331cc7d14f155614aebc20f5371d3a";
+          sha256 = "sha256-WwjuNxWoeR/ppJxJgqD20kzrn1kIfgDarkTOedX/W4k=";
+          name = "st";
         };
+        patches = [ ./st.patch ];
         fetchSubmodules = true;
       }))
     ];

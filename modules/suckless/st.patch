@@ -1,0 +1,11 @@
+--- source/Makefile	2021-08-25 13:30:02.585720941 +0200
++++ source/Makefile	2021-08-25 13:30:14.853712707 +0200
+@@ -40,8 +40,6 @@
+ 	rm -rf st-$(VERSION)
+ 
+ install: st
+-	git submodule init
+-	git submodule update
+ 	mkdir -p $(DESTDIR)$(PREFIX)/bin
+ 	cp -f st $(DESTDIR)$(PREFIX)/bin
+ 	cp -f st-copyout $(DESTDIR)$(PREFIX)/bin
