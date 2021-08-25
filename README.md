@@ -5,14 +5,19 @@ I'm very new to nix and nixos, so this repo is very wip.
 install by
 ```
 git clone https://github.com/luksab/nixos.git
-sudo nixos-rebuild switch -I nixos-config=./nixos/configuration.nix
+sudo nixos-rebuild switch --flake .
+```
+
+# krops
+- make sure `/var/src/.populate` exists.
+```
+nix-build ./krops.nix -A all && ./result
 ```
 
 # TODO
+- suckless as home module
+- minecraft as a service
+
 ## look at:
-- [krops](https://github.com/krebs/krops)
-- nix flakes
 - services
 - configuration options
-## Fix:
-- invert trackpad scrolling on laptop
