@@ -46,6 +46,8 @@ in rec {
   # Individual machines
   laptop = createHost "laptop" "root@192.168.178.114";
 
+  arm = createHost "arm" "root@ocp.luksab.de";
+
   # Groups
   all = pkgs.writeScript "deploy-all" (lib.concatStringsSep "\n" [ laptop ]);
 
