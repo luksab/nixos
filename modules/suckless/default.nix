@@ -22,6 +22,8 @@ in {
       larbs_scripts
 
       pamixer
+      maim
+      xclip
 
       (dwm.overrideAttrs (oldAttrs: rec {
         # src = pkgs.fetchFromGitHub {
