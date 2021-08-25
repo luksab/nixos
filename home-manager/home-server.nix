@@ -17,6 +17,7 @@ in {
 
   # Install these packages for my user
   home.packages = with pkgs; [
+    screen
     htop
 
     gcc
