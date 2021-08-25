@@ -4,6 +4,9 @@
 
   imports = [ ../../users/lukas.nix ../../users/root.nix ];
 
+  #allow aarch64 emulation
+  boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
+
   home-manager.users.lukas = {
     imports = [
       ../../home-manager/home.nix
