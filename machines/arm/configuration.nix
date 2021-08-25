@@ -1,11 +1,13 @@
 { self, ... }: {
+  networking.hostName = "arm";
+
+  imports = [ ../../users/lukas.nix ../../users/root.nix ];
+
   luksab = {
     qemu-guest.enable = true;
     openssh.enable = true;
     common.enable = true;
   };
-
-  imports = [ ../../users/lukas.nix ../../users/root.nix ];
 
   home-manager.users.lukas = {
     imports = [
@@ -31,7 +33,6 @@
   systemd.units."dev-sda2.swap".enable = false;
 
   boot.cleanTmpDir = true;
-  networking.hostName = "arm";
   networking.interfaces.enp0s3.useDHCP = true;
   #  address = "158.101.213.105";
   #  prefixLength = 24;
