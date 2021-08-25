@@ -7,6 +7,8 @@
     qemu-guest.enable = true;
     openssh.enable = true;
     common.enable = true;
+
+    services.thelounge.enable = true;
   };
 
   home-manager.users.lukas = {
