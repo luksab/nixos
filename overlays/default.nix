@@ -9,7 +9,10 @@ self: super: {
   # override with newer version from nixpkgs-unstable (home-manager related)
   discord = self.unstable.discord;
   neovim-unwrapped = self.unstable.neovim-unwrapped;
+  wrapOBS = self.unstable.wrapOBS;
   obs-studio = self.unstable.obs-studio;
+  obs-studio-plugins.obs-ndi = self.unstable.obs-studio-plugins.obs-ndi;
+  ndi = self.unstable.ndi;
   signal-desktop = self.unstable.signal-desktop;
   spotify = self.unstable.spotify;
   vscode = self.unstable.vscode;

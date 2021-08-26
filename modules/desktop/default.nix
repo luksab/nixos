@@ -12,6 +12,7 @@ in {
         enable = true;
         dpi = 100;
       };
+      ndi.enable = true;
     };
   };
 }
