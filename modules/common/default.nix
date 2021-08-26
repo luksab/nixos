@@ -1,14 +1,18 @@
 { lib, config, pkgs, ... }:
 with lib;
 let cfg = config.luksab.common;
+
 in {
   imports = [ ../../users/lukas.nix ../../users/root.nix ];
 
-  options.luksab.common = { enable = mkEnableOption "enable basics"; };
+  options.luksab.common = {
+    enable = mkEnableOption "enable basics";
+    disable-cache = mkEnableOption "not use binary-cache";
+  };
 
   config = mkIf cfg.enable {
     luksab.zsh.enable = true;
-    
+
     environment.systemPackages = with pkgs; [ git nixfmt ];
 
     programs.mtr.enable = true;
@@ -36,6 +40,18 @@ in {
       extraOptions = ''
         experimental-features = nix-command flakes ca-references
       '';
+
+      # binary cache -> build by DroneCI
+      binaryCachePublicKeys = mkIf (cfg.disable-cache != true)
+        [ "cache.lounge.rocks:uXa8UuAEQoKFtU8Om/hq6d7U+HgcrduTVr8Cfl6JuaY=" ];
+      binaryCaches = mkIf (cfg.disable-cache != true) [
+        "https://cache.nixos.org"
+        "https://cache.lounge.rocks?priority=50"
+      ];
+      trustedBinaryCaches = mkIf (cfg.disable-cache != true) [
+        "https://cache.lounge.rocks"
+        "https://cache.nixos.org"
+      ];
 
       # Save space by hardlinking store files
       autoOptimiseStore = true;

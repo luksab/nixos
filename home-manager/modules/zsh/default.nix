@@ -15,6 +15,8 @@ in {
       bindkey '^j' down-line-or-search
       bindkey '^r' fzf-history-widget
       bindkey '^f' fzf-file-widget
+      # this works
+      export NIXPKGS_ALLOW_UNFREE=1
     '';
 
     history = {
