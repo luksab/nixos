@@ -8,6 +8,7 @@ in {
   programs.command-not-found.enable = true;
 
   luksab = {
+    services.dunst.enable = true;
     #programs.vim.enable = true;
     programs.vscode.enable = true;
   };
@@ -33,6 +34,7 @@ in {
 
   # Install these packages for my user
   home.packages = with pkgs; [
+    libnotify
     brave
     spotify
     discord
@@ -64,6 +66,7 @@ in {
     #./modules/devolopment
     #./modules/git
     #./modules/gtk
+    ./modules/dunst
     ./modules/zsh
     ./modules/vscode
   ];

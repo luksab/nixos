@@ -24,6 +24,7 @@ in {
       pamixer
       maim
       xclip
+      notify-desktop
 
       (dwm.overrideAttrs (oldAttrs: rec {
         src = pkgs.fetchFromGitHub {
