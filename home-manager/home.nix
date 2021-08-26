@@ -13,12 +13,12 @@ in {
     programs.vscode.enable = true;
   };
 
-  programs.obs-studio = {
-    enable = true;
-    package =
-      pkgs.wrapOBS { plugins = with pkgs.obs-studio-plugins; [ obs-ndi ]; };
-    plugins = with pkgs.obs-studio-plugins; [ obs-ndi ];
-  };
+  # programs.obs-studio = {
+  #   enable = true;
+  #   package =
+  #     pkgs.wrapOBS { plugins = with pkgs.obs-studio-plugins; [ obs-ndi ]; };
+  #   plugins = with pkgs.obs-studio-plugins; [ obs-ndi ];
+  # };
 
   # Home Manager needs a bit of information about you and the
   # paths it should manage.
