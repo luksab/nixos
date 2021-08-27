@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ lib, config, pkgs, ... }:
 let
 
 in {
@@ -34,8 +34,9 @@ in {
 
   # Install these packages for my user
   home.packages = with pkgs; [
+    (lib.mkIf (config.luksab.arch == "x86_64") brave)
+
     libnotify
-    brave
     spotify
     discord
     brightnessctl

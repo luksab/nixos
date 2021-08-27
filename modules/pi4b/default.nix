@@ -13,6 +13,8 @@ in {
     # Required for the Wireless firmware
     hardware.enableRedistributableFirmware = true;
 
+    luksab.arch = "aarch64";
+
     boot = {
       loader = {
         raspberryPi = {
