@@ -17,7 +17,8 @@ nix-build ./krops.nix -A all && ./result
 # TODO
 - suckless as home module
 - minecraft as a service
-
+- mouse vanish after 2 seconds
+- fix graphics glitches on laptop
 ## look at:
 - services
 - configuration options
