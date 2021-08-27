@@ -1,4 +1,5 @@
 { self, ... }: {
+  imports = [ ../../users/lukas.nix ../../users/root.nix ];
   networking.hostName = "arm";
 
   luksab = {

@@ -2,6 +2,8 @@
 { self, ... }: {
   networking.hostName = "laptop"; # Define your hostname.
 
+  imports = [ ../../users/lukas.nix ../../users/root.nix ];
+
   #allow aarch64 emulation
   boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
 
