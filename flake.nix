@@ -94,6 +94,13 @@
           ];
         };
 
+        pi4b = defFlakeSystem "aarch64-linux" {
+          imports = [
+            # Machine specific config
+            (import (./machines/pi4b/configuration.nix) { inherit self; })
+          ];
+        };
+
       };
     } //
 
