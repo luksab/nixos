@@ -67,6 +67,7 @@ in {
     #./modules/devolopment
     #./modules/git
     #./modules/gtk
+    ../modules/options
     ./modules/dunst
     ./modules/zsh
     ./modules/vscode
