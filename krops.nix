@@ -48,8 +48,10 @@ in rec {
 
   arm = createHost "arm" "root@ocp.luksab.de";
 
+  pi4b = createHost "pi4b" "root@192.168.178.98";
+
   # Groups
-  all = pkgs.writeScript "deploy-all" (lib.concatStringsSep "\n" [ laptop ]);
+  all = pkgs.writeScript "deploy-all" (lib.concatStringsSep "\n" [ laptop arm pi4b ]);
 
   servers = pkgs.writeScript "deploy-servers" (lib.concatStringsSep "\n" [ arm ]);
 }
