@@ -10,7 +10,6 @@ in {
       package = pkgs.vscode;
       extensions = with pkgs.vscode-extensions; [
         bbenoist.Nix
-        ms-python.python
         ms-vscode-remote.remote-ssh
         matklad.rust-analyzer
         ms-vsliveshare.vsliveshare

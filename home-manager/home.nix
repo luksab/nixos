@@ -34,15 +34,12 @@ in {
 
   # Install these packages for my user
   home.packages = with pkgs; [
-    (lib.mkIf (config.luksab.arch == "x86_64") brave)
-
     libnotify
     spotify
     discord
     brightnessctl
     htop
     multimc
-    enpass
 
     dolphin
     filezilla
@@ -62,6 +59,8 @@ in {
     jdk
   ];
 
+  luksab.x86.enable = config.luksab.arch == "x86_64";
+
   # Imports
   imports = [
     #./modules/devolopment
@@ -71,6 +70,7 @@ in {
     ./modules/dunst
     ./modules/zsh
     ./modules/vscode
+    ./modules/x86
   ];
 
   services.gnome-keyring = { enable = true; };
