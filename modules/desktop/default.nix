@@ -5,6 +5,8 @@ in {
   options.luksab.desktop = { enable = mkEnableOption "enable desktop"; };
 
   config = mkIf cfg.enable {
+    imports = [ ../../users/lukas.nix ../../users/root.nix ];
+
     luksab = {
       suckless.enable = true;
       common.enable = true;

@@ -1,8 +1,6 @@
 { self, ... }: {
   networking.hostName = "arm";
 
-  imports = [ ../../users/lukas.nix ../../users/root.nix ];
-
   luksab = {
     qemu-guest.enable = true;
     openssh.enable = true;
