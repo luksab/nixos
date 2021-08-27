@@ -12,7 +12,7 @@ in {
         bbenoist.Nix
         ms-vscode-remote.remote-ssh
         matklad.rust-analyzer
-        ms-vsliveshare.vsliveshare
+        (lib.mkIf (config.luksab.arch == "x86_64") ms-vsliveshare.vsliveshare)
         brettm12345.nixfmt-vscode
       ];
     };
