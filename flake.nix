@@ -91,7 +91,6 @@
           imports = [
             # Machine specific config
             (import (./machines/arm/configuration.nix) { inherit self; })
-            (import (./machines/pi4b/configuration.nix) { inherit self; })
           ];
         };
 
