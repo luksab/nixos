@@ -11,7 +11,7 @@
   luksab = {
     pi4b.enable = true;
     common.enable = true;
-    server = { enable = true; };
+    desktop = { enable = true; };
   };
 
   networking = {
