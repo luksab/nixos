@@ -35,7 +35,6 @@ in {
   # Install these packages for my user
   home.packages = with pkgs; [
     libnotify
-    spotify
     discord
     brightnessctl
     htop
