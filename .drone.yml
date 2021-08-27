@@ -55,6 +55,8 @@ steps:
   - mv result laptop-old
   - nix build -v '.#nixosConfigurations.arm.config.system.build.toplevel' --option binary-caches "https://cache.nixos.org"
   - mv result arm-old
+  - nix build -v '.#nixosConfigurations.pi4b.config.system.build.toplevel' --option binary-caches "https://cache.nixos.org"
+  - mv result pi4b-old
 
 - name: flake update
   commands:
@@ -80,10 +82,16 @@ steps:
   - nix build -v '.#nixosConfigurations.arm.config.system.build.toplevel' --option binary-caches "https://cache.nixos.org"
   - mv result arm-new
 
+- name: Build pi4b
+  commands:
+  - nix build -v '.#nixosConfigurations.pi4b.config.system.build.toplevel' --option binary-caches "https://cache.nixos.org"
+  - mv result pi4b-new
+
 - name: Print report
   commands:
   - echo "laptop:" && nix store diff-closures $(readlink -f laptop-old) $(readlink -f laptop-new)
   - echo "arm:" && nix store diff-closures $(readlink -f arm-old) $(readlink -f arm-new)
+  - echo "pi4b:" && nix store diff-closures $(readlink -f pi4b-old) $(readlink -f pi4b-new)
 
 trigger:
   branch:
