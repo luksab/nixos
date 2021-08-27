@@ -49,7 +49,6 @@ in {
     iperf3
     nmap
     signal-desktop
-    spotify
     unzip
     vim
     vlc
