@@ -27,9 +27,7 @@ in {
           font = "Monospace 14";
           line_height = 0;
           markup = "full";
-          format = ''
-            <b>%s</b>
-            %b'';
+          format = "<b>%s</b>\\n%b";
           alignment = "left";
           show_age_threshold = 60;
           word_wrap = true;
