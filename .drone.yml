@@ -26,6 +26,10 @@ steps:
   commands:
   - nix build -v '.#nixosConfigurations.arm.config.system.build.toplevel' --show-trace
 
+- name: Build pi4b
+  commands:
+  - nix build -v '.#nixosConfigurations.pi4b.config.system.build.toplevel' --show-trace
+
 trigger:
   event:
   - push
