@@ -11,7 +11,10 @@ in {
   };
 
   config = mkIf cfg.enable {
-    luksab.zsh.enable = true;
+    luksab = {
+      openssh.enable = true;
+      zsh.enable = true;
+    }
 
     environment.systemPackages = with pkgs; [ git nixfmt ];
 
