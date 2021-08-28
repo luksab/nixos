@@ -19,7 +19,7 @@ self: super: {
   youtube-dl = self.unstable.youtube-dl;
   zoom-us = self.unstable.zoom-us;
 
-  dwm = (self.unstable.dwm.overrideAttrs (oldAttrs: rec {
+  dwm = (super.dwm.overrideAttrs (oldAttrs: rec {
     src = super.pkgs.fetchFromGitHub {
       owner = "luksab";
       repo = "dwm";
