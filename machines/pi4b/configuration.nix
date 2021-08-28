@@ -13,6 +13,7 @@
     pi4b.enable = true;
     common.enable = true;
     desktop = { enable = true; };
+    xrdp.enable = true;
   };
 
   networking = {

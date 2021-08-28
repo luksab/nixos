@@ -18,4 +18,14 @@ self: super: {
   vscode = self.unstable.vscode;
   youtube-dl = self.unstable.youtube-dl;
   zoom-us = self.unstable.zoom-us;
+
+  dwm = (self.unstable.dwm.overrideAttrs (oldAttrs: rec {
+    src = super.pkgs.fetchFromGitHub {
+      owner = "luksab";
+      repo = "dwm";
+      rev = "5bb0ac1c7c9dd9917519f013bc84ce9f9fb49a43";
+      sha256 = "sha256-+eXQeqC5OTJ9YS0SR9N39ekeaiiIEgvDDY+hJyfWChs=";
+      name = "dwm";
+    };
+  }));
 }
