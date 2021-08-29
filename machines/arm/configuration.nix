@@ -6,6 +6,11 @@
     qemu-guest.enable = true;
     openssh.enable = true;
     server.enable = true;
+
+    minecraft-server = {
+      enable = true;
+      openFirewall = true;
+    };
   };
 
   home-manager.users.lukas = {
