@@ -2,6 +2,13 @@ self: super: {
   # Custom packages. Will be made available on all machines and used where
   # needed.
   larbs_scripts = super.pkgs.callPackage ../packages/larbs_scripts { };
+  fabric-server = super.pkgs.callPackage ../packages/fabric-server { };
+  overviewer = super.pkgs.callPackage ../packages/overviewer {
+    # buildPythonApplication = super.python.pkgs.buildPythonApplication;
+    # setuptools = super.python.pkgs.setuptools;
+    wrapPython = super.python3.pkgs.wrapPython;
+    makeWrapper = super.makeWrapper;
+  };
 
   # override with newer version from nixpkgs-unstable
   # tautulli = self.unstable.tautulli;
@@ -50,7 +57,8 @@ self: super: {
   }));
 
   st = (super.st.overrideAttrs (oldAttrs: rec {
-    buildInputs = oldAttrs.buildInputs ++ [ super.pkgs.git super.pkgs.harfbuzz ];
+    buildInputs = oldAttrs.buildInputs
+      ++ [ super.pkgs.git super.pkgs.harfbuzz ];
     src = super.pkgs.fetchFromGitHub {
       owner = "LukeSmithxyz";
       repo = "st";

@@ -11,6 +11,20 @@
       enable = true;
       openFirewall = true;
     };
+
+    overviewer = {
+      enable = true;
+      config = ''
+        worlds["My world"] = "/var/lib/minecraft-server/export"
+
+        renders["normalrender"] = {
+            "world": "My world",
+            "title": "Normal Render of My World",
+        }
+
+        outputdir = "/var/www/overviewer"
+      '';
+    };
   };
 
   home-manager.users.lukas = {
@@ -54,18 +68,18 @@
     forceSSL = true;
     enableACME = true;
     #root = "/home/lukas/mcmap";
-    root = "/var/www/ocp.luksab.de";
+    root = "/var/www/overviewer";
   };
   security.acme.acceptTerms = true;
   security.acme.certs = {
     "ocp.luksab.de".email = "lukassabatschus@gmail.com";
   };
   # Enable cron service
-  services.cron = {
-    enable = true;
-    systemCronJobs = [
-      "0 * * * *      root    . /etc/profile; /home/lukas/teddy/overviewer/render.sh  >> /tmp/cron.log"
-    ];
-  };
+  # services.cron = {
+  #   enable = true;
+  #   systemCronJobs = [
+  #     "0 * * * *      root    . /etc/profile; /home/lukas/teddy/overviewer/render.sh  >> /tmp/cron.log"
+  #   ];
+  # };
 }
 

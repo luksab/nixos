@@ -1,11 +1,23 @@
-{ pkgs, lib, fetchFromGitHub, buildPythonApplication, setuptools, wrapPython, makeWrapper }:
+{ pkgs, lib, stdenv, fetchFromGitHub, wrapPython, makeWrapper }:
+let
+  python-depends = python-packages:
+    with python-packages; [
+      setuptools
+      numpy
+      pillow
+      # other python packages you want
+    ];
+  python = pkgs.python3.withPackages python-depends;
+  wrapper = pkgs.writeText "overviewer" (''
+    ${python}/bin/python3 $out/libexec/overviewer/overviewer.py
+  '');
 
-buildPythonApplication rec {
+in stdenv.mkDerivation rec {
   pname = "overviewer";
-  version = "v0.17.0";
+  #version = "v0.17.0";
+  version = "2402e410cfb0dce1068bc42b2854c00791d6f108";
 
-  pythonPath = with pkgs.python3Packages; [ setuptools numpy pillow];
-  nativeBuildInputs = [ wrapPython makeWrapper ];
+  buildInputs = [ python makeWrapper wrapPython ];
 
   srcs = [
     (fetchFromGitHub {
@@ -13,7 +25,8 @@ buildPythonApplication rec {
       repo = "Minecraft-Overviewer";
       rev = version;
       name = pname;
-      sha256 = "sha256:1hqbd6m850qqs9ck54j2gf54kjhn4zr3as65rpx9rglmjx8ymh4j";
+      #sha256 = "sha256:1hqbd6m850qqs9ck54j2gf54kjhn4zr3as65rpx9rglmjx8ymh4j";
+      sha256 = "sha256-F4u9cc7PKJSGycKghFBdZcpoFexT9U4joC3wF6S3OmU=";
     })
     (fetchFromGitHub {
       owner = "python-pillow";
@@ -31,7 +44,8 @@ buildPythonApplication rec {
     ln -s ../pillow .
 
     export PIL_INCLUDE_DIR=./pillow/src/libImaging
-    python3 setup.py build
+    ${python}/bin/python3 --version
+    ${python}/bin/python3 setup.py build
   '';
 
   installPhase = ''
@@ -40,8 +54,11 @@ buildPythonApplication rec {
 
     # Can't just symlink to the main script, since it uses __file__ to
     # import bundled packages and manage the service
-    makeWrapper $out/libexec/overviewer/overviewer.py $out/bin/overviewer
-    wrapPythonProgramsIn "$out/libexec/overviewer" "$pythonPath"
+    #cp ${wrapper} $out/bin/overviewer
+    echo ${python}/bin/python3 $out/libexec/overviewer/overviewer.py > $out/bin/overviewer
+    chmod +x $out/bin/overviewer
+    # makeWrapper $out/libexec/overviewer/overviewer.py $out/bin/overviewer
+    # wrapPythonProgramsIn "$out/libexec/overviewer" "$pythonPath"
   '';
 
   checkPhase = ''
@@ -52,8 +69,9 @@ buildPythonApplication rec {
     runHook postCheck
   '';
 
-  meta  = with lib; {
-    description = "a high-resolution Minecraft world renderer with a LeafletJS interface";
+  meta = with lib; {
+    description =
+      "a high-resolution Minecraft world renderer with a LeafletJS interface";
     homepage = "https://overviewer.org/";
     license = licenses.gpl3;
     platforms = platforms.linux;
