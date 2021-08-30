@@ -19,14 +19,16 @@
 
         renders["Overworld"] = {
             "world": "teddy",
+            'rendermode': 'smooth_lighting',
             "title": "Overworld",
             'crop': (-4000, -4000, 4000, 4000),
         }
 
         renders["night"] = {
             "world": "teddy",
-            "title": "Overworld",
-            'crop': (-1000, -1000, 1000, 1000),
+            'rendermode': 'night',
+            "title": "Night",
+            'crop': (0, -1000, 2000, 1000),
         }
 
         renders["nether"] = {
@@ -36,9 +38,9 @@
             "dimension": "nether",
         }
 
-        renders["nether"] = {
+        renders["end"] = {
             "world": "teddy",
-            "title": "Nether",
+            "title": "End",
             "rendermode": [Base(), EdgeLines(), SmoothLighting(strength=0.5)],
             "dimension": "end",
         }
