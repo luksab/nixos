@@ -28,6 +28,10 @@ in {
 
   xsession.enable = true;
   xsession.windowManager.command = "dwm";
+  services.unclutter = {
+    enable = true;
+    timeout = 5;
+  };
   #xsession.scriptPath = ".hm-xsession";
 
   # Allow "unfree" licenced packages
