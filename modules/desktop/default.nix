@@ -8,9 +8,8 @@ in {
     # Enable sound.
     sound.enable = true;
     hardware.pulseaudio.enable = true;
-    
+
     luksab = {
-      suckless.enable = true;
       common.enable = true;
       xserver = {
         enable = true;

@@ -17,13 +17,14 @@ in {
     #   '';
     # };
 
-    environment.systemPackages = with pkgs; [
+    home.packages = with pkgs; [
       larbs_scripts
       dwm
       dmenu
       st
       dwmblocks
 
+      acpi
       pamixer
       maim
       xclip

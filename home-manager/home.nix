@@ -8,6 +8,7 @@ in {
   programs.command-not-found.enable = true;
 
   luksab = {
+    suckless.enable = true;
     services.dunst.enable = true;
     #programs.vim.enable = true;
     programs.vscode.enable = true;
@@ -65,6 +66,7 @@ in {
     #./modules/git
     #./modules/gtk
     ../modules/options
+    ./modules/suckless
     ./modules/dunst
     ./modules/zsh
     ./modules/vscode

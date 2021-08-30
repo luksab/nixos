@@ -44,7 +44,7 @@ self: super: {
       rev = "66f31c307adbdcc2505239260ecda24a49eea7af";
       sha256 = "sha256-j3wCRyl1+0D2XcdqhE5Zgf53bEXhcaU4dvdyYG9LZ2g=";
     };
-    patches = [ ../modules/suckless/dwmblocks.patch ];
+    patches = [ ../packages/suckless/dwmblocks.patch ];
   }));
 
   dmenu = (super.dmenu.overrideAttrs (oldAttrs: rec {
@@ -66,7 +66,7 @@ self: super: {
       sha256 = "sha256-WwjuNxWoeR/ppJxJgqD20kzrn1kIfgDarkTOedX/W4k=";
       name = "st";
     };
-    patches = [ ../modules/suckless/st.patch ];
+    patches = [ ../packages/suckless/st.patch ];
     fetchSubmodules = true;
   }));
 }
