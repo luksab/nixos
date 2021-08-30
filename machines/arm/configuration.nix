@@ -15,11 +15,32 @@
     overviewer = {
       enable = true;
       config = ''
-        worlds["My world"] = "/var/lib/minecraft-server/export"
+        worlds["teddy"] = "/var/lib/minecraft-server/export"
 
-        renders["normalrender"] = {
-            "world": "My world",
-            "title": "Normal Render of My World",
+        renders["Overworld"] = {
+            "world": "teddy",
+            "title": "Overworld",
+            'crop': (-4000, -4000, 4000, 4000),
+        }
+
+        renders["night"] = {
+            "world": "teddy",
+            "title": "Overworld",
+            'crop': (-1000, -1000, 1000, 1000),
+        }
+
+        renders["nether"] = {
+            "world": "teddy",
+            "title": "Nether",
+            "rendermode": nether_smooth_lighting,
+            "dimension": "nether",
+        }
+
+        renders["nether"] = {
+            "world": "teddy",
+            "title": "Nether",
+            "rendermode": [Base(), EdgeLines(), SmoothLighting(strength=0.5)],
+            "dimension": "end",
         }
 
         outputdir = "/var/www/overviewer"
