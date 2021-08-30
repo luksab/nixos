@@ -15,9 +15,7 @@ nix-build ./krops.nix -A all && ./result
 ```
 
 # TODO
-- minecraft as a service
 - mouse vanish after 2 seconds
 - fix graphics glitches on laptop
 ## look at:
-- services
-- configuration options
+- configuration options generated from nix code (low priority)
