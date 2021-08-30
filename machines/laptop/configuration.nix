@@ -17,7 +17,6 @@
   luksab = {
     firmware.enable = true;
     desktop.enable = true;
-    openssh.enable = true;
   };
 
   # Use the systemd-boot EFI boot loader.
@@ -44,10 +43,6 @@
       psk = "ckqc-go05-m2kn";
     };
   };
-
-  # Enable sound.
-  sound.enable = true;
-  hardware.pulseaudio.enable = true;
 
   boot.initrd.availableKernelModules =
     [ "xhci_pci" "nvme" "usb_storage" "sd_mod" "rtsx_pci_sdmmc" ];
