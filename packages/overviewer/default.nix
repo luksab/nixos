@@ -55,7 +55,10 @@ in stdenv.mkDerivation rec {
     # Can't just symlink to the main script, since it uses __file__ to
     # import bundled packages and manage the service
     #cp ${wrapper} $out/bin/overviewer
-    echo ${python}/bin/python3 $out/libexec/overviewer/overviewer.py > $out/bin/overviewer
+    cat << EOF > $out/bin/overviewer
+    #!${pkgs.bash}/bin/bash
+    ${python}/bin/python3 $out/libexec/overviewer/overviewer.py \$@
+    EOF
     chmod +x $out/bin/overviewer
     # makeWrapper $out/libexec/overviewer/overviewer.py $out/bin/overviewer
     # wrapPythonProgramsIn "$out/libexec/overviewer" "$pythonPath"

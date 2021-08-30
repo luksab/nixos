@@ -82,13 +82,14 @@ in {
       #   cp --no-preserve=mode -r ${pkgs.minecraft.src}/static ${cfg.dataDir}/
       #   cp --no-preserve=mode -r ${pkgs.minecraft.src}/webroot ${cfg.dataDir}/
       # '';
+      path = [ pkgs.overviewer ];
 
       serviceConfig = {
         User = cfg.user;
         Group = cfg.group;
         Type = "oneshot";
 
-        script = "${pkgs.overviewer}/bin/overviewer --config=${configFile}";
+        ExecStart = "${pkgs.overviewer}/bin/overviewer --config=${configFile}";
       };
 
       environment = {
