@@ -12,6 +12,16 @@ clone:
 
 steps:
 
+- name: copy deploy_key to id_rsa
+  environment:
+    SSH_KEY:
+      from_secret: deploy_key
+  commands:
+    - mkdir ~/.ssh
+    - echo "$SSH_KEY" >> ~/.ssh/id_rsa
+    - chmod 400 ~/.ssh/id_rsa
+    - ssh-keyscan lounge.rocks >> ~/.ssh/known_hosts
+
 - name: Show flake info
   commands:
   - nix flake show
