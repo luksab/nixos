@@ -9,6 +9,11 @@ self: super: {
     wrapPython = super.python3.pkgs.wrapPython;
     makeWrapper = super.makeWrapper;
   };
+  ndi = super.pkgs.callPackage ../packages/ndi { };
+  obs-ndi = super.ndi.overrideAttrs (old: {
+    buildInputs = [ self.unstable.obs-studio super.qtbase self.ndi ];
+  });
+  obs = (self.unstable.wrapOBS { plugins = [ super.obs-ndi ]; });
 
   # override with newer version from nixpkgs-unstable
   # tautulli = self.unstable.tautulli;
@@ -16,10 +21,7 @@ self: super: {
   # override with newer version from nixpkgs-unstable (home-manager related)
   discord = self.unstable.discord;
   neovim-unwrapped = self.unstable.neovim-unwrapped;
-  wrapOBS = self.unstable.wrapOBS;
   obs-studio = self.unstable.obs-studio;
-  obs-studio-plugins.obs-ndi = self.unstable.obs-studio-plugins.obs-ndi;
-  ndi = self.unstable.ndi;
   signal-desktop = self.unstable.signal-desktop;
   spotify = self.unstable.spotify;
   vscode = self.unstable.vscode;

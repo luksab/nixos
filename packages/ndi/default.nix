@@ -5,26 +5,15 @@ stdenv.mkDerivation rec {
   fullVersion = "5";
   version = builtins.head (builtins.splitVersion fullVersion);
 
-  src = requireFile rec {
-    name = "Install_NDI_SDK_v${version}_Linux.tar.gz";
-    sha256 = "8d391dac2508d63ae2ed867fab1afdb10aa4afe6cde559edb9be5e0680ee273d";
-    message = ''
-      In order to use NDI SDK version ${fullVersion}, you need to comply with
-      NewTek's license and download the appropriate Linux tarball from:
-
-        ${meta.homepage}
-
-      Once you have downloaded the file, please use the following command and
-      re-run the installation:
-
-        \$ nix-prefetch-url file://\$PWD/${name}
-    '';
+  src = builtins.fetchGit {
+    url = "ssh://git@github.com/luksab/nixos-obs-shell.git";
+    rev = "c8943884ad82cde6b5bc1e08acc2068f3b450892";
   };
 
   buildInputs = [ avahi ];
 
   unpackPhase = ''
-    unpackFile ${src}
+    unpackFile ${src}/InstallNDISDK_v4_Linux.tar.gz
     echo y | ./InstallNDISDK_v4_Linux.sh
     sourceRoot="NDI SDK for Linux";
   '';
