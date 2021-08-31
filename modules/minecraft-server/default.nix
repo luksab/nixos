@@ -57,6 +57,8 @@ in {
         User = cfg.user;
         Group = cfg.group;
 
+        CPUSchedulingPriority = 20;
+
         Restart = "always";
         RestartSec = "10";
 
