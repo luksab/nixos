@@ -6,7 +6,7 @@ stdenv.mkDerivation rec {
   version = builtins.head (builtins.splitVersion fullVersion);
 
   src = builtins.fetchGit {
-    url = "ssh://git@github.com/luksab/nixos-obs-shell.git";
+    url = "ssh://git@github.com/luksab/nixos-private.git";
     rev = "c8943884ad82cde6b5bc1e08acc2068f3b450892";
   };
 
