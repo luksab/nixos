@@ -39,8 +39,12 @@ in rec {
 
   # Run with (e.g.):
   # nix-build ./krops.nix -A all && ./result
+  # nix-build ./krops.nix -A desktop && ./result
   # nix-build ./krops.nix -A servers && ./result
   #
+  # nix-build ./krops.nix -A arm && ./result
+  # nix-build ./krops.nix -A majaArm && ./result
+  # nix-build ./krops.nix -A pi4b && ./result
   # nix-build ./krops.nix -A laptop && ./result
 
   # Individual machines
@@ -48,10 +52,14 @@ in rec {
 
   arm = createHost "arm" "root@ocp.luksab.de";
 
+  majaArm = createHost "majaArm" "root@val.luksab.de";
+
   pi4b = createHost "pi4b" "root@192.168.178.98";
 
   # Groups
-  all = pkgs.writeScript "deploy-all" (lib.concatStringsSep "\n" [ laptop arm pi4b ]);
+  all = pkgs.writeScript "deploy-all" (lib.concatStringsSep "\n" [ laptop arm pi4b majaArm ]);
 
-  servers = pkgs.writeScript "deploy-servers" (lib.concatStringsSep "\n" [ arm ]);
+  desktops = pkgs.writeScript "deploy-desktops" (lib.concatStringsSep "\n" [ laptop pi4b ]);
+
+  servers = pkgs.writeScript "deploy-servers" (lib.concatStringsSep "\n" [ arm majaArm ]);
 }

@@ -15,7 +15,6 @@ nix-build ./krops.nix -A all && ./result
 ```
 
 # TODO
-- mouse vanish after 2 seconds
 - fix graphics glitches on laptop
 ## look at:
 - configuration options generated from nix code (low priority)

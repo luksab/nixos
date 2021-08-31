@@ -101,6 +101,13 @@
           ];
         };
 
+        majaArm = defFlakeSystem "aarch64-linux" {
+          imports = [
+            # Machine specific config
+            (import (./machines/majaArm/configuration.nix) { inherit self; })
+          ];
+        };
+
       };
     } //
 
