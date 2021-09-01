@@ -1,4 +1,4 @@
-{ lib, config, ... }:
+{ lib, config, pkgs, ... }:
 with lib;
 let cfg = config.luksab.desktop;
 in {
@@ -15,6 +15,7 @@ in {
         enable = true;
         dpi = 100;
       };
+      v4l2loopback.enable = true;
       ndi.enable = true;
     };
   };
