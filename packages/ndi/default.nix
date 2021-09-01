@@ -6,8 +6,8 @@ stdenv.mkDerivation rec {
   version = builtins.head (builtins.splitVersion fullVersion);
 
   src = builtins.fetchGit {
-    url = "git+ssh://git@github.com/luksab/nixos-private.git";
-    rev = "c8943884ad82cde6b5bc1e08acc2068f3b450892";
+    url = "ssh://git@github.com/luksab/nixos-private.git";
+    rev = "6bf41c0659d7bc8df368c543c7e465e6380e9064";
   };
 
   buildInputs = [ avahi ];
