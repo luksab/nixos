@@ -9,11 +9,12 @@ self: super: {
     wrapPython = super.python3.pkgs.wrapPython;
     makeWrapper = super.makeWrapper;
   };
+  wrapOBS = super.pkgs.callPackage ../packages/ndi/obs-wrapper.nix { };
   ndi = super.pkgs.callPackage ../packages/ndi { };
   obs-ndi = super.ndi.overrideAttrs (old: {
     buildInputs = [ self.unstable.obs-studio super.qtbase self.ndi ];
   });
-  obs = (self.unstable.wrapOBS { plugins = [ super.obs-ndi ]; });
+  obs = (self.wrapOBS { plugins = [ super.obs-ndi self.unstable.obs-studio-plugins.obs-websocket ]; });
 
   # override with newer version from nixpkgs-unstable
   # tautulli = self.unstable.tautulli;
