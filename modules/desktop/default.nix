@@ -9,6 +9,9 @@ in {
     sound.enable = true;
     hardware.pulseaudio.enable = true;
 
+    # enable yubi key
+    mayniklas.yubikey.enable = true;
+
     luksab = {
       common.enable = true;
       xserver = {

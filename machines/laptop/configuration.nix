@@ -24,10 +24,7 @@
   boot.loader.efi.canTouchEfiVariables = true;
   boot.loader.grub.device = "/dev/nvme0n1";
 
-  networking.interfaces.wlp0s20f3.useDHCP = true;
-
-  networking.wireless.enable = true;
-  networking.wireless.interfaces = [ "wlp0s20f3" ];
+  networking.networkmanager.enable = true;
 
   # {
   #   xsession.enable = true;
@@ -37,12 +34,6 @@
 
   hardware.acpilight.enable = true;
   security.sudo.wheelNeedsPassword = false;
-
-  networking.wireless.networks = {
-    Salami = { # SSID with no spaces or special characters
-      psk = "ckqc-go05-m2kn";
-    };
-  };
 
   boot.initrd.availableKernelModules =
     [ "xhci_pci" "nvme" "usb_storage" "sd_mod" "rtsx_pci_sdmmc" ];
