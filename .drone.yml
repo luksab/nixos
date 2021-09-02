@@ -20,10 +20,7 @@ steps:
     - mkdir ~/.ssh
     - echo "$SSH_KEY" >> ~/.ssh/id_rsa
     - chmod 400 ~/.ssh/id_rsa
-    - ssh-keyscan lounge.rocks >> ~/.ssh/known_hosts
-    - ssh-keyscan github.com >> ~/.ssh/known_hosts
-    - eval "$(ssh-agent -s)"
-    - ssh-add ~/.ssh/id_rsa
+    - echo "github.com ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAq2A7hRGmdnm9tUDbO9IDSwBK6TbQa+PXYPCPy6rbTrTtw7PHkccKrpp0yVhyCOV0wzfjIJNlGEYsdlLJizHhbn2mUjvSAHQqZETYP81eFzLQNnPHt4EVVUh7VfDESU84KezmD5QlWpXLmvU31/yMf+Se8xhHTvKSCZIFIeqqUUmpaaasXVal72J+UX2B+2RPW3RcT0eOzQgqlJL3RKrTJvdsjE3JEAvGq3lGHSZXy28G3skua2SmVi/w4yCE6gbODqnTWlg7+wC604y=" > ~/.ssh/known_hosts
 
 - name: Show flake info
   commands:
