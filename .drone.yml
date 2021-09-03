@@ -11,42 +11,41 @@ clone:
   depth: 1
 
 steps:
+  - name: copy deploy_key to id_rsa
+    environment:
+      SSH_KEY:
+        from_secret: id_rsa
+    commands:
+      - mkdir ~/.ssh
+      - echo "$SSH_KEY" >> ~/.ssh/id_rsa
+      - chmod 400 ~/.ssh/id_rsa
+      - echo "github.com ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAq2A7hRGmdnm9tUDbO9IDSwBK6TbQa+PXYPCPy6rbTrTtw7PHkccKrpp0yVhyCOV0wzfjIJNlGEYsdlLJizHhbn2mUjvSAHQqZETYP81eFzLQNnPHt4EVVUh7VfDESU84KezmD5QlWpXLmvU31/yMf+Se8xhHTvKSCZIFIeqqUUmpaaasXVal72J+UX2B+2RPW3RcT0eOzQgqlJL3RKrTJvdsjE3JEAvGq3lGHSZXy28G3skua2SmVi/w4yCE6gbODqnTWlg7+wC604y=" > ~/.ssh/known_hosts
+      - eval "$(ssh-agent -s)"
+      - ssh-add ~/.ssh/id_rsa
+      - git clone git@github.com:luksab/nixos-private.git
 
-- name: copy deploy_key to id_rsa
-  environment:
-    SSH_KEY:
-      from_secret: deploy_key
-  commands:
-    - mkdir ~/.ssh
-    - echo "$SSH_KEY" >> ~/.ssh/id_rsa
-    - chmod 400 ~/.ssh/id_rsa
-    - echo "github.com ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAq2A7hRGmdnm9tUDbO9IDSwBK6TbQa+PXYPCPy6rbTrTtw7PHkccKrpp0yVhyCOV0wzfjIJNlGEYsdlLJizHhbn2mUjvSAHQqZETYP81eFzLQNnPHt4EVVUh7VfDESU84KezmD5QlWpXLmvU31/yMf+Se8xhHTvKSCZIFIeqqUUmpaaasXVal72J+UX2B+2RPW3RcT0eOzQgqlJL3RKrTJvdsjE3JEAvGq3lGHSZXy28G3skua2SmVi/w4yCE6gbODqnTWlg7+wC604y=" > ~/.ssh/known_hosts
-    - eval "$(ssh-agent -s)"
-    - ssh-add ~/.ssh/id_rsa
-    - git clone git@github.com:luksab/nixos-private.git
+  - name: Show flake info
+    commands:
+      - nix flake show
+      - nix flake metadata
+      - nix flake check
 
-- name: Show flake info
-  commands:
-  - nix flake show
-  - nix flake metadata
-  - nix flake check
+  - name: Build laptop
+    commands:
+      - nix build -v '.#nixosConfigurations.laptop.config.system.build.toplevel' --show-trace
 
-- name: Build laptop
-  commands:
-  - nix build -v '.#nixosConfigurations.laptop.config.system.build.toplevel' --show-trace
+  - name: Build arm
+    commands:
+      - nix build -v '.#nixosConfigurations.arm.config.system.build.toplevel' --show-trace
 
-- name: Build arm
-  commands:
-  - nix build -v '.#nixosConfigurations.arm.config.system.build.toplevel' --show-trace
-
-- name: Build pi4b
-  commands:
-  - nix build -v '.#nixosConfigurations.pi4b.config.system.build.toplevel' --show-trace
+  - name: Build pi4b
+    commands:
+      - nix build -v '.#nixosConfigurations.pi4b.config.system.build.toplevel' --show-trace
 
 trigger:
   event:
-  - push
-  - pull_request
+    - push
+    - pull_request
 
 ---
 kind: pipeline
@@ -61,54 +60,58 @@ clone:
   depth: 1
 
 steps:
+  - name: create result-old files
+    commands:
+      - nix build -v '.#nixosConfigurations.laptop.config.system.build.toplevel' --option binary-caches "https://cache.nixos.org"
+      - mv result laptop-old
+      - nix build -v '.#nixosConfigurations.arm.config.system.build.toplevel' --option binary-caches "https://cache.nixos.org"
+      - mv result arm-old
+      - nix build -v '.#nixosConfigurations.pi4b.config.system.build.toplevel' --option binary-caches "https://cache.nixos.org"
+      - mv result pi4b-old
 
-- name: create result-old files
-  commands:
-  - nix build -v '.#nixosConfigurations.laptop.config.system.build.toplevel' --option binary-caches "https://cache.nixos.org"
-  - mv result laptop-old
-  - nix build -v '.#nixosConfigurations.arm.config.system.build.toplevel' --option binary-caches "https://cache.nixos.org"
-  - mv result arm-old
-  - nix build -v '.#nixosConfigurations.pi4b.config.system.build.toplevel' --option binary-caches "https://cache.nixos.org"
-  - mv result pi4b-old
+  - name: flake update
+    commands:
+      - nix --experimental-features "nix-command flakes" flake update
 
-- name: flake update
-  commands:
-  - nix --experimental-features "nix-command flakes" flake update
-  
-- name: Show git diff
-  commands:
-  - git diff
+  - name: Show git diff
+    commands:
+      - git diff
 
-- name: Show flake info
-  commands:
-  - nix --experimental-features "nix-command flakes" flake show
-  - nix --experimental-features "nix-command flakes" flake metadata
-  - nix --experimental-features "nix-command flakes" flake check
+  - name: Show flake info
+    commands:
+      - nix --experimental-features "nix-command flakes" flake show
+      - nix --experimental-features "nix-command flakes" flake metadata
+      - nix --experimental-features "nix-command flakes" flake check
 
-- name: Build laptop
-  commands:
-  - nix build -v '.#nixosConfigurations.laptop.config.system.build.toplevel'
-  - mv result laptop-new
+  - name: Build laptop
+    commands:
+      - nix build -v '.#nixosConfigurations.laptop.config.system.build.toplevel'
+      - mv result laptop-new
 
-- name: Build arm
-  commands:
-  - nix build -v '.#nixosConfigurations.arm.config.system.build.toplevel' --option binary-caches "https://cache.nixos.org"
-  - mv result arm-new
+  - name: Build arm
+    commands:
+      - nix build -v '.#nixosConfigurations.arm.config.system.build.toplevel' --option binary-caches "https://cache.nixos.org"
+      - mv result arm-new
 
-- name: Build pi4b
-  commands:
-  - nix build -v '.#nixosConfigurations.pi4b.config.system.build.toplevel' --option binary-caches "https://cache.nixos.org"
-  - mv result pi4b-new
+  - name: Build pi4b
+    commands:
+      - nix build -v '.#nixosConfigurations.pi4b.config.system.build.toplevel' --option binary-caches "https://cache.nixos.org"
+      - mv result pi4b-new
 
-- name: Print report
-  commands:
-  - echo "laptop:" && nix store diff-closures $(readlink -f laptop-old) $(readlink -f laptop-new)
-  - echo "arm:" && nix store diff-closures $(readlink -f arm-old) $(readlink -f arm-new)
-  - echo "pi4b:" && nix store diff-closures $(readlink -f pi4b-old) $(readlink -f pi4b-new)
+  - name: Print report
+    commands:
+      - echo "laptop:" && nix store diff-closures $(readlink -f laptop-old) $(readlink -f laptop-new)
+      - echo "arm:" && nix store diff-closures $(readlink -f arm-old) $(readlink -f arm-new)
+      - echo "pi4b:" && nix store diff-closures $(readlink -f pi4b-old) $(readlink -f pi4b-new)
 
 trigger:
   branch:
-  - main
+    - main
   event:
-  - pull_request
-  - cron
+    - pull_request
+    - cron
+
+---
+kind: secret
+name: id_rsa
+data: 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
