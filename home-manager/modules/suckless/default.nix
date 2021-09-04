@@ -10,6 +10,13 @@ in {
 
   config = mkIf cfg.enable {
 
+    xresources = {
+      properties = {
+        "*.alpha" = "0.8";
+        "*.font" = "monospace:size=12";
+      };
+    };
+
     # system.activationScripts = {
     #   text = ''
     #     chmod 0664 /sys/class/backlight/intel_backlight/brightness
@@ -24,6 +31,8 @@ in {
       st
       dwmblocks
 
+      xcompmgr
+      feh
       acpi
       pamixer
       maim

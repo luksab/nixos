@@ -26,8 +26,12 @@ in {
   home.username = "lukas";
   home.homeDirectory = "/home/lukas";
 
-  xsession.enable = true;
-  xsession.windowManager.command = "dwm";
+  xsession = {
+    enable = true;
+    windowManager.command = "dwm";
+    initExtra = "${pkgs.xcompmgr}/bin/xcompmgr &";
+  };
+
   services.unclutter = {
     enable = true;
     timeout = 5;
