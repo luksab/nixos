@@ -10,6 +10,7 @@
   home-manager.users.lukas = {
     imports = [
       ../../home-manager/home.nix
+      ../../home-manager/modules/touchscreen
       { nixpkgs.overlays = [ self.overlay self.overlay-unstable ]; }
     ];
   };
@@ -18,6 +19,8 @@
     firmware.enable = true;
     desktop.enable = true;
   };
+
+  virtualisation.docker.enable = true;
 
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;

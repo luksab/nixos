@@ -48,6 +48,7 @@ in {
     brightnessctl
     htop
     multimc
+    arandr
 
     dolphin
     gnome.nautilus
