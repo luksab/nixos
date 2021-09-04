@@ -32,11 +32,8 @@ in {
 
   # Imports
   imports = [
-    #   #./modules/devolopment
-    #   #./modules/git
-    #   #./modules/gtk
-    #   #./modules/vim
-    #   ./modules/vscode
+    #./modules/vim
+    ./modules/git
     ./modules/zsh
   ];
 

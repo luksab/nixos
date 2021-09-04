@@ -14,13 +14,6 @@ in {
     programs.vscode.enable = true;
   };
 
-  # programs.obs-studio = {
-  #   enable = true;
-  #   package =
-  #     pkgs.wrapOBS { plugins = with pkgs.obs-studio-plugins; [ obs-ndi ]; };
-  #   plugins = with pkgs.obs-studio-plugins; [ obs-ndi ];
-  # };
-
   # Home Manager needs a bit of information about you and the
   # paths it should manage.
   home.username = "lukas";
@@ -36,7 +29,6 @@ in {
     enable = true;
     timeout = 5;
   };
-  #xsession.scriptPath = ".hm-xsession";
 
   # Allow "unfree" licenced packages
   nixpkgs.config = { allowUnfree = true; };
@@ -75,8 +67,8 @@ in {
   # Imports
   imports = [
     #./modules/devolopment
-    #./modules/git
-    #./modules/gtk
+    ./modules/git
+    ./modules/gtk
     ../modules/options
     ./modules/suckless
     ./modules/dunst
