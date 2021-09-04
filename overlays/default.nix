@@ -14,7 +14,13 @@ self: super: {
   obs-ndi = super.ndi.overrideAttrs (old: {
     buildInputs = [ self.unstable.obs-studio super.qtbase self.ndi ];
   });
-  obs = (self.wrapOBS { plugins = [ super.obs-ndi self.unstable.obs-studio-plugins.obs-websocket ]; });
+  obs = (self.wrapOBS {
+    plugins = with self.unstable.obs-studio-plugins; [
+      super.obs-ndi
+      obs-websocket
+      obs-move-transition
+    ];
+  });
 
   # override with newer version from nixpkgs-unstable
   # tautulli = self.unstable.tautulli;
@@ -34,8 +40,8 @@ self: super: {
     src = super.pkgs.fetchFromGitHub {
       owner = "luksab";
       repo = "dwm";
-      rev = "7c0397379976406dbdf8681e46ecc69551b5b193";
-      sha256 = "sha256-7SzMfv0idFvk23dxaDSUfCdTUgEJgjnxgGXcoEpc7TQ=";
+      rev = "4480b7c422d3dd5e315289d35e203871eb4476b2";
+      sha256 = "sha256-PIDPTFLPNCTHQGz6HKYxbF9U9Aa9vnTRgMXyCwUqg7w=";
       name = "dwm";
     };
   }));
