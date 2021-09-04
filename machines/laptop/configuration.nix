@@ -5,7 +5,7 @@
   imports = [ ../../users/lukas.nix ../../users/root.nix ];
 
   #allow aarch64 emulation
-  boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
+  boot.binfmt.emulatedSystems = [ "aarch64-linux" "armv6l-linux" ];
 
   home-manager.users.lukas = {
     imports = [
@@ -24,7 +24,16 @@
   boot.loader.efi.canTouchEfiVariables = true;
   boot.loader.grub.device = "/dev/nvme0n1";
 
-  networking.networkmanager.enable = true;
+  networking.interfaces.wlp0s20f3.useDHCP = true;
+
+  networking.wireless.enable = true;
+  networking.wireless.interfaces = [ "wlp0s20f3" ];
+  networking.wireless.networks = {
+    Salami = { # SSID with no spaces or special characters
+      psk = "ckqc-go05-m2kn";
+    };
+  };
+  #networking.networkmanager.enable = true;
 
   # {
   #   xsession.enable = true;
