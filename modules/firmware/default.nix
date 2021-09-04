@@ -1,4 +1,4 @@
-{ lib, config, ... }:
+{ lib, config, pkgs, ... }:
 with lib;
 let cfg = config.luksab.firmware;
 in {
@@ -8,6 +8,7 @@ in {
 
   config = mkIf cfg.enable {
     hardware.enableRedistributableFirmware = mkDefault true;
+    boot.kernelPackages = pkgs.linuxPackages_latest;
 
     powerManagement.cpuFreqGovernor = mkDefault "powersave";
   };
