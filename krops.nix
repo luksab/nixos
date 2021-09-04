@@ -48,13 +48,13 @@ in rec {
   # nix-build ./krops.nix -A laptop && ./result
 
   # Individual machines
-  laptop = createHost "laptop" "root@192.168.178.114";
+  laptop = createHost "laptop" "root@laptop";
 
   arm = createHost "arm" "root@ocp.luksab.de";
 
   majaArm = createHost "majaArm" "root@val.luksab.de";
 
-  pi4b = createHost "pi4b" "root@192.168.178.98";
+  pi4b = createHost "pi4b" "root@192.168.178.55";
 
   # Groups
   all = pkgs.writeScript "deploy-all" (lib.concatStringsSep "\n" [ laptop arm pi4b majaArm ]);
