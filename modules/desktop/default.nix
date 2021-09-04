@@ -12,6 +12,9 @@ in {
     # enable yubi key
     mayniklas.yubikey.enable = true;
 
+    programs.dconf.enable = true;
+    services.gvfs.enable = true;
+
     luksab = {
       common.enable = true;
       xserver = {

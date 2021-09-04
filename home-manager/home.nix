@@ -50,6 +50,9 @@ in {
     multimc
 
     dolphin
+    gnome.nautilus
+    mtools
+    sshfs
     filezilla
     gcc
     gnome3.dconf

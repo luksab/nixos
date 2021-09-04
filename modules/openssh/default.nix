@@ -13,7 +13,7 @@ in {
       passwordAuthentication = false;
       startWhenNeeded = true;
       challengeResponseAuthentication = false;
-
+      allowSFTP = true;
     };
 
   };
