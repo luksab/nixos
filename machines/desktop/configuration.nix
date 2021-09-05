@@ -43,13 +43,13 @@
   boot.kernelModules = [ "kvm-intel" ];
   boot.extraModulePackages = [ ];
 
-  fileSystems."/" =
-    { device = "/dev/disk/by-uuid/2e3bada6-77cb-4a06-9823-dc1ffef5d3de";
-      fsType = "ext4";
-    };
+  fileSystems."/" = {
+    device = "/dev/disk/by-uuid/2e3bada6-77cb-4a06-9823-dc1ffef5d3de";
+    fsType = "ext4";
+  };
 
-  fileSystems."/boot" =
-    { device = "/dev/disk/by-uuid/543A-E53E";
-      fsType = "vfat";
-    };
+  fileSystems."/boot" = {
+    device = "/dev/disk/by-uuid/543A-E53E";
+    fsType = "vfat";
+  };
 }
