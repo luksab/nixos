@@ -22,7 +22,7 @@
 
   mayniklas.grub-luks = {
     enable = true;
-    uuid = "537339b4-6da6-4938-b803-fd06b1bde749";
+    uuid = "dc9c877a-a56c-49b5-bb5a-a1f9a17b8296";
   };
 
   services.xserver = { videoDrivers = [ "nvidia" ]; };
@@ -45,7 +45,7 @@
   boot.extraModulePackages = [ ];
 
   fileSystems."/" =
-    { device = "/dev/disk/by-uuid/4197a2f3-4764-438c-94ff-74e4e326c906";
+    { device = "/dev/disk/by-uuid/2e3bada6-77cb-4a06-9823-dc1ffef5d3de";
       fsType = "ext4";
     };
 
