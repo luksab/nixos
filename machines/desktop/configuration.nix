@@ -10,7 +10,6 @@
   home-manager.users.lukas = {
     imports = [
       ../../home-manager/home.nix
-      ../../home-manager/modules/touchscreen
       { nixpkgs.overlays = [ self.overlay self.overlay-unstable ]; }
     ];
   };
