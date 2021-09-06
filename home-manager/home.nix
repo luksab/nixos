@@ -59,7 +59,6 @@ in {
     vim
     vlc
     youtube-dl
-    zoom-us
 
     jdk
   ];
