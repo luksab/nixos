@@ -39,7 +39,6 @@ in {
   # Install these packages for my user
   home.packages = with pkgs; [
     libnotify
-    discord
     brightnessctl
     htop
     multimc
