@@ -22,7 +22,11 @@ in {
   xsession = {
     enable = true;
     windowManager.command = "dwm";
-    initExtra = "${pkgs.xcompmgr}/bin/xcompmgr &";
+    initExtra = ''
+      .screenlayout/default.sh &
+      ${pkgs.xcompmgr}/bin/xcompmgr &
+      ${pkgs.feh}/bin/feh --bg-fill --randomize Pictures/backgrounds
+    '';
   };
 
   services.unclutter = {

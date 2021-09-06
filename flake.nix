@@ -28,7 +28,7 @@
             # Add home-manager option to all configs
             ({ ... }: {
               imports = builtins.attrValues self.nixosModules
-                ++ [ mayniklas.nixosModules.yubikey ]
+                ++ [ mayniklas.nixosModules.yubikey mayniklas.nixosModules.grub-luks ]
                 ++ [
                   {
                     # Set the $NIX_PATH entry for nixpkgs. This is necessary in
@@ -84,6 +84,13 @@
           imports = [
             # Machine specific config
             (import (./machines/laptop/configuration.nix) { inherit self; })
+          ];
+        };
+
+        desktop = defFlakeSystem "x86_64-linux" {
+          imports = [
+            # Machine specific config
+            (import (./machines/desktop/configuration.nix) { inherit self; })
           ];
         };
 
