@@ -10,6 +10,8 @@ in {
 
   config = mkIf cfg.enable {
 
+    home.sessionVariables.BROWSER = if config.luksab.arch == "x86_64" then "brave" else "firefox";
+
     xresources = {
       properties = {
         "*.alpha" = "0.8";
