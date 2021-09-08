@@ -90,13 +90,11 @@
   services.nginx.virtualHosts."ocp.luksab.de" = {
     forceSSL = true;
     enableACME = true;
-    #root = "/home/lukas/mcmap";
     root = "/var/www/overviewer";
   };
   services.nginx.virtualHosts."luksab.de" = {
     forceSSL = true;
     enableACME = true;
-    #root = "/home/lukas/mcmap";
     root = "/var/www/luksab.de";
   };
   security.acme.acceptTerms = true;
@@ -104,12 +102,5 @@
     "ocp.luksab.de".email = "lukassabatschus@gmail.com";
     "luksab.de".email = "lukassabatschus@gmail.com";
   };
-  # Enable cron service
-  # services.cron = {
-  #   enable = true;
-  #   systemCronJobs = [
-  #     "0 * * * *      root    . /etc/profile; /home/lukas/teddy/overviewer/render.sh  >> /tmp/cron.log"
-  #   ];
-  # };
 }
 
