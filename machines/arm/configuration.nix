@@ -28,7 +28,7 @@
             "world": "teddy",
             'rendermode': 'night',
             "title": "Night",
-            'crop': (0, -1000, 2000, 1000),
+            'crop': (-1000, -500, 1000, 1500),
         }
 
         renders["nether"] = {
