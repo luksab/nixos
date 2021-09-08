@@ -11,7 +11,6 @@
       name = "materia-theme";
       package = pkgs.materia-theme;
     };
-    gtk3.extraConfig.gtk-cursor-theme-name = "breeze";
   };
 
   home.sessionVariables.GTK_THEME = "materia-theme";

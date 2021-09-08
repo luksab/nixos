@@ -41,9 +41,13 @@ in {
         }];
       };
 
-      displayManager.lightdm.enable = true;
-
+      displayManager.lightdm = {
+        enable = true;
+        greeters.gtk.iconTheme = {
+          package = pkgs.gnome-breeze;
+          name = "Breeze-gtk";
+        };
+      };
     };
-
   };
 }
