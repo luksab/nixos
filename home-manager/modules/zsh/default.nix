@@ -17,6 +17,7 @@ in {
       bindkey '^f' fzf-file-widget
       # this works
       export NIXPKGS_ALLOW_UNFREE=1
+      alias p="nix-shell -p "
     '';
 
     history = {
