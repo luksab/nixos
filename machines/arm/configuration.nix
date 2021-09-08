@@ -93,9 +93,16 @@
     #root = "/home/lukas/mcmap";
     root = "/var/www/overviewer";
   };
+  services.nginx.virtualHosts."luksab.de" = {
+    forceSSL = true;
+    enableACME = true;
+    #root = "/home/lukas/mcmap";
+    root = "/var/www/luksab.de";
+  };
   security.acme.acceptTerms = true;
   security.acme.certs = {
     "ocp.luksab.de".email = "lukassabatschus@gmail.com";
+    "luksab.de".email = "lukassabatschus@gmail.com";
   };
   # Enable cron service
   # services.cron = {
