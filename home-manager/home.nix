@@ -11,7 +11,6 @@ in {
     suckless.enable = true;
     services.dunst.enable = true;
     #programs.vim.enable = true;
-    programs.vscode.enable = true;
   };
 
   # Home Manager needs a bit of information about you and the
@@ -53,7 +52,6 @@ in {
   # Install these packages for my user
   home.packages = with pkgs; [
     libnotify
-    discord
     brightnessctl
     htop
     multimc
@@ -74,12 +72,12 @@ in {
     vim
     vlc
     youtube-dl
-    zoom-us
 
     jdk
   ];
 
   luksab.x86.enable = config.luksab.arch == "x86_64";
+  programs.vscode.enable = config.luksab.arch == "x86_64";
 
   # Imports
   imports = [

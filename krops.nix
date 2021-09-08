@@ -56,10 +56,12 @@ in rec {
 
   pi4b = createHost "pi4b" "root@192.168.178.55";
 
+  pi4b2 = createHost "pi4b2" "root@192.168.178.35";
+
   # Groups
-  all = pkgs.writeScript "deploy-all" (lib.concatStringsSep "\n" [ laptop arm pi4b majaArm ]);
+  all = pkgs.writeScript "deploy-all" (lib.concatStringsSep "\n" [ laptop arm pi4b pi4b2 majaArm ]);
 
-  desktops = pkgs.writeScript "deploy-desktops" (lib.concatStringsSep "\n" [ laptop pi4b ]);
+  desktops = pkgs.writeScript "deploy-desktops" (lib.concatStringsSep "\n" [ laptop pi4b2 ]);
 
-  servers = pkgs.writeScript "deploy-servers" (lib.concatStringsSep "\n" [ arm majaArm ]);
+  servers = pkgs.writeScript "deploy-servers" (lib.concatStringsSep "\n" [ arm majaArm pi4b ]);
 }

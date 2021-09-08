@@ -33,6 +33,7 @@ in {
   # Imports
   imports = [
     #./modules/vim
+    ../modules/options
     ./modules/git
     ./modules/zsh
   ];

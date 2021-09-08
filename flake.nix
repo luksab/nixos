@@ -108,6 +108,13 @@
           ];
         };
 
+        pi4b2 = defFlakeSystem "aarch64-linux" {
+          imports = [
+            # Machine specific config
+            (import (./machines/pi4b2/configuration.nix) { inherit self; })
+          ];
+        };
+
         majaArm = defFlakeSystem "aarch64-linux" {
           imports = [
             # Machine specific config
