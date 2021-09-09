@@ -30,7 +30,6 @@
 
   networking.useDHCP = false;
   networking.interfaces.eno1.useDHCP = true;
-  networking.interfaces.enp0s20f0u4u3.useDHCP = true;
   networking.interfaces.enp14s0.useDHCP = true;
   networking.interfaces.enp9s0.useDHCP = true;
   networking.interfaces.wlp8s0.useDHCP = true;
