@@ -5,15 +5,15 @@ stdenv.mkDerivation rec {
   fullVersion = "5";
   version = builtins.head (builtins.splitVersion fullVersion);
 
-  src = builtins.fetchGit {
-    url = "ssh://git@github.com/luksab/nixos-private.git";
-    rev = "6bf41c0659d7bc8df368c543c7e465e6380e9064";
+  src = builtins.fetchurl {
+    url = "https://private.luksab.de/InstallNDISDK_v4_Linux.tar.gz";
+    sha256 = "sha256:181ypfj1bl0kljzrfr6037i14ykg2y4plkzdhym6m3z7kcrnm1fl";
   };
 
   buildInputs = [ avahi ];
 
   unpackPhase = ''
-    unpackFile ${src}/InstallNDISDK_v4_Linux.tar.gz
+    unpackFile ${src}
     echo y | ./InstallNDISDK_v4_Linux.sh
     sourceRoot="NDI SDK for Linux";
   '';

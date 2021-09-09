@@ -11,19 +11,6 @@ clone:
   depth: 1
 
 steps:
-  - name: copy deploy_key to id_rsa
-    environment:
-      SSH_KEY:
-        from_secret: id_rsa
-    commands:
-      - mkdir ~/.ssh
-      - echo "$SSH_KEY" >> ~/.ssh/id_rsa
-      - chmod 400 ~/.ssh/id_rsa
-      - echo "github.com ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAq2A7hRGmdnm9tUDbO9IDSwBK6TbQa+PXYPCPy6rbTrTtw7PHkccKrpp0yVhyCOV0wzfjIJNlGEYsdlLJizHhbn2mUjvSAHQqZETYP81eFzLQNnPHt4EVVUh7VfDESU84KezmD5QlWpXLmvU31/yMf+Se8xhHTvKSCZIFIeqqUUmpaaasXVal72J+UX2B+2RPW3RcT0eOzQgqlJL3RKrTJvdsjE3JEAvGq3lGHSZXy28G3skua2SmVi/w4yCE6gbODqnTWlg7+wC604y=" > ~/.ssh/known_hosts
-      - eval "$(ssh-agent -s)"
-      - ssh-add ~/.ssh/id_rsa
-      - git clone git@github.com:luksab/nixos-private.git
-
   - name: Show flake info
     commands:
       - nix flake show
