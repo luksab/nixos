@@ -26,7 +26,20 @@ in {
       ${pkgs.xcompmgr}/bin/xcompmgr &
       ${pkgs.feh}/bin/feh --bg-fill --randomize Pictures/backgrounds
     '';
+    pointerCursor = {
+      package = pkgs.gnome3.defaultIconTheme;
+      name = "Adwaita";
+      size = 32;
   };
+  };
+  # Remove in next release of home-manager
+  home.file.".icons/default/index.theme".text = ''
+    [icon theme]
+    Name=Default
+    Comment=Default Cursor Theme
+    Inherits=Adwaita
+  '';
+  # home.file.".icons/default".source = "${pkgs.vanilla-dmz}/share/icons/Vanilla-DMZ";
 
   services.unclutter = {
     enable = true;

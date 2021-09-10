@@ -94,6 +94,13 @@
           ];
         };
 
+        nix86 = defFlakeSystem "x86_64-linux" {
+          imports = [
+            # Machine specific config
+            (import (./machines/nix86/configuration.nix) { inherit self; })
+          ];
+        };
+
         arm = defFlakeSystem "aarch64-linux" {
           imports = [
             # Machine specific config

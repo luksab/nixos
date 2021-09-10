@@ -3,8 +3,12 @@
     git = {
       enable = true;
 
-      userEmail = "luksablp@gmail.com";
+      userEmail = "lukas@sabatschus.de";
       userName = "luksab";
+      signing = {
+        key = "9C083CECA78B772E";
+        signByDefault = true;
+      };      
     };
   };
 }
