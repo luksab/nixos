@@ -4,7 +4,7 @@
     openssh.authorizedKeys.keyFiles = [
       (builtins.fetchurl {
         url = "https://github.com/luksab.keys";
-        sha256 = "03i5mg0h1c2j58fpk293s0mikhnk1968gc9gjq1c2hwkq1af493y";
+        sha256 = "sha256:1igzydnqfn35y3xd49acdir98d3mprkcxrbzyrsmrp3j781dy33c";
       })
     ];
   };
