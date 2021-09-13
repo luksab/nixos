@@ -27,6 +27,7 @@ in {
 
   config = mkIf cfg.enable {
     environment.systemPackages = [
+      pkgs.git
       pkgs.nodejs
       pkgs.python
       pkgs.pkg-config
@@ -41,15 +42,18 @@ in {
       wantedBy = [ "default.target" ];
 
       preStart = ''
-        git pull
-        npm install
+        ${pkgs.git}/bin/git pull
+        ${pkgs.nodejs}/bin/npm install
       '';
-      path = [ pkgs.lukas-bot ];
+
+      environment = {
+        DISCORD_TOKEN = (builtins.readFile /var/src/secrets/discord.token);
+      };
 
       serviceConfig = {
         User = cfg.user;
         Group = cfg.group;
-        WorkingDirectory = cfg.dataDir;
+        WorkingDirectory = toString cfg.dataDir;
         Restart = "on-failure";
 
         ExecStart = "${pkgs.nodejs}/bin/node index.js";
@@ -65,8 +69,8 @@ in {
       groups."${cfg.group}" = { };
       users.lukas-bot = {
         isSystemUser = true;
-        group = "${cfg.group}";
-        home = "${cfg.dataDir}";
+        group = cfg.group;
+        home = toString cfg.dataDir;
         createHome = true;
         description = "lukas-bot system user";
       };

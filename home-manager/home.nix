@@ -6,6 +6,7 @@ in {
   programs.home-manager.enable = true;
 
   programs.command-not-found.enable = true;
+  programs.password-store.enable = true;
 
   luksab = {
     suckless.enable = true;
