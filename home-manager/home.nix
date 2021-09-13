@@ -47,6 +47,9 @@ in {
     timeout = 5;
   };
 
+  # enable bluetooth media control
+  services.mpris-proxy.enable = true;
+
   # Allow "unfree" licenced packages
   nixpkgs.config = { allowUnfree = true; };
 

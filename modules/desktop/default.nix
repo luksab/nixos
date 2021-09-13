@@ -7,13 +7,24 @@ in {
   config = mkIf cfg.enable {
     # Enable sound.
     sound.enable = true;
-    hardware.pulseaudio.enable = true;
+    hardware.pulseaudio = {
+      enable = true;
+      extraModules = [ pkgs.pulseaudio-modules-bt ];
+      package = pkgs.pulseaudioFull;
+    };
 
     # enable yubi key
     mayniklas.yubikey.enable = true;
 
     programs.dconf.enable = true;
     services.gvfs.enable = true;
+
+    # enable bluetooth
+    hardware.bluetooth.enable = true;
+    services.blueman.enable = true;
+    hardware.bluetooth.settings = {
+      General = { Enable = "Source,Sink,Media,Socket"; };
+    };
 
     luksab = {
       common.enable = true;
