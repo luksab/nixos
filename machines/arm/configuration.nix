@@ -7,6 +7,8 @@
     openssh.enable = true;
     server.enable = true;
 
+    lukas-bot.enable = true;
+
     minecraft-server = {
       enable = true;
       openFirewall = true;
