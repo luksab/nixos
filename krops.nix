@@ -18,7 +18,7 @@ let
         machine-config.file = toString ./.;
 
         secrets.pass = {
-          dir = toString /home/lukas/.password-store;
+          dir = toString /home/lukas/.local/share/password-store;
           name = "${name}";
         };
       }
@@ -26,8 +26,8 @@ let
 
   command = targetPath: ''
     nix-shell -p git --run '
-      nixos-rebuild switch --impure -v --show-trace --flake ${targetPath}/machine-config || \
-        nixos-rebuild switch --impure -v --show-trace --flake ${targetPath}/machine-config
+      nixos-rebuild switch -v --show-trace --flake ${targetPath}/machine-config || \
+        nixos-rebuild switch -v --show-trace --flake ${targetPath}/machine-config
     '
   '';
 

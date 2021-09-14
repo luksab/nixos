@@ -46,14 +46,11 @@ in {
         ${pkgs.nodejs}/bin/npm install
       '';
 
-      environment = {
-        DISCORD_TOKEN = (builtins.readFile /var/src/secrets/discord.token);
-      };
-
       serviceConfig = {
         User = cfg.user;
         Group = cfg.group;
         WorkingDirectory = toString cfg.dataDir;
+        EnvironmentFile = [ "/var/src/secrets/discord.token" ];
         Restart = "on-failure";
 
         ExecStart = "${pkgs.nodejs}/bin/node index.js";
