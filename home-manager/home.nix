@@ -78,6 +78,8 @@ in {
     youtube-dl
 
     jdk
+    
+    gcr
   ];
 
   luksab.x86.enable = config.luksab.arch == "x86_64";
