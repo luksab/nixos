@@ -19,9 +19,38 @@
     desktop.enable = true;
   };
 
-  mayniklas.grub-luks = {
-    enable = true;
-    uuid = "dc9c877a-a56c-49b5-bb5a-a1f9a17b8296";
+  # mayniklas.grub-luks = {
+  #   enable = true;
+  #   uuid = "dc9c877a-a56c-49b5-bb5a-a1f9a17b8296";
+  # };
+
+  boot = {
+    loader = {
+      grub = {
+        enable = true;
+        version = 2;
+        device = "nodev";
+        efiSupport = true;
+        efiInstallAsRemovable = true;
+        useOSProber = true;
+      };
+    };
+    cleanTmpDir = true;
+    
+    initrd.luks = {
+      reusePassphrases = true;
+      gpgSupport = true;
+      devices = {
+        root = {
+          # Get UUID from blkid /dev/sda2
+          device = "/dev/disk/by-uuid/dc9c877a-a56c-49b5-bb5a-a1f9a17b8296";
+          gpgCard = {
+            publicKey = ./yubikey-public.asc;
+            encryptedPass = ./pw.gpg;
+          };
+        };
+      };
+    };
   };
 
   services.xserver = { videoDrivers = [ "nvidia" ]; };
