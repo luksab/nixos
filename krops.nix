@@ -64,6 +64,7 @@ in rec {
   arm = createHost "arm" "root@ocp.luksab.de";
 
   majaArm = createHost "majaArm" "root@val.luksab.de";
+  rapaArm = createHost "rapaArm" "root@152.70.59.189";
 
   pi4b = createHost "pi4b" "root@192.168.178.55";
 
@@ -71,7 +72,7 @@ in rec {
 
   # Groups
   all = pkgs.writeScript "deploy-all"
-    (lib.concatStringsSep "\n" [ laptop arm pi4b pi4b2 majaArm ]);
+    (lib.concatStringsSep "\n" [ laptop arm pi4b pi4b2 majaArm rapaArm ]);
 
   desktops = pkgs.writeScript "deploy-desktops"
     (lib.concatStringsSep "\n" [ laptop pi4b2 ]);

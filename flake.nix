@@ -129,6 +129,13 @@
           ];
         };
 
+        rapaArm = defFlakeSystem "aarch64-linux" {
+          imports = [
+            # Machine specific config
+            (import (./machines/rapaArm/configuration.nix) { inherit self; })
+          ];
+        };
+
       };
     } //
 
