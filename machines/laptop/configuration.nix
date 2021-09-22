@@ -27,6 +27,7 @@
   boot.loader.efi.canTouchEfiVariables = true;
   boot.loader.grub.device = "/dev/nvme0n1";
 
+  networking.useDHCP = false;
   networking.interfaces.wlp0s20f3.useDHCP = true;
 
   # networking.wireless.enable = true;
