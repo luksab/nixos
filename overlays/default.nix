@@ -11,7 +11,7 @@ self: super: {
   };
   wrapOBS = super.pkgs.callPackage ../packages/ndi/obs-wrapper.nix { };
   ndi = super.pkgs.callPackage ../packages/ndi { };
-  objectbox = super.pkgs.callPackage ../packages/objectbox { };
+  objectbox-bin = super.pkgs.callPackage ../packages/objectbox-bin { };
   #multimc = super.qt5.callPackage ../packages/multimc { };
   multimc = (super.qt5.callPackage ../packages/multimc { msaClientID = "d4434167-7a48-4be7-b463-647b1580e072"; });
   obs-ndi = super.ndi.overrideAttrs (old: {

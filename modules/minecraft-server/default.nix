@@ -20,6 +20,18 @@ in {
       '';
     };
 
+    serverFile = mkOption {
+      type = types.str;
+      default = "fabric-server-launch.jar";
+      description = "The name of the jar file to run";
+    };
+
+    javaPackage = mkOption {
+      type = types.package;
+      default = pkgs.jre_headless;
+      description = "Java Package to launch server with";
+    };
+
     user = mkOption {
       type = types.str;
       default = "minecraft";
@@ -45,7 +57,7 @@ in {
 
   config = mkIf cfg.enable {
     systemd.services.minecraft-server = {
-      path = [ pkgs.bash pkgs.which pkgs.jre_headless ];
+      path = [ pkgs.bash pkgs.which cfg.javaPackage ];
       wantedBy = [ "default.target" ];
 
       # preStart = ''
@@ -64,7 +76,7 @@ in {
 
         WorkingDirectory = "${cfg.dataDir}";
         ExecStart =
-          "${pkgs.jre_headless}/bin/java -Xmx16G -Xms4G -jar fabric-server-launch.jar";
+          "${cfg.javaPackage}/bin/java -Xmx16G -Xms4G -jar ${cfg.serverFile}";
       };
 
       environment = {

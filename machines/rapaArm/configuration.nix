@@ -1,16 +1,14 @@
 { self, ... }: {
-  imports = [ ../../users/lukas.nix ../../users/root.nix ];
+  imports = [ ../../users/lukas.nix ../../users/root.nix ./minecraft.nix ];
   networking.hostName = "rapaArm";
 
   luksab = {
     qemu-guest.enable = true;
     openssh.enable = true;
     server.enable = true;
+    common.disable-cache = true;
 
-    minecraft-server = {
-      enable = true;
-      openFirewall = true;
-    };
+    
   };
   home-manager.users.lukas = {
     imports = [
