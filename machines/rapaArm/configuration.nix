@@ -13,7 +13,7 @@
   home-manager.users.lukas = {
     imports = [
       ../../home-manager/home-server.nix
-      { nixpkgs.overlays = [ self.overlay self.overlay-unstable ]; }
+      { nixpkgs.overlays = [ self.overlay self.overlay-unstable self.overlay-master ]; }
     ];
   };
 
@@ -21,6 +21,7 @@
     efiSupport = true;
     efiInstallAsRemovable = true;
     device = "nodev";
+    configurationLimit = 2;
   };
   fileSystems."/boot" = {
     device = "/dev/disk/by-uuid/6129-FC42";
