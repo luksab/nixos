@@ -6,7 +6,12 @@ in {
 
   config = mkIf cfg.enable {
     # enable NDI to communicate
-    services.avahi.enable = true;
+    services.avahi = {
+      enable = true;
+      nssmdns = true;
+      publish.enable = true;
+      publish.userServices = true;
+    };
     #TODO: which of these do I actually need?
     networking.firewall.allowedTCPPorts = [ 22 80 554 5990 5353 5961 ];
     networking.firewall.allowedUDPPorts = [ 554 5990 5353 5961 ];
