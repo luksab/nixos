@@ -76,11 +76,20 @@ in {
     vim
     vlc
     youtube-dl
+    pavucontrol
 
     jdk
+    cargo
+    rustc
+    rustfmt
     
     gcr
   ];
+
+  # Certain Rust tools won't work without this
+  # This can also be fixed by using oxalica/rust-overlay and specifying the rust-src extension
+  # See https://discourse.nixos.org/t/rust-src-not-found-and-other-misadventures-of-developing-rust-on-nixos/11570/3?u=samuela. for more details.
+  home.sessionVariables.RUST_SRC_PATH = "${pkgs.rust.packages.stable.rustPlatform.rustLibSrc}";
 
   luksab.x86.enable = config.luksab.arch == "x86_64";
   programs.vscode.enable = config.luksab.arch == "x86_64";
