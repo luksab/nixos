@@ -22,8 +22,7 @@
       "/" = {
         extraConfig = ''
           allow 176.198.43.0;
-          allow 79.236.95.98;
-          allow 91.65.98.69;
+          allow 5.181.49.14;
           deny all;'';
       };
     };
