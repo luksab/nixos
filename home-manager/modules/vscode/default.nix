@@ -9,9 +9,12 @@ in {
       enable = true;
       package = pkgs.vscode;
       extensions = with pkgs.vscode-extensions; [
-        bbenoist.Nix
+        arrterian.nix-env-selector
+        bbenoist.nix
+        brettm12345.nixfmt-vscode
         ms-vscode-remote.remote-ssh
         matklad.rust-analyzer
+        polymeilex.wgsl
         (lib.mkIf (config.luksab.arch == "x86_64") ms-vsliveshare.vsliveshare)
         brettm12345.nixfmt-vscode
       ];
