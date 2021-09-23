@@ -30,7 +30,7 @@ self: super: {
   # tautulli = self.unstable.tautulli;
 
   # override with newer version from nixpkgs-unstable (home-manager related)
-  discord = self.unstable.discord;
+  discord = self.master.discord;
   neovim-unwrapped = self.unstable.neovim-unwrapped;
   obs-studio = self.unstable.obs-studio;
   signal-desktop = self.unstable.signal-desktop;
