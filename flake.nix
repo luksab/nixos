@@ -4,6 +4,7 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-21.05";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs-master.url = "github:nixos/nixpkgs/master";
 
     flake-utils.url = "github:numtide/flake-utils";
 
@@ -39,7 +40,7 @@
                     # and root e.g. `nix-channel --remove nixos`. `nix-channel
                     # --list` should be empty for all users afterwards
                     nix.nixPath = [ "nixpkgs=${nixpkgs}" ];
-                    nixpkgs.overlays = [ self.overlay self.overlay-unstable ];
+                    nixpkgs.overlays = [ self.overlay self.overlay-unstable self.overlay-master ];
                   }
                   baseCfg
                   home-manager.nixosModules.home-manager
@@ -63,6 +64,13 @@
 
       overlay-unstable = final: prev: {
         unstable = import nixpkgs-unstable {
+          system = "x86_64-linux";
+          config.allowUnfree = true;
+        };
+      };
+
+      overlay-master = final: prev: {
+        master = import nixpkgs-master {
           system = "x86_64-linux";
           config.allowUnfree = true;
         };
