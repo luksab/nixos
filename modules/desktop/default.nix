@@ -14,6 +14,10 @@ in {
     };
 
     environment.systemPackages = [ pkgs.rpiplay ];
+    networking.firewall = {
+      allowedUDPPorts = [ 6000 6001 7011 ];
+      allowedTCPPorts = [ 7000 7100 ];
+    };
     services.avahi = {
       enable = true;
       nssmdns = true;
@@ -24,7 +28,6 @@ in {
         userServices = true;
       };
     };
-    networking.firewall.enable = false;
 
     # enable yubi key
     mayniklas.yubikey.enable = true;
