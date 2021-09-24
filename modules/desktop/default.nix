@@ -50,6 +50,7 @@ in {
       };
       v4l2loopback.enable = true;
       ndi.enable = true;
+      scrcpy.enable = true;
       steam.enable = config.luksab.arch == "x86_64";
     };
   };
