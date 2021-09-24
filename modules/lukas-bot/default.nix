@@ -28,22 +28,25 @@ in {
   config = mkIf cfg.enable {
     environment.systemPackages = [
       pkgs.git
-      pkgs.nodejs
+      pkgs.nodejs-16_x
       pkgs.python
       pkgs.pkg-config
       pkgs.pixman
+      pkgs.libuuid
+      pkgs.gcc
       pkgs.cairo
       pkgs.pango
       pkgs.haskellPackages.gi-pangocairo
+      pkgs.ffmpeg
     ];
 
     systemd.services.lukas-bot = {
-      # path = [ ];
+      path = [ pkgs.ffmpeg ];
       wantedBy = [ "default.target" ];
 
       preStart = ''
         ${pkgs.git}/bin/git pull
-        ${pkgs.nodejs}/bin/npm install
+        ${pkgs.nodejs-16_x}/bin/npm install
       '';
 
       serviceConfig = {
@@ -53,7 +56,7 @@ in {
         EnvironmentFile = [ "/var/src/secrets/discord.token" ];
         Restart = "on-failure";
 
-        ExecStart = "${pkgs.nodejs}/bin/node index.js";
+        ExecStart = "${pkgs.nodejs-16_x}/bin/node index.js";
       };
 
       environment = {
