@@ -13,6 +13,19 @@ in {
       package = pkgs.pulseaudioFull;
     };
 
+    environment.systemPackages = [ pkgs.rpiplay ];
+    services.avahi = {
+      enable = true;
+      nssmdns = true;
+      publish = {
+        enable = true;
+        addresses = true;
+        workstation = true;
+        userServices = true;
+      };
+    };
+    networking.firewall.enable = false;
+
     # enable yubi key
     mayniklas.yubikey.enable = true;
 

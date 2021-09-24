@@ -12,7 +12,6 @@ self: super: {
   wrapOBS = super.pkgs.callPackage ../packages/ndi/obs-wrapper.nix { };
   ndi = super.pkgs.callPackage ../packages/ndi { };
   objectbox-bin = super.pkgs.callPackage ../packages/objectbox-bin { };
-  rpiplay = super.pkgs.callPackage ../packages/rpiplay { };
   #multimc = super.qt5.callPackage ../packages/multimc { };
   multimc = (super.qt5.callPackage ../packages/multimc { msaClientID = "d4434167-7a48-4be7-b463-647b1580e072"; });
   obs-ndi = super.ndi.overrideAttrs (old: {
@@ -33,6 +32,7 @@ self: super: {
   discord = self.master.discord;
   neovim-unwrapped = self.unstable.neovim-unwrapped;
   obs-studio = self.unstable.obs-studio;
+  rpiplay = self.unstable.rpiplay;
   signal-desktop = self.unstable.signal-desktop;
   spotify = self.unstable.spotify;
   vscode = self.unstable.vscode;
