@@ -1,4 +1,3 @@
-# { config, lib, pkgs, modulesPath, ... }: {
 { self, ... }: {
   networking.hostName = "desktop"; # Define your hostname.
 
@@ -17,6 +16,10 @@
   luksab = {
     firmware.enable = true;
     desktop.enable = true;
+    wireguard = {
+      enable = true;
+      ip = "10.31.69.101/24";
+    };
   };
 
   # mayniklas.grub-luks = {
@@ -36,7 +39,7 @@
       };
     };
     cleanTmpDir = true;
-    
+
     initrd.luks = {
       reusePassphrases = true;
       gpgSupport = true;
@@ -58,6 +61,8 @@
   virtualisation.docker.enable = true;
 
   networking.useDHCP = false;
+  networking.nameservers = [ "1.1.1.1" ];
+
   networking.interfaces.eno1.useDHCP = true;
   networking.interfaces.enp14s0.useDHCP = true;
   networking.interfaces.enp9s0.useDHCP = true;
