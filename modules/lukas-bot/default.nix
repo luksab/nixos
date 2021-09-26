@@ -26,22 +26,21 @@ in {
   };
 
   config = mkIf cfg.enable {
-    environment.systemPackages = [
-      pkgs.git
-      pkgs.nodejs-16_x
-      pkgs.python
-      pkgs.pkg-config
-      pkgs.pixman
-      pkgs.libuuid
-      pkgs.gcc
-      pkgs.cairo
-      pkgs.pango
-      pkgs.haskellPackages.gi-pangocairo
-      pkgs.ffmpeg
-    ];
 
     systemd.services.lukas-bot = {
-      path = [ pkgs.ffmpeg ];
+      path = [
+        pkgs.git
+        pkgs.nodejs-16_x
+        pkgs.python
+        pkgs.pkg-config
+        pkgs.pixman
+        pkgs.libuuid
+        pkgs.gcc
+        pkgs.cairo
+        pkgs.pango
+        pkgs.haskellPackages.gi-pangocairo
+        pkgs.ffmpeg
+      ];
       wantedBy = [ "default.target" ];
 
       preStart = ''
