@@ -13,7 +13,7 @@ in {
     allowedIPs = mkOption {
       type = types.listOf types.str;
       default =
-        [ "10.31.69.1/32" "185.163.117.233" "90.130.70.73" "152.70.53.164" ];
+        [ "10.31.69.0/24" "185.163.117.233" "90.130.70.73" "152.70.53.164" ];
       description = "ips to tunnel";
     };
   };

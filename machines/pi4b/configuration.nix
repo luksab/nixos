@@ -12,6 +12,10 @@
   luksab = {
     pi4b.enable = true;
     common.enable = true;
+    wireguard = {
+      enable = true;
+      ip = "10.31.69.5/24";
+    };
   };
 
   networking = {
