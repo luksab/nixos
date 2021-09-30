@@ -16,6 +16,8 @@ in {
       zsh.enable = true;
     };
 
+    mayniklas.var.mainUser = "lukas";
+
     environment.systemPackages = with pkgs; [ git nixfmt ];
 
     programs.mtr.enable = true;

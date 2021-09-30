@@ -29,7 +29,9 @@
             # Add home-manager option to all configs
             ({ ... }: {
               imports = builtins.attrValues self.nixosModules
-                ++ [ mayniklas.nixosModules.yubikey mayniklas.nixosModules.grub-luks ]
+                ++ [ mayniklas.nixosModules.yubikey
+                  mayniklas.nixosModules.virtualisation
+                  mayniklas.nixosModules.options ]
                 ++ [
                   {
                     # Set the $NIX_PATH entry for nixpkgs. This is necessary in

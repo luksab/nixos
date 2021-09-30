@@ -30,7 +30,10 @@ in {
     };
 
     # enable yubi key
-    mayniklas.yubikey.enable = true;
+    mayniklas = {
+      yubikey.enable = true;
+      virtualisation.enable = true;
+    };
 
     programs.dconf.enable = true;
     services.gvfs.enable = true;
