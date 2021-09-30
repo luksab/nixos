@@ -10,6 +10,7 @@ in {
 
   luksab = {
     suckless.enable = true;
+    mime.enable = true;
     services.dunst.enable = true;
     #programs.vim.enable = true;
   };
@@ -63,6 +64,7 @@ in {
 
     dolphin
     gnome.nautilus
+    gnome.file-roller
     mtools
     sshfs
     filezilla
@@ -102,6 +104,7 @@ in {
     ../modules/options
     ./modules/suckless
     ./modules/dunst
+    ./modules/mime
     ./modules/zsh
     ./modules/vscode
     ./modules/x86
