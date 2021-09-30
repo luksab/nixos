@@ -14,6 +14,10 @@ in {
             "application/zip"= [ "org.gnome.FileRoller.desktop" ];
             "image/png" = [ "feh.desktop" ];
             "image/jpeg" = [ "feh.desktop" ];
+            "x-scheme-handler/http=" = [ "brave-browser.desktop" ];
+            "x-scheme-handler/https=" = [ "brave-browser.desktop" ];
+            "x-scheme-handler/chrome" = [ "brave-browser.desktop" ];
+            "text/html" = [ "brave-browser.desktop" ];
             # echo $XDG_DATA_DIRS
             /*text/html=brave-browser.desktop
             x-scheme-handler/http=brave-browser.desktop
