@@ -1,11 +1,6 @@
 { self, ... }: {
   networking.hostName = "desktop"; # Define your hostname.
 
-  networking = {
-    interfaces.br0.useDHCP = true;
-    bridges.br0.interfaces = [ "enp15s0" "enp9s0" "eno1" ];
-  };
-
   imports = [ ../../users/lukas.nix ../../users/root.nix ];
 
   #allow aarch64 emulation
@@ -73,9 +68,10 @@
   networking.nameservers = [ "1.1.1.1" ];
 
   networking.interfaces.eno1.useDHCP = true;
-  networking.interfaces.enp15s0.useDHCP = true;
   networking.interfaces.enp9s0.useDHCP = true;
   networking.interfaces.wlp8s0.useDHCP = true;
+
+  networking.networkmanager.enable = true;
 
   security.sudo.wheelNeedsPassword = false;
 
