@@ -25,6 +25,10 @@
       enable = true;
       ip = "10.31.69.101/24";
     };
+    pci-passthrough = {
+      ids = "10de:11c6,10de:0e0b";
+      enable = true;
+    };
   };
 
   # mayniklas.grub-luks = {
