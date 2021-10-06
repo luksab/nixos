@@ -41,7 +41,7 @@
       devices = {
         root = {
           # Get UUID from blkid /dev/sda2
-          device = "/dev/disk/by-uuid/jE639y-OqB0-cfwi-HMuQ-6KiV-jE0Z-GDQS03";
+          device = "/dev/disk/by-uuid/b0ce5b0a-840c-4fdd-849c-95ed17e228b6";
           gpgCard = {
             publicKey = ../desktop/yubikey-public.asc;
             encryptedPass = ../desktop/pw.gpg;
@@ -79,7 +79,7 @@
   boot.extraModulePackages = [ ];
 
   fileSystems."/" = {
-    device = "/dev/disk/by-uuid/1efdb066-bd94-49c3-994f-a7d7831e0c85";
+    device = "/dev/disk/by-uuid/d4e57c25-111e-4e58-8a46-5381cb2b6cd6";
     fsType = "ext4";
   };
 
