@@ -22,10 +22,34 @@
 
   virtualisation.docker.enable = true;
 
-  # Use the systemd-boot EFI boot loader.
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
-  boot.loader.grub.device = "/dev/nvme0n1";
+  boot = {
+    loader = {
+      grub = {
+        enable = true;
+        version = 2;
+        device = "nodev";
+        efiSupport = true;
+        efiInstallAsRemovable = true;
+        useOSProber = true;
+      };
+    };
+    cleanTmpDir = true;
+
+    initrd.luks = {
+      reusePassphrases = true;
+      gpgSupport = true;
+      devices = {
+        root = {
+          # Get UUID from blkid /dev/sda2
+          device = "/dev/disk/by-uuid/jE639y-OqB0-cfwi-HMuQ-6KiV-jE0Z-GDQS03";
+          gpgCard = {
+            publicKey = ../desktop/yubikey-public.asc;
+            encryptedPass = ../desktop/pw.gpg;
+          };
+        };
+      };
+    };
+  };
 
   networking.useDHCP = false;
   networking.interfaces.wlp0s20f3.useDHCP = true;
@@ -55,15 +79,12 @@
   boot.extraModulePackages = [ ];
 
   fileSystems."/" = {
-    device = "/dev/disk/by-uuid/a8633e60-6627-46be-b692-86b8ada20793";
+    device = "/dev/disk/by-uuid/1efdb066-bd94-49c3-994f-a7d7831e0c85";
     fsType = "ext4";
   };
 
   fileSystems."/boot" = {
-    device = "/dev/disk/by-uuid/251C-6023";
+    device = "/dev/disk/by-uuid/68CA-410A";
     fsType = "vfat";
   };
-
-  swapDevices =
-    [{ device = "/dev/disk/by-uuid/3a854087-060e-4cc8-ab64-9045c31d26d0"; }];
 }
