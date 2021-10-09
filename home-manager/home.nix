@@ -79,6 +79,9 @@ in {
     vlc
     youtube-dl
     pavucontrol
+    cloc
+    krita
+    ksysguard
 
     jdk
     cargo
