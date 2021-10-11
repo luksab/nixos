@@ -78,8 +78,8 @@
   networking.nameservers = [ "1.1.1.1" ];
 
   networking.interfaces.eno1.useDHCP = true;
-  networking.interfaces.enp9s0.useDHCP = true;
-  networking.interfaces.wlp8s0.useDHCP = true;
+  networking.interfaces.enp8s0.useDHCP = true;
+  networking.interfaces.wlp7s0.useDHCP = true;
 
   networking.networkmanager.enable = true;
 
