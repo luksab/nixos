@@ -5,11 +5,16 @@
 
   #allow aarch64 emulation
   boot.binfmt.emulatedSystems = [ "aarch64-linux" "armv6l-linux" ];
+  # ntfs support
+  boot.supportedFilesystems = [ "ntfs" ];
 
   home-manager.users.lukas = {
     imports = [
       ../../home-manager/home.nix
-      { nixpkgs.overlays = [ self.overlay self.overlay-unstable self.overlay-master ]; }
+      {
+        nixpkgs.overlays =
+          [ self.overlay self.overlay-unstable self.overlay-master ];
+      }
     ];
   };
 
