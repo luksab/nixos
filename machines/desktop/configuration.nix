@@ -67,7 +67,12 @@
 
   services.xserver = { videoDrivers = [ "nvidia" ]; };
 
-  virtualisation.docker.enable = true;
+  virtualisation.docker = {
+    enable = true;
+    enableNvidia = true;
+  };
+  # Fix docker Nvidia
+  systemd.enableUnifiedCgroupHierarchy = false;
 
   networking.useDHCP = false;
   networking.nameservers = [ "1.1.1.1" ];
