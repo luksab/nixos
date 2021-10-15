@@ -8,7 +8,7 @@ in {
 
   config = mkIf cfg.enable {
     hardware.enableRedistributableFirmware = mkDefault true;
-    boot.kernelPackages = pkgs.linuxPackages_5_13;
+    boot.kernelPackages = pkgs.linuxPackages_5_14;
 
     powerManagement.cpuFreqGovernor = mkDefault "powersave";
   };
