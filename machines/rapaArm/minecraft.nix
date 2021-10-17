@@ -2,7 +2,7 @@
   luksab.minecraft-server = {
     enable = true;
     openFirewall = true;
-    javaPackage = pkgs.jre8;
-    serverFile = "serverstarter-2.0.1.jar";
+    javaPackage = pkgs.jre;
+    serverFile = "server.jar";
   };
 }
