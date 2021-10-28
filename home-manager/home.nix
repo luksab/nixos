@@ -89,6 +89,8 @@ in {
     rustfmt
     
     gcr
+
+    xournalpp
   ];
 
   # Certain Rust tools won't work without this
