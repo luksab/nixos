@@ -18,7 +18,7 @@ in {
 
     mayniklas.var.mainUser = "lukas";
 
-    environment.systemPackages = with pkgs; [ git nixfmt ];
+    environment.systemPackages = with pkgs; [ git nixfmt usbutils pciutils ];
 
     programs.mtr.enable = true;
 
