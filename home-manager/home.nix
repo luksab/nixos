@@ -89,6 +89,7 @@ in {
     rustfmt
     
     gcr
+    webex
   ];
 
   # Certain Rust tools won't work without this
