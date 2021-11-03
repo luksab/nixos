@@ -3,7 +3,7 @@
 
   imports = [ ../../users/lukas.nix ../../users/root.nix ];
 
-  #allow aarch64 emulation
+  # allow aarch64 emulation
   boot.binfmt.emulatedSystems = [ "aarch64-linux" "armv6l-linux" ];
   # ntfs support
   boot.supportedFilesystems = [ "ntfs" ];
@@ -24,10 +24,6 @@
     wireguard = {
       enable = true;
       ip = "10.31.69.101/24";
-    };
-    pci-passthrough = {
-      ids = "10de:11c6,10de:0e0b";
-      enable = true;
     };
   };
 
@@ -73,6 +69,7 @@
   };
   # Fix docker Nvidia
   systemd.enableUnifiedCgroupHierarchy = false;
+  virtualisation.podman.enable = true;
 
   networking.useDHCP = false;
   networking.nameservers = [ "1.1.1.1" ];
