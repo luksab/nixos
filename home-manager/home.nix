@@ -90,6 +90,7 @@ in {
     
     gcr
     webex
+    xournalpp
   ];
 
   # Certain Rust tools won't work without this
