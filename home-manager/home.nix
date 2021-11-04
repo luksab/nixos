@@ -91,6 +91,7 @@ in {
     gcr
     webex
     xournalpp
+    prusa-slicer
   ];
 
   # Certain Rust tools won't work without this
