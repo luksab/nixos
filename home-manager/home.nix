@@ -99,7 +99,7 @@ in {
   home.sessionVariables.RUST_SRC_PATH = "${pkgs.rust.packages.stable.rustPlatform.rustLibSrc}";
 
   luksab.x86.enable = config.luksab.arch == "x86_64";
-  programs.vscode.enable = config.luksab.arch == "x86_64";
+  luksab.programs.vscode.enable = true;
 
   # Imports
   imports = [
