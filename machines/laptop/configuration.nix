@@ -11,14 +11,26 @@
     imports = [
       ../../home-manager/home.nix
       ../../home-manager/modules/touchscreen
-      { nixpkgs.overlays = [ self.overlay self.overlay-unstable self.overlay-master ]; }
+      {
+        nixpkgs.overlays =
+          [ self.overlay self.overlay-unstable self.overlay-master ];
+      }
     ];
   };
 
   luksab = {
     firmware.enable = true;
     desktop.enable = true;
+    wireguard = {
+      enable = true;
+      ip = "10.31.69.107/24";
+    };
   };
+
+  services.xserver.screenSection = ''
+    Option         "AllowIndirectGLXProtocol" "off"
+    Option         "TripleBuffer" "on"
+  '';
 
   virtualisation.docker.enable = true;
 
