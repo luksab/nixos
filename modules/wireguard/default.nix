@@ -20,12 +20,14 @@ in {
 
   config = mkIf cfg.enable {
     networking.firewall.allowedUDPPorts = [ 51820 ];
-    networking.wireguard.interfaces.wg0 = {
+    networking.wg-quick.interfaces.wg0 = {
       listenPort = 51820;
-      ips = [ cfg.ip ];
+      address = [ cfg.ip ];
       # Path to the private key file
-      privateKeyFile = toString /var/src/secrets/wireguard/private;
-      generatePrivateKeyFile = true;
+      privateKeyFile = "/var/src/secrets/wireguard/private";
+      # execute `wg genkey  > /var/src/secrets/wireguard/private` on first enable
+      # `chmod 600 /var/src/secrets/wireguard/private`
+      # `chown root:root /var/src/secrets/wireguard/private`
 
       peers = [{
         publicKey = "ZxfxvKgR9xXdYwwKQdkURq7k5NEK2AypLEPM8jVnwlg=";
