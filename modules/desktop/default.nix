@@ -13,7 +13,9 @@ in {
       package = pkgs.pulseaudioFull;
     };
 
-    environment.systemPackages = [ pkgs.rpiplay ];
+    environment.systemPackages = [ pkgs.rpiplay pkgs.librsvg ];
+    hardware.logitech.wireless.enableGraphical = true;
+    hardware.logitech.wireless.enable = true;
     networking.firewall = {
       allowedUDPPorts = [ 6000 6001 7011 ];
       allowedTCPPorts = [ 7000 7100 ];
