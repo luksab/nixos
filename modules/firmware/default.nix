@@ -8,7 +8,8 @@ in {
 
   config = mkIf cfg.enable {
     hardware.enableRedistributableFirmware = mkDefault true;
-    boot.kernelPackages = pkgs.linuxPackages_5_14;
+    # boot.kernelPackages = pkgs.linuxPackages_5_14;
+    # hardware.nvidia.package = pkgs.linuxPackages_5_14.nvidia_x11_beta;
 
     powerManagement.cpuFreqGovernor = mkDefault "powersave";
   };
