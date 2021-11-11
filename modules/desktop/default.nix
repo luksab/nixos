@@ -13,6 +13,12 @@ in {
       package = pkgs.pulseaudioFull;
     };
 
+    fileSystems."/mnt/nas" = {
+      device = "10.31.70.5:/mnt/main";
+      fsType = "nfs";
+      options = [ "x-systemd.automount" "noauto" ];
+    };
+
     environment.systemPackages = [ pkgs.rpiplay pkgs.librsvg ];
     hardware.logitech.wireless.enableGraphical = true;
     hardware.logitech.wireless.enable = true;
