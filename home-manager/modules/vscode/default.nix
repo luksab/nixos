@@ -29,6 +29,9 @@ in {
         brettm12345.nixfmt-vscode
         tomoki1207.pdf
         ms-python.python
+        
+        ms-vscode.cpptools
+        esbenp.prettier-vscode
       ];
     };
   };
