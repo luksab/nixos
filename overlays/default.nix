@@ -37,6 +37,8 @@ self: super: {
   signal-desktop = self.unstable.signal-desktop;
   spotify = self.unstable.spotify;
   vscode = self.unstable.vscode;
+  vscode-extensions = self.master.vscode-extensions;
+  vsliveshare-new = super.pkgs.callPackage ../packages/ms-vsliveshare-vsliveshare { };
   youtube-dl = self.unstable.youtube-dl;
   zoom-us = self.unstable.zoom-us;
 

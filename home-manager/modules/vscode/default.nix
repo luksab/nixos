@@ -20,12 +20,12 @@ in {
       package = pkgs.vscode;
       extensions = with pkgs.vscode-extensions; [
         # arrterian.nix-env-selector
-        bbenoist.Nix
+        bbenoist.nix
         brettm12345.nixfmt-vscode
         ms-vscode-remote.remote-ssh
         matklad.rust-analyzer
         # polymeilex.wgsl
-        (lib.mkIf (config.luksab.arch == "x86_64") ms-vsliveshare.vsliveshare)
+        (lib.mkIf (config.luksab.arch == "x86_64") pkgs.vsliveshare-new)
         brettm12345.nixfmt-vscode
         tomoki1207.pdf
         ms-python.python
