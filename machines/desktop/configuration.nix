@@ -1,7 +1,7 @@
 { self, ... }: {
   networking.hostName = "desktop"; # Define your hostname.
 
-  imports = [ ../../users/lukas.nix ../../users/root.nix ];
+  imports = [ ../../users/lukas.nix ../../users/root.nix ./nameserver.nix ];
 
   # allow aarch64 emulation
   boot.binfmt.emulatedSystems = [ "aarch64-linux" "armv6l-linux" ];
@@ -72,7 +72,6 @@
   virtualisation.podman.enable = true;
 
   networking.useDHCP = false;
-  networking.nameservers = [ "1.1.1.1" ];
 
   networking.interfaces.eno1.useDHCP = true;
   networking.interfaces.enp8s0.useDHCP = true;
