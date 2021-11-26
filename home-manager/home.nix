@@ -89,7 +89,7 @@ in {
     rustfmt
     
     gcr
-    webex
+    # webex
     xournalpp
     prusa-slicer
   ];
