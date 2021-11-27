@@ -69,6 +69,8 @@ in {
     sshfs
     filezilla
     gcc
+    binutils-unwrapped
+    coreutils
     gnome3.dconf
     gparted
     iperf3
