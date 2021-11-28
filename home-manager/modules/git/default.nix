@@ -6,7 +6,7 @@
       userEmail = "lukas@sabatschus.de";
       userName = "luksab";
       signing = {
-        key = "9C083CECA78B772E";
+        key = "6F66F20BF7E9FDD4";
         signByDefault = true;
       };      
     };

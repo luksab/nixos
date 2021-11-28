@@ -68,7 +68,6 @@ in {
     mtools
     sshfs
     filezilla
-    gcc
     binutils-unwrapped
     coreutils
     gnome3.dconf
