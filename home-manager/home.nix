@@ -82,7 +82,6 @@ in {
     pavucontrol
     cloc
     krita
-    ksysguard
 
     jdk
     cargo
