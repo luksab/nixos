@@ -23,6 +23,7 @@ in {
     security.polkit.enable = true;
     security.wrappers.spice-client-glib-usb-acl-helper.source = "${pkgs.spice-gtk}/bin/spice-client-glib-usb-acl-helper";
     security.wrappers.spice-client-glib-usb-acl-helper.owner = "root";
+    security.wrappers.spice-client-glib-usb-acl-helper.group = "root";
     hardware.logitech.wireless.enableGraphical = true;
     hardware.logitech.wireless.enable = true;
     networking.firewall = {
