@@ -15,7 +15,7 @@ self: super: {
   objectbox-bin = super.pkgs.callPackage ../packages/objectbox-bin { };
   #multimc = super.qt5.callPackage ../packages/multimc { };
   multimc = self.unstable.multimc.override { msaClientID = "d4434167-7a48-4be7-b463-647b1580e072"; };
-  obs-ndi = super.ndi.overrideAttrs (old: {
+  obs-ndi = super.obs-studio-plugins.obs-ndi.overrideAttrs (old: {
     buildInputs = [ self.unstable.obs-studio super.qtbase self.ndi ];
   });
   obs = (self.wrapOBS {
