@@ -14,7 +14,7 @@ self: super: {
   webex = super.pkgs.callPackage ../packages/webex { };
   objectbox-bin = super.pkgs.callPackage ../packages/objectbox-bin { };
   #multimc = super.qt5.callPackage ../packages/multimc { };
-  multimc = (super.qt5.callPackage ../packages/multimc { msaClientID = "d4434167-7a48-4be7-b463-647b1580e072"; });
+  multimc = self.unstable.multimc.override { msaClientID = "d4434167-7a48-4be7-b463-647b1580e072"; };
   obs-ndi = super.ndi.overrideAttrs (old: {
     buildInputs = [ self.unstable.obs-studio super.qtbase self.ndi ];
   });
@@ -31,6 +31,7 @@ self: super: {
 
   # override with newer version from nixpkgs-unstable (home-manager related)
   discord = self.master.discord;
+  cargo = self.unstable.cargo;
   neovim-unwrapped = self.unstable.neovim-unwrapped;
   obs-studio = self.unstable.obs-studio;
   rpiplay = self.unstable.rpiplay;
