@@ -69,6 +69,7 @@ in {
     sshfs
     filezilla
     binutils-unwrapped
+    glib
     coreutils
     gnome3.dconf
     gparted
