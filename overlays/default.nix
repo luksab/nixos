@@ -31,6 +31,7 @@ self: super: {
 
   # fix for arm machines
   spidermonkey_78 = self.master.spidermonkey_78;
+  polkit = self.master.polkit;
 
   # override with newer version from nixpkgs-unstable (home-manager related)
   discord = self.master.discord;
