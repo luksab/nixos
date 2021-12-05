@@ -6,9 +6,6 @@
     qemu-guest.enable = true;
     openssh.enable = true;
     server.enable = true;
-    common.disable-cache = true;
-
-    
   };
   home-manager.users.lukas = {
     imports = [
