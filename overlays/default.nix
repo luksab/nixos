@@ -29,6 +29,9 @@ self: super: {
   # override with newer version from nixpkgs-unstable
   # tautulli = self.unstable.tautulli;
 
+  # fix for arm machines
+  spidermonkey_78 = self.master.spidermonkey_78;
+
   # override with newer version from nixpkgs-unstable (home-manager related)
   discord = self.master.discord;
   cargo = self.unstable.cargo;
