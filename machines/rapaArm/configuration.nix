@@ -6,6 +6,11 @@
     qemu-guest.enable = true;
     openssh.enable = true;
     server.enable = true;
+    wireguard = {
+      enable = true;
+      ip = "10.31.69.207/24";
+      allowedIPs = [ "10.31.69.0/24" "185.163.117.233" "90.130.70.73" "91.65.93.7" "152.70.53.164" ];
+    };
   };
   home-manager.users.lukas = {
     imports = [
