@@ -19,7 +19,7 @@ steps:
 
   - name: Build laptop
     commands:
-      - nix build -v '.#nixosConfigurations.laptop.config.system.build.toplevel' --show-trace --cores 1
+      - nix build -v '.#nixosConfigurations.laptop.config.system.build.toplevel' --show-trace --cores 4
 
   - name: Build desktop
     commands:
