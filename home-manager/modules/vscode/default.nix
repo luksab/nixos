@@ -32,6 +32,7 @@ in {
 
           ms-vscode.cpptools
           esbenp.prettier-vscode
+          tamasfe.even-better-toml
         ] ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [{
           name = "wgsl";
           publisher = "polymeilex";

@@ -19,15 +19,15 @@ steps:
 
   - name: Build laptop
     commands:
-      - nix build -v '.#nixosConfigurations.laptop.config.system.build.toplevel' --show-trace --cores 4
+      - nix build -v '.#nixosConfigurations.laptop.config.system.build.toplevel' --show-trace --cores 6
 
   - name: Build desktop
     commands:
-      - nix build -v '.#nixosConfigurations.desktop.config.system.build.toplevel' --show-trace
+      - nix build -v '.#nixosConfigurations.desktop.config.system.build.toplevel' --show-trace --cores 6
 
   - name: Build arm
     commands:
-      - nix build -v '.#nixosConfigurations.arm.config.system.build.toplevel' --show-trace
+      - nix build -v '.#nixosConfigurations.arm.config.system.build.toplevel' --show-trace --cores 6
 
   # - name: Build pi4b
   #   commands:
