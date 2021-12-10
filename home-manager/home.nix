@@ -32,7 +32,7 @@ in {
       package = pkgs.gnome3.defaultIconTheme;
       name = "Adwaita";
       size = 32;
-  };
+    };
   };
   # Remove in next release of home-manager
   home.file.".icons/default/index.theme".text = ''
@@ -88,7 +88,7 @@ in {
     cargo
     rustc
     rustfmt
-    
+
     gcr
     # webex
     xournalpp
@@ -98,7 +98,8 @@ in {
   # Certain Rust tools won't work without this
   # This can also be fixed by using oxalica/rust-overlay and specifying the rust-src extension
   # See https://discourse.nixos.org/t/rust-src-not-found-and-other-misadventures-of-developing-rust-on-nixos/11570/3?u=samuela. for more details.
-  home.sessionVariables.RUST_SRC_PATH = "${pkgs.rust.packages.stable.rustPlatform.rustLibSrc}";
+  home.sessionVariables.RUST_SRC_PATH =
+    "${pkgs.rust.packages.stable.rustPlatform.rustLibSrc}";
 
   luksab.x86.enable = config.luksab.arch == "x86_64";
   luksab.programs.vscode.enable = true;
