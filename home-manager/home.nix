@@ -70,6 +70,7 @@ in {
     filezilla
     binutils-unwrapped
     glib
+    glibc
     coreutils
     gnome3.dconf
     gparted
@@ -90,7 +91,6 @@ in {
     rustfmt
 
     gcr
-    # webex
     xournalpp
     prusa-slicer
   ];
