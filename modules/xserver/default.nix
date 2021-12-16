@@ -41,6 +41,11 @@ in {
         }];
       };
 
+      displayManager.autoLogin = {
+        enable = true;
+        user = "lukas";
+      };
+
       displayManager.lightdm = {
         enable = true;
         greeters.gtk.iconTheme = {
