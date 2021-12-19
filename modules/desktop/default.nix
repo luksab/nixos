@@ -57,6 +57,8 @@ in {
       General = { Enable = "Source,Sink,Media,Socket"; };
     };
 
+    programs.kdeconnect.enable = true;
+
     luksab = {
       common.enable = true;
       xserver = {
