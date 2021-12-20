@@ -13,7 +13,7 @@
       ../../home-manager/modules/touchscreen
       {
         nixpkgs.overlays =
-          [ self.overlay self.overlay-unstable self.overlay-master ];
+          [ self.overlay ];
       }
     ];
   };
