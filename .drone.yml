@@ -38,7 +38,7 @@ steps:
 
   - name: Build laptop
     commands:
-      - nix build -v '.#nixosConfigurations.laptop.config.system.build.toplevel' --show-trace --option binary-caches "https://cache.nixos.org"
+      - nix build -v -L '.#nixosConfigurations.laptop.config.system.build.toplevel' --show-trace --option binary-caches "https://cache.nixos.org"
 
 trigger:
   event:
@@ -61,7 +61,7 @@ steps:
 
   - name: Build desktop
     commands:
-      - nix build -v '.#nixosConfigurations.desktop.config.system.build.toplevel' --show-trace --option binary-caches "https://cache.nixos.org"
+      - nix build -v -L '.#nixosConfigurations.desktop.config.system.build.toplevel' --show-trace --option binary-caches "https://cache.nixos.org"
 
 trigger:
   event:
@@ -84,7 +84,7 @@ steps:
 
   - name: Build arm
     commands:
-      - nix build -v '.#nixosConfigurations.arm.config.system.build.toplevel' --show-trace --option binary-caches "https://cache.nixos.org"
+      - nix build -v -L '.#nixosConfigurations.arm.config.system.build.toplevel' --show-trace --option binary-caches "https://cache.nixos.org"
 
 trigger:
   event:
@@ -121,15 +121,15 @@ steps:
 
   - name: Build laptop
     commands:
-      - nix build -v '.#nixosConfigurations.laptop.config.system.build.toplevel' --option binary-caches "https://cache.nixos.org"
+      - nix build -v -L '.#nixosConfigurations.laptop.config.system.build.toplevel' --option binary-caches "https://cache.nixos.org"
 
   - name: Build desktop
     commands:
-      - nix build -v '.#nixosConfigurations.desktop.config.system.build.toplevel' --option binary-caches "https://cache.nixos.org"
+      - nix build -v -L '.#nixosConfigurations.desktop.config.system.build.toplevel' --option binary-caches "https://cache.nixos.org"
 
   - name: Build arm
     commands:
-      - nix build -v '.#nixosConfigurations.arm.config.system.build.toplevel' --option binary-caches "https://cache.nixos.org"
+      - nix build -v -L '.#nixosConfigurations.arm.config.system.build.toplevel' --option binary-caches "https://cache.nixos.org"
 
 trigger:
   branch:
