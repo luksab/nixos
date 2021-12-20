@@ -29,8 +29,8 @@ self: super: {
   # tautulli = self.unstable.tautulli;
 
   # fix for arm machines
-  spidermonkey_78 = self.master.spidermonkey_78;
-  polkit = self.master.polkit;
+  # spidermonkey_78 = self.master.spidermonkey_78;
+  # polkit = self.master.polkit;
 
   # override with newer version from nixpkgs-unstable (home-manager related)
   discord = self.master.discord;
@@ -43,6 +43,8 @@ self: super: {
   vscode = self.unstable.vscode;
   vscode-extensions = self.master.vscode-extensions;
   vsliveshare-new = super.pkgs.callPackage ../packages/ms-vsliveshare-vsliveshare { };
+  krita = self.unstable.krita;
+  lutris = self.unstable.lutris;
   youtube-dl = self.unstable.youtube-dl;
   zoom-us = self.unstable.zoom-us;
 
