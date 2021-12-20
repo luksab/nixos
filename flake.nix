@@ -2,10 +2,8 @@
   description = "My main system flake";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-21.11";
-    nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
-    nixpkgs-master.url = "github:nixos/nixpkgs/master";
-
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    
     flake-utils.url = "github:numtide/flake-utils";
 
     home-manager.url = "github:nix-community/home-manager/release-21.11";
@@ -13,7 +11,7 @@
 
     mayniklas.url = "github:mayniklas/nixos";
     mayniklas.inputs.nixpkgs.follows = "nixpkgs";
-    mayniklas.inputs.nixpkgs-unstable.follows = "nixpkgs-unstable";
+    mayniklas.inputs.nixpkgs-unstable.follows = "nixpkgs";
     mayniklas.inputs.home-manager.follows = "home-manager";
   };
 
@@ -42,7 +40,7 @@
                     # and root e.g. `nix-channel --remove nixos`. `nix-channel
                     # --list` should be empty for all users afterwards
                     nix.nixPath = [ "nixpkgs=${nixpkgs}" ];
-                    nixpkgs.overlays = [ self.overlay self.overlay-unstable self.overlay-master ];
+                    nixpkgs.overlays = [ self.overlay ];
                   }
                   baseCfg
                   home-manager.nixosModules.home-manager
@@ -63,20 +61,6 @@
 
       # Expose overlay to flake outputs, to allow using it from other flakes.
       overlay = final: prev: (import ./overlays) final prev;
-
-      overlay-unstable = final: prev: {
-        unstable = import nixpkgs-unstable {
-          system = "x86_64-linux";
-          config.allowUnfree = true;
-        };
-      };
-
-      overlay-master = final: prev: {
-        master = import nixpkgs-master {
-          system = "x86_64-linux";
-          config.allowUnfree = true;
-        };
-      };
 
       # Output all modules in ./modules to flake. Modules should be in
       # individual subdirectories and contain a default.nix file
