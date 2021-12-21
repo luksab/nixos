@@ -5,7 +5,7 @@
     luksab.arch = "aarch64";
     imports = [
       ../../home-manager/home.nix
-      { nixpkgs.overlays = [ self.overlay ]; }
+      { nixpkgs.overlays = [ self.overlay self.overlay-master ]; }
     ];
   };
 

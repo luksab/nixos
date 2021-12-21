@@ -33,7 +33,7 @@ self: super: {
   # polkit = self.master.polkit;
 
   # override with newer version from nixpkgs-unstable (home-manager related)
-  # discord = self.master.discord;
+  discord = self.master.discord;
   # cargo = self.unstable.cargo;
   # neovim-unwrapped = self.unstable.neovim-unwrapped;
   # obs-studio = self.unstable.obs-studio;

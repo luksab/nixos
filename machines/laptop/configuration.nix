@@ -11,10 +11,7 @@
     imports = [
       ../../home-manager/home.nix
       ../../home-manager/modules/touchscreen
-      {
-        nixpkgs.overlays =
-          [ self.overlay ];
-      }
+      { nixpkgs.overlays = [ self.overlay self.overlay-master ]; }
     ];
   };
 
