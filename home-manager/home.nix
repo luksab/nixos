@@ -76,7 +76,7 @@ in {
     gparted
     iperf3
     nmap
-    signal-desktop
+    (lib.mkIf (config.luksab.arch == "x86_64") signal-desktop)
     unzip
     vim
     vlc

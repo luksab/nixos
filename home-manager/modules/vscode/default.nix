@@ -28,9 +28,9 @@ in {
           (lib.mkIf (config.luksab.arch == "x86_64") pkgs.vsliveshare-new)
           brettm12345.nixfmt-vscode
           tomoki1207.pdf
-          ms-python.python
+          (lib.mkIf (config.luksab.arch == "x86_64") ms-python.python)
 
-          ms-vscode.cpptools
+          (lib.mkIf (config.luksab.arch == "x86_64") ms-vscode.cpptools)
           esbenp.prettier-vscode
           tamasfe.even-better-toml
         ] ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [{
