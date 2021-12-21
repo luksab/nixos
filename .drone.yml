@@ -1,7 +1,7 @@
 ---
 kind: pipeline
 type: exec
-name: Build all hosts
+name: Show flake info
 
 platform:
   os: linux
@@ -17,21 +17,74 @@ steps:
       - nix flake metadata
       - nix flake check
 
+trigger:
+  event:
+    - push
+    - pull_request
+
+---
+kind: pipeline
+type: exec
+name: build laptop
+
+platform:
+  os: linux
+  arch: amd64
+
+clone:
+  depth: 1
+
+steps:
+
   - name: Build laptop
     commands:
-      - nix build -v '.#nixosConfigurations.laptop.config.system.build.toplevel' --show-trace --cores 6
+      - nix build -v -L '.#nixosConfigurations.laptop.config.system.build.toplevel' --show-trace --option binary-caches "https://cache.nixos.org"
+
+trigger:
+  event:
+    - push
+    - pull_request
+
+---
+kind: pipeline
+type: exec
+name: build desktop
+
+platform:
+  os: linux
+  arch: amd64
+
+clone:
+  depth: 1
+
+steps:
 
   - name: Build desktop
     commands:
-      - nix build -v '.#nixosConfigurations.desktop.config.system.build.toplevel' --show-trace --cores 6
+      - nix build -v -L '.#nixosConfigurations.desktop.config.system.build.toplevel' --show-trace --option binary-caches "https://cache.nixos.org"
+
+trigger:
+  event:
+    - push
+    - pull_request
+
+---
+kind: pipeline
+type: exec
+name: build arm
+
+platform:
+  os: linux
+  arch: amd64
+
+clone:
+  depth: 1
+
+steps:
 
   - name: Build arm
     commands:
-      - nix build -v '.#nixosConfigurations.arm.config.system.build.toplevel' --show-trace --cores 6
-
-  # - name: Build pi4b
-  #   commands:
-  #     - nix build -v '.#nixosConfigurations.pi4b.config.system.build.toplevel' --show-trace
+      - nix build -v -L '.#nixosConfigurations.arm.config.system.build.toplevel' --show-trace --option binary-caches "https://cache.nixos.org"
 
 trigger:
   event:
@@ -51,16 +104,6 @@ clone:
   depth: 1
 
 steps:
-  - name: create result-old files
-    commands:
-      - nix build -v '.#nixosConfigurations.laptop.config.system.build.toplevel' --option binary-caches "https://cache.nixos.org"
-      - mv result laptop-old
-      - nix build -v '.#nixosConfigurations.desktop.config.system.build.toplevel' --option binary-caches "https://cache.nixos.org"
-      - mv result desktop-old
-      - nix build -v '.#nixosConfigurations.arm.config.system.build.toplevel' --option binary-caches "https://cache.nixos.org"
-      - mv result arm-old
-      # - nix build -v '.#nixosConfigurations.pi4b.config.system.build.toplevel' --option binary-caches "https://cache.nixos.org"
-      # - mv result pi4b-old
 
   - name: flake update
     commands:
@@ -78,12 +121,69 @@ steps:
 
   - name: Build laptop
     commands:
-      - nix build -v '.#nixosConfigurations.laptop.config.system.build.toplevel'
+      - nix build -v -L '.#nixosConfigurations.laptop.config.system.build.toplevel' --option binary-caches "https://cache.nixos.org"
+
+  - name: Build desktop
+    commands:
+      - nix build -v -L '.#nixosConfigurations.desktop.config.system.build.toplevel' --option binary-caches "https://cache.nixos.org"
+
+  - name: Build arm
+    commands:
+      - nix build -v -L '.#nixosConfigurations.arm.config.system.build.toplevel' --option binary-caches "https://cache.nixos.org"
+
+trigger:
+  branch:
+    - main
+  event:
+    - push
+    - pull_request
+    - cron
+
+---
+kind: pipeline
+type: exec
+name: show flake diff
+
+platform:
+  os: linux
+  arch: amd64
+
+clone:
+  depth: 1
+
+steps:
+
+  - name: create result-old files
+    commands:
+      - nix build -v '.#nixosConfigurations.laptop.config.system.build.toplevel' --option binary-caches "https://cache.nixos.org"
+      - mv result laptop-old
+      - nix build -v '.#nixosConfigurations.desktop.config.system.build.toplevel' --option binary-caches "https://cache.nixos.org"
+      - mv result desktop-old
+      - nix build -v '.#nixosConfigurations.arm.config.system.build.toplevel' --option binary-caches "https://cache.nixos.org"
+      - mv result arm-old
+
+  - name: flake update
+    commands:
+      - nix --experimental-features "nix-command flakes" flake update
+
+  - name: Show git diff
+    commands:
+      - git diff
+
+  - name: Show flake info
+    commands:
+      - nix --experimental-features "nix-command flakes" flake show
+      - nix --experimental-features "nix-command flakes" flake metadata
+      - nix --experimental-features "nix-command flakes" flake check
+
+  - name: Build laptop
+    commands:
+      - nix build -v '.#nixosConfigurations.laptop.config.system.build.toplevel' --option binary-caches "https://cache.nixos.org"
       - mv result laptop-new
 
   - name: Build desktop
     commands:
-      - nix build -v '.#nixosConfigurations.desktop.config.system.build.toplevel'
+      - nix build -v '.#nixosConfigurations.desktop.config.system.build.toplevel' --option binary-caches "https://cache.nixos.org"
       - mv result desktop-new
 
   - name: Build arm
@@ -91,23 +191,16 @@ steps:
       - nix build -v '.#nixosConfigurations.arm.config.system.build.toplevel' --option binary-caches "https://cache.nixos.org"
       - mv result arm-new
 
-  # - name: Build pi4b
-  #   commands:
-  #     - nix build -v '.#nixosConfigurations.pi4b.config.system.build.toplevel' --option binary-caches "https://cache.nixos.org"
-  #     - mv result pi4b-new
-
   - name: Print report
     commands:
       - echo "laptop:" && nix store diff-closures $(readlink -f laptop-old) $(readlink -f laptop-new)
       - echo "desktop:" && nix store diff-closures $(readlink -f desktop-old) $(readlink -f desktop-new)
       - echo "arm:" && nix store diff-closures $(readlink -f arm-old) $(readlink -f arm-new)
-      # - echo "pi4b:" && nix store diff-closures $(readlink -f pi4b-old) $(readlink -f pi4b-new)
 
 trigger:
   branch:
     - main
   event:
-    - pull_request
     - cron
 
 ---
