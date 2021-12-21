@@ -15,7 +15,7 @@
   home-manager.users.lukas = {
     imports = [
       ../../home-manager/home-server.nix
-      { nixpkgs.overlays = [ self.overlay self.overlay-unstable self.overlay-master ]; }
+      { nixpkgs.overlays = [ self.overlay self.overlay-master ]; }
     ];
   };
 

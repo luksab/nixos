@@ -13,12 +13,12 @@ self: super: {
   ndi = super.pkgs.callPackage ../packages/ndi { };
   objectbox-bin = super.pkgs.callPackage ../packages/objectbox-bin { };
   #multimc = super.qt5.callPackage ../packages/multimc { };
-  multimc = self.unstable.multimc.override { msaClientID = "d4434167-7a48-4be7-b463-647b1580e072"; };
+  multimc = super.multimc.override { msaClientID = "d4434167-7a48-4be7-b463-647b1580e072"; };
   obs-studio-plugins.obs-ndi = super.obs-studio-plugins.obs-ndi.overrideAttrs (old: {
-    buildInputs = [ self.unstable.obs-studio super.qt5.qtbase self.ndi ];
+    buildInputs = [ super.obs-studio super.qt5.qtbase self.ndi ];
   });
   obs = (self.wrapOBS {
-    plugins = with self.unstable.obs-studio-plugins; [
+    plugins = with super.obs-studio-plugins; [
       self.obs-studio-plugins.obs-ndi
       obs-websocket
       obs-move-transition
@@ -34,19 +34,19 @@ self: super: {
 
   # override with newer version from nixpkgs-unstable (home-manager related)
   discord = self.master.discord;
-  cargo = self.unstable.cargo;
-  neovim-unwrapped = self.unstable.neovim-unwrapped;
-  obs-studio = self.unstable.obs-studio;
-  rpiplay = self.unstable.rpiplay;
-  signal-desktop = self.unstable.signal-desktop;
-  spotify = self.unstable.spotify;
-  vscode = self.unstable.vscode;
-  vscode-extensions = self.master.vscode-extensions;
+  # cargo = self.unstable.cargo;
+  # neovim-unwrapped = self.unstable.neovim-unwrapped;
+  # obs-studio = self.unstable.obs-studio;
+  # rpiplay = self.unstable.rpiplay;
+  # signal-desktop = self.unstable.signal-desktop;
+  # spotify = self.unstable.spotify;
+  # vscode = self.unstable.vscode;
+  # vscode-extensions = self.master.vscode-extensions;
   vsliveshare-new = super.pkgs.callPackage ../packages/ms-vsliveshare-vsliveshare { };
-  krita = self.unstable.krita;
-  lutris = self.unstable.lutris;
-  youtube-dl = self.unstable.youtube-dl;
-  zoom-us = self.unstable.zoom-us;
+  # krita = self.unstable.krita;
+  # lutris = self.unstable.lutris;
+  # youtube-dl = self.unstable.youtube-dl;
+  # zoom-us = self.unstable.zoom-us;
 
   # suckless packages
   dwm = (super.dwm.overrideAttrs (oldAttrs: rec {
