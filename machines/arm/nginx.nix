@@ -9,7 +9,7 @@
     root = "/var/www/overviewer";
   };
   services.nginx.virtualHosts."luksab.de" = {
-    addSSL = true;
+    forceSSL = true;
     enableACME = true;
     root = "/var/www/luksab.de";
     locations = { "/" = { extraConfig = "access_log off;"; }; };

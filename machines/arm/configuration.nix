@@ -14,6 +14,8 @@
       openFirewall = true;
     };
 
+    matrix.enable = true;
+
     overviewer = {
       enable = true;
       config = ''
