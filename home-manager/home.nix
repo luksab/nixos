@@ -93,6 +93,7 @@ in {
     gcr
     xournalpp
     prusa-slicer
+    element-desktop
   ];
 
   # Certain Rust tools won't work without this
