@@ -14,6 +14,12 @@
     root = "/var/www/luksab.de";
     locations = { "/" = { extraConfig = "access_log off;"; }; };
   };
+  services.nginx.virtualHosts."turn.luksab.de" = {
+    forceSSL = true;
+    enableACME = true;
+    root = "/var/www/turn.luksab.de";
+    locations = { "/" = { extraConfig = "access_log off;"; }; };
+  };
   services.nginx.virtualHosts."private.luksab.de" = {
     addSSL = true;
     enableACME = true;

@@ -69,13 +69,10 @@ in {
       };
     };
     # get a certificate
-    security.acme.certs.${config.services.coturn.realm} = {
-      # insert here the right configuration to obtain a certificate
-      webroot = "/var/www/luksab.de";
-      email = "lukassabatschus@gmail.com";
-      postRun = "systemctl restart coturn.service";
-      group = "turnserver";
-    };
+    # security.acme.certs.${config.services.coturn.realm} = {
+    #   postRun = "systemctl restart coturn.service";
+    #   group = "turnserver";
+    # };
     # configure synapse to point users to coturn
     services.matrix-synapse = with config.services.coturn; {
       turn_uris = [
@@ -138,13 +135,6 @@ in {
             add_header Content-Type application/json;
             add_header Access-Control-Allow-Origin *;
             return 200 '${builtins.toJSON client}';
-          '';
-
-          # Reverse proxy for Matrix client-server and server-server communication
-          # Or do a redirect instead of the 404, or whatever is appropriate for you.
-          # But do not put a Matrix Web client here! See the Element web section below.
-          locations."/".extraConfig = ''
-            return 404;
           '';
 
           # forward all Matrix API calls to the synapse Matrix homeserver
