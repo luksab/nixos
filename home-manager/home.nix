@@ -89,6 +89,7 @@ in {
     cargo
     rustc
     rustfmt
+    clippy
 
     gcr
     xournalpp
