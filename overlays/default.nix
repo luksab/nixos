@@ -9,6 +9,7 @@ self: super: {
     wrapPython = super.python3.pkgs.wrapPython;
     makeWrapper = super.makeWrapper;
   };
+  shortcut = super.pkgs.callPackage ../packages/shortcut { };
   wrapOBS = super.pkgs.callPackage ../packages/ndi/obs-wrapper.nix { };
   ndi = super.pkgs.callPackage ../packages/ndi { };
   objectbox-bin = super.pkgs.callPackage ../packages/objectbox-bin { };
