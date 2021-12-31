@@ -41,8 +41,8 @@ in {
         }] ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [{
           name = "wgsl-analyzer";
           publisher = "wgsl-analyzer";
-          version = "0.1.0";
-          sha256 = "sha256-Oat/axLsM7kz/16oA3ZtKS1ygg5yenatnwOE3HHjYI4=";
+          version = "0.1.3";
+          sha256 = "sha256-O1UsRTXsxaSWlUZq50ffiCt+Z5GVarXFOynrE3xh708=";
         }];
     };
   };
