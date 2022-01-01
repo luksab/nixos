@@ -21,6 +21,7 @@ in {
       extensions = with pkgs.vscode-extensions;
         [
           # arrterian.nix-env-selector
+          eamodio.gitlens
           bbenoist.nix
           brettm12345.nixfmt-vscode
           ms-vscode-remote.remote-ssh
