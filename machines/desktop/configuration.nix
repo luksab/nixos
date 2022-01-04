@@ -15,6 +15,8 @@
     ];
   };
 
+  networking.firewall.allowedTCPPorts = [ 24800 ];
+
   luksab = {
     firmware.enable = true;
     desktop.enable = true;
