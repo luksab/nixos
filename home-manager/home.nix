@@ -84,6 +84,7 @@ in {
     pavucontrol
     cloc
     krita
+    barrier
 
     jdk
     cargo
