@@ -84,15 +84,18 @@ in {
     pavucontrol
     cloc
     krita
+    barrier
 
     jdk
     cargo
     rustc
     rustfmt
+    clippy
 
     gcr
     xournalpp
     prusa-slicer
+    element-desktop
   ];
 
   # Certain Rust tools won't work without this
