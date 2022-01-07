@@ -75,8 +75,6 @@ in {
       ndi.enable = true;
       scrcpy.enable = true;
       steam.enable = config.luksab.arch == "x86_64";
-
-      shortcut.enable = true;
     };
   };
 }

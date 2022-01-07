@@ -24,6 +24,7 @@
       enable = true;
       ip = "10.31.69.101/24";
     };
+    shortcut.enable = true;
   };
 
   # mayniklas.grub-luks = {
