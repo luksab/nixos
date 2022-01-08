@@ -64,6 +64,7 @@ in {
     };
 
     programs.kdeconnect.enable = true;
+    programs.slock.enable = true;
 
     luksab = {
       common.enable = true;
