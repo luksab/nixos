@@ -1,40 +1,15 @@
-diff --git a/.local/bin/sysact new b/.local/bin/sysact new
-new file mode 100755
-index 0000000..c1d8746
---- /dev/null
-+++ b/.local/bin/sysact new	
-@@ -0,0 +1,15 @@
-+#!/bin/sh
-+# A dmenu wrapper script for system functions.
-+ctl='systemctl' ;;
-+
-+case "$(printf "🔒 lock\n🚪 leave dwm\n♻️ renew dwm\n🐻 hibernate\n💤 sleep\n🔃 reboot\n🖥️shutdown\n📺 display off" | dmenu -i -p 'Action: ')" in
-+	'🔒 lock') slock ;;
-+	'🚪 leave dwm') kill -TERM "$(pgrep -u "$USER" "\bdwm$")" ;;
-+	'♻️ renew dwm') kill -HUP "$(pgrep -u "$USER" "\bdwm$")" ;;
-+	'🐻 hibernate') slock $ctl hibernate ;;
-+	'💤 sleep') slock $ctl suspend ;;
-+	'🔃 reboot') $ctl reboot ;;
-+	'🖥️shutdown') $ctl poweroff ;;
-+	'📺 display off') xset dpms force off ;;
-+	*) exit 1 ;;
-+esac
-diff --git a/diff b/diff
-new file mode 100644
-index 0000000..aacbee1
---- /dev/null
-+++ b/diff
-@@ -0,0 +1,13 @@
-+--- .local/bin/sysact	2022-01-08 01:09:59.619611788 +0100
-++++ ".local/bin/sysact new"	2022-01-08 01:10:06.014601359 +0100
-+@@ -1,9 +1,6 @@
-+ #!/bin/sh
-+ # A dmenu wrapper script for system functions.
-+-case "$(readlink -f /sbin/init)" in
-+-	*systemd*) ctl='systemctl' ;;
-+-	*) ctl='loginctl' ;;
-+-esac
-++ctl='systemctl' ;;
-+ 
-+ case "$(printf "🔒 lock\n🚪 leave dwm\n♻️ renew dwm\n🐻 hibernate\n💤 sleep\n🔃 reboot\n🖥️shutdown\n📺 display off" | dmenu -i -p 'Action: ')" in
-+ 	'🔒 lock') slock ;;
+diff --git a/.local/bin/sysact b/.local/bin/sysact
+index 451815d..f65f5fc 100755
+--- a/.local/bin/sysact
++++ b/.local/bin/sysact
+@@ -1,9 +1,6 @@
+ #!/bin/sh
+ # A dmenu wrapper script for system functions.
+-case "$(readlink -f /sbin/init)" in
+-	*systemd*) ctl='systemctl' ;;
+-	*) ctl='loginctl' ;;
+-esac
++ctl='systemctl'
+ 
+ case "$(printf "🔒 lock\n🚪 leave dwm\n♻️ renew dwm\n🐻 hibernate\n💤 sleep\n🔃 reboot\n🖥️shutdown\n📺 display off" | dmenu -i -p 'Action: ')" in
+ 	'🔒 lock') slock ;;

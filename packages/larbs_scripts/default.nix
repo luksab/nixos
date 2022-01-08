@@ -11,8 +11,6 @@ stdenv.mkDerivation rec {
     sha256 = "sha256-toR8QjILQwlztp8AViy3gNEWdilZVBF4xyinVYfCx5s=";
   };
 
-  prePatch = "ls -lah";
-
   patches = [ ./diff.patch ];
 
   installPhase = ''
