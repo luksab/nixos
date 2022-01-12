@@ -45,6 +45,11 @@ in {
           publisher = "wgsl-analyzer";
           version = "0.2.0";
           sha256 = "sha256-il4coUjCAa3KEMBfnw9ZT7g2Jv86BxLLHB/EnVrbsyY=";
+        }] ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [{
+          name = "remote-containers";
+          publisher = "ms-vscode-remote";
+          version = "0.209.6";
+          sha256 = "sha256-SOYTUBY8EGLTYhNkQC56apAwgV0feCe9ydU8UOtRdbc=";
         }];
     };
   };
