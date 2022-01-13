@@ -18,8 +18,7 @@ in {
 
     hardware.steam-hardware.enable = true;
 
-    environment.systemPackages = [ pkgs.steam pkgs.gnome3.adwaita-icon-theme pkgs.lutris ];
+    environment.systemPackages = [ pkgs.gnome3.adwaita-icon-theme pkgs.lutris ];
+    programs.steam.enable = true;
   };
-
-  meta.maintainers = with maintainers; [ mkg20001 ];
 }
