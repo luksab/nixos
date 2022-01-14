@@ -11,7 +11,6 @@ in {
     ''
         10.31.69.1 pfcloud.luksab.de
         10.31.69.3 pfhome.luksab.de
-        10.31.69.5 nas.luksab.de
         10.31.69.6 status.luksab.de arm
         10.31.69.101 desktop
         10.31.69.107 laptop

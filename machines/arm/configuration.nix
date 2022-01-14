@@ -31,9 +31,11 @@
       dashboard = { enable = true; };
       nodeTargets = [ "localhost:9100" "desktop:9100" "laptop:9100" ];
       blackboxTargets =
-        [ "https://luksab.de" "https://status.luksab.de" "https://github.com" ];
-      blackboxPingTargets = [ "localhost" "pfcloud.luksab.de" "nas.luksab.de" ];
+        [ "https://luksab.de" "https://status.luksab.de" "https://github.com" "https://git.luksab.de" ];
+      blackboxPingTargets = [ "localhost" "pfcloud.luksab.de" "git.luksab.de" ];
     };
+
+    networking.nameservers = [ "10.31.69.1" ];
 
     overviewer = {
       enable = false;
