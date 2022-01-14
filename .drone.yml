@@ -94,7 +94,7 @@ trigger:
 ---
 kind: pipeline
 type: exec
-name: show flake diff
+name: build flake update
 
 platform:
   os: linux
