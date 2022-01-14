@@ -1,6 +1,7 @@
 { self, ... }: {
   imports = [ ../../users/lukas.nix ../../users/root.nix ./nginx.nix ];
   networking.hostName = "arm";
+  networking.nameservers = [ "10.31.69.1" ];
 
   luksab = {
     qemu-guest.enable = true;
@@ -34,8 +35,6 @@
         [ "https://luksab.de" "https://status.luksab.de" "https://github.com" "https://git.luksab.de" ];
       blackboxPingTargets = [ "localhost" "pfcloud.luksab.de" "git.luksab.de" ];
     };
-
-    networking.nameservers = [ "10.31.69.1" ];
 
     overviewer = {
       enable = false;
