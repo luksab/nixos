@@ -1,4 +1,4 @@
-{ lib, config, pkgs, ... }:
+{ lib, config, pkgs, inputs, ... }:
 with lib;
 let cfg = config.luksab.common;
 
@@ -67,6 +67,21 @@ in {
         dates = "weekly";
         options = "--delete-older-than 30d";
       };
+    };
+
+    environment.etc."nix/flake_inputs.prom" = {
+      mode = "0555";
+      text = ''
+        # HELP flake_registry_last_modified Last modification date of flake input in unixtime
+        # TYPE flake_input_last_modified gauge
+        ${concatStringsSep "\n" (map (i:
+          ''
+            flake_input_last_modified{input="${i}",${
+              concatStringsSep "," (mapAttrsToList (n: v: ''${n}="${v}"'')
+                (filterAttrs (n: v: (builtins.typeOf v) == "string")
+                  inputs."${i}"))
+            }} ${toString inputs."${i}".lastModified}'') (attrNames inputs))}
+      '';
     };
 
     system.stateVersion = "21.11";

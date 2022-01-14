@@ -24,6 +24,7 @@
       enable = true;
       ip = "10.31.69.101/24";
     };
+    metrics = { node.enable = true; };
     shortcut.enable = true;
   };
 
