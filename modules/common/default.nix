@@ -14,6 +14,7 @@ in {
     luksab = {
       openssh.enable = true;
       zsh.enable = true;
+      wg_hosts.enable = true;
     };
 
     mayniklas.var.mainUser = "lukas";

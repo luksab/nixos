@@ -29,10 +29,10 @@
       enable = true;
       loki = { enable = true; };
       dashboard = { enable = true; };
-      nodeTargets = [ "localhost:9100" "10.31.69.101:9100" ];
+      nodeTargets = [ "localhost:9100" "desktop:9100" "laptop:9100" ];
       blackboxTargets =
         [ "https://luksab.de" "https://status.luksab.de" "https://github.com" ];
-      blackboxPingTargets = [ "localhost" "10.31.69.1" "10.31.69.5" ];
+      blackboxPingTargets = [ "localhost" "pfcloud.luksab.de" "nas.luksab.de" ];
     };
 
     overviewer = {
