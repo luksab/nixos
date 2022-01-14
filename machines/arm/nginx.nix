@@ -34,10 +34,21 @@
       };
     };
   };
+  services.nginx.virtualHosts."status.luksab.de" = {
+      forceSSL = true;
+      enableACME = true;
+      # listen = [{
+      #  addr = "10.31.69.x";
+      #   port = 443;
+      #  ssl = true;
+      # }];
+      locations."/" = { proxyPass = "http://127.0.0.1:9005"; };
+    };
   security.acme.acceptTerms = true;
   security.acme.certs = {
     "ocp.luksab.de".email = "lukassabatschus@gmail.com";
     "luksab.de".email = "lukassabatschus@gmail.com";
+    "status.luksab.de".email = "lukassabatschus@gmail.com";
     "private.luksab.de".email = "lukassabatschus@gmail.com";
   };
 }
