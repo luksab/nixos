@@ -10,7 +10,7 @@
     lukas-bot.enable = true;
 
     minecraft-server = {
-      enable = true;
+      enable = false;
       openFirewall = true;
     };
 
@@ -31,7 +31,7 @@
     };
 
     overviewer = {
-      enable = true;
+      enable = false;
       config = ''
         worlds["teddy"] = "/var/lib/minecraft-server/export"
 
