@@ -7,6 +7,11 @@
     openssh.enable = true;
     server.enable = true;
 
+    wireguard = {
+      enable = true;
+      ip = "10.31.69.6/24";
+    };
+
     lukas-bot.enable = true;
 
     minecraft-server = {
