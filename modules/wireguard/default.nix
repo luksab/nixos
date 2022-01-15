@@ -32,7 +32,7 @@ in {
       peers = [{
         publicKey = "ZxfxvKgR9xXdYwwKQdkURq7k5NEK2AypLEPM8jVnwlg=";
         allowedIPs = cfg.allowedIPs;
-        endpoint = "nc.luksab.de:51820";
+        endpoint = "185.194.142.8:51820";
         persistentKeepalive = 15;
       }];
     };
