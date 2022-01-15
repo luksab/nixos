@@ -24,10 +24,11 @@ in {
       listenPort = 51820;
       address = [ cfg.ip ];
       # Path to the private key file
-      privateKeyFile = "/var/src/secrets/wireguard/private";
-      # execute `wg genkey  > /var/src/secrets/wireguard/private` on first enable
-      # `chmod 600 /var/src/secrets/wireguard/private`
-      # `chown root:root /var/src/secrets/wireguard/private`
+      privateKeyFile = "/var/secrets/wireguard/private";
+      # `mkdir -p /var/secrets/wireguard`
+      # execute `wg genkey  > /var/secrets/wireguard/private` on first enable
+      # `chmod 600 /var/secrets/wireguard/private`
+      # `chown root:root /var/secrets/wireguard/private`
 
       peers = [{
         publicKey = "ZxfxvKgR9xXdYwwKQdkURq7k5NEK2AypLEPM8jVnwlg=";
