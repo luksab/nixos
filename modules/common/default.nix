@@ -41,6 +41,10 @@ in {
       useXkbConfig = true;
     };
 
+    services.journald.extraConfig = ''
+        SystemMaxUse=1G
+    '';
+
     nix = {
       package = pkgs.nixFlakes;
       extraOptions = ''
