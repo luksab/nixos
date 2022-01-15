@@ -85,6 +85,7 @@ in {
     cloc
     krita
     barrier
+    gnome.gnome-system-monitor
 
     jdk
     cargo
