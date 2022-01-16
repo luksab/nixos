@@ -86,6 +86,8 @@ in {
     krita
     barrier
     gnome.gnome-system-monitor
+    dig
+    traceroute
 
     jdk
     cargo

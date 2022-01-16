@@ -26,6 +26,9 @@ in {
     unzip
     vim
     youtube-dl
+    cloc
+    dig
+    traceroute
 
     jdk
   ];
