@@ -11,6 +11,7 @@
     wireguard = {
       enable = true;
       ip = "10.31.69.6/24";
+      allowedIPs = [ "10.31.69.0/24" "10.31.70.0/24" ];
     };
 
     lukas-bot.enable = true;
@@ -30,7 +31,7 @@
       enable = true;
       loki = { enable = true; };
       dashboard = { enable = true; };
-      nodeTargets = [ "localhost:9100" "desktop:9100" "laptop:9100" ];
+      nodeTargets = [ "localhost:9100" "desktop:9100" "laptop:9100" "nas:9100" ];
       blackboxTargets =
         [ "https://luksab.de" "https://status.luksab.de" "https://github.com" "https://git.luksab.de" ];
       blackboxPingTargets = [ "localhost" "pfcloud.luksab.de" "git.luksab.de" ];
