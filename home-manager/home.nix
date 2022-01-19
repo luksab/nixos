@@ -29,7 +29,7 @@ in {
       ${pkgs.feh}/bin/feh --bg-fill --randomize Pictures/backgrounds
     '';
     pointerCursor = {
-      package = pkgs.gnome3.defaultIconTheme;
+      package = pkgs.gnome.adwaita-icon-theme;
       name = "Adwaita";
       size = 32;
     };
@@ -72,7 +72,7 @@ in {
     glib
     glibc
     coreutils
-    gnome3.dconf
+    dconf
     gparted
     iperf3
     nmap
