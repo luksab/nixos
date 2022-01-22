@@ -36,6 +36,7 @@ in {
       };
 
       preStart = ''
+        ${pkgs.netcat}/bin/nc -zw1 npmjs.com 443 # check if npmjs.com is reachable
         pwd
         cp --no-preserve=mode,ownership -r ${pkgs.shortcut}/bin/* .
         npm install
