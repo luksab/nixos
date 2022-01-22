@@ -5,15 +5,15 @@ in {
 
   options.luksab.wireguard = {
     enable = mkEnableOption "activate wireguard";
-    ip = mkOption {
-      type = types.str;
-      example = "10.31.69.101/24";
+    ips = mkOption {
+      type = types.listOf types.str;
+      example = [ "10.31.69.101/24" "2a03:4000:1c:6c3::5e1f:de53/64" ];
       description = "own ip";
     };
     allowedIPs = mkOption {
       type = types.listOf types.str;
       default =
-        [ "10.31.69.0/24" "185.163.117.233" "90.130.70.73" "152.70.53.164" ];
+        [ "10.31.69.0/24" "2a03:4000:1c:6c3::/64" ];
       description = "ips to tunnel";
     };
   };
@@ -22,7 +22,7 @@ in {
     networking.firewall.allowedUDPPorts = [ 51820 ];
     networking.wg-quick.interfaces.wg0 = {
       listenPort = 51820;
-      address = [ cfg.ip ];
+      address = cfg.ips;
       # Path to the private key file
       privateKeyFile = "/var/secrets/wireguard/private";
       # `mkdir -p /var/secrets/wireguard`

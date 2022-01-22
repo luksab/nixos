@@ -22,7 +22,9 @@
     desktop.enable = true;
     wireguard = {
       enable = true;
-      ip = "10.31.69.101/24";
+      ips = [ "10.31.69.101/24" ];
+      allowedIPs = [ "10.31.69.0/24" ];
+      # allowedIPs = [ "0.0.0.0/0" ];
     };
     shortcut.enable = true;
   };

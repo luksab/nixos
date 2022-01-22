@@ -7,5 +7,5 @@
       options edns0
     '';
   };
-  networking.nameservers = [ "10.31.69.1" ];
+  networking.nameservers = [ "10.31.69.1" "1.1.1.1" ];
 }
