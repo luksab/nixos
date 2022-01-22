@@ -13,8 +13,8 @@ self: super: {
   wrapOBS = super.pkgs.callPackage ../packages/ndi/obs-wrapper.nix { };
   ndi = super.pkgs.callPackage ../packages/ndi { };
   objectbox-bin = super.pkgs.callPackage ../packages/objectbox-bin { };
-  #multimc = super.qt5.callPackage ../packages/multimc { };
-  multimc = super.multimc.override { msaClientID = "d4434167-7a48-4be7-b463-647b1580e072"; };
+  #polymc = super.qt5.callPackage ../packages/polymc { };
+  polymc = super.polymc.override { msaClientID = "d4434167-7a48-4be7-b463-647b1580e072"; };
   obs-studio-plugins.obs-ndi = super.obs-studio-plugins.obs-ndi.overrideAttrs (old: {
     buildInputs = [ super.obs-studio super.qt5.qtbase self.ndi ];
   });
