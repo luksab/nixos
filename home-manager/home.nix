@@ -59,7 +59,7 @@ in {
     libnotify
     brightnessctl
     htop
-    multimc
+    polymc
     arandr
 
     dolphin
