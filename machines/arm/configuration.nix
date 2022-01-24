@@ -3,6 +3,12 @@
   networking.hostName = "arm";
   networking.nameservers = [ "10.31.69.1" ];
 
+  services.influxdb2.enable = true;
+
+  networking.firewall.interfaces.wg0.allowedTCPPorts = [
+    8086 # InfluxDB
+  ];
+
   luksab = {
     qemu-guest.enable = true;
     openssh.enable = true;
@@ -31,9 +37,14 @@
       enable = true;
       loki = { enable = true; };
       dashboard = { enable = true; };
-      nodeTargets = [ "localhost:9100" "desktop:9100" "laptop:9100" "nas:9100" ];
-      blackboxTargets =
-        [ "https://luksab.de" "https://status.luksab.de" "https://github.com" "https://git.luksab.de" ];
+      nodeTargets =
+        [ "localhost:9100" "desktop:9100" "laptop:9100" "nas:9100" ];
+      blackboxTargets = [
+        "https://luksab.de"
+        "https://status.luksab.de"
+        "https://github.com"
+        "https://git.luksab.de"
+      ];
       blackboxPingTargets = [ "localhost" "pfcloud.luksab.de" "git.luksab.de" ];
     };
 
