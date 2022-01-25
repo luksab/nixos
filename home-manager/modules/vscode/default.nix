@@ -28,7 +28,6 @@ in {
           ms-vscode-remote.remote-ssh
           matklad.rust-analyzer
           (lib.mkIf (config.luksab.arch == "x86_64") pkgs.vsliveshare-new)
-          brettm12345.nixfmt-vscode
           james-yu.latex-workshop
           valentjn.vscode-ltex
           (lib.mkIf (config.luksab.arch == "x86_64") ms-python.python)
