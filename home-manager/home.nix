@@ -90,6 +90,7 @@ in {
     traceroute
 
     jdk
+    ansible
     cargo
     rustc
     rustfmt
