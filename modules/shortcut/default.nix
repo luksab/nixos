@@ -29,6 +29,8 @@ in {
         pkgs.nodePackages.npm
         pkgs.bash
       ];
+      after = [ "network-online.target" ];
+      wants = [ "network-online.target" ];
       wantedBy = [ "default.target" ];
 
       environment = {
