@@ -12,6 +12,7 @@ in {
     suckless.enable = true;
     mime.enable = true;
     services.dunst.enable = true;
+    ssh.enable = true;
     #programs.vim.enable = true;
   };
 
@@ -125,6 +126,7 @@ in {
     ./modules/zsh
     ./modules/vscode
     ./modules/x86
+    ./modules/ssh
   ];
 
   services.gnome-keyring = { enable = true; };
