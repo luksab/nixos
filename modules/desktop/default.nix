@@ -55,7 +55,7 @@ in {
 
     # enable virtualbox
     virtualisation.virtualbox.host.enable = true;
-    users.extraGroups.vboxusers.members = [ "user-with-access-to-virtualbox" ];
+    users.extraGroups.vboxusers.members = [ "lukas" ];
     virtualisation.virtualbox.host.enableExtensionPack = true;
 
     programs.dconf.enable = true;
