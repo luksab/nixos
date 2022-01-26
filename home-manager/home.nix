@@ -81,6 +81,7 @@ in {
     vim
     vlc
     youtube-dl
+    foliate
     pavucontrol
     cloc
     krita
