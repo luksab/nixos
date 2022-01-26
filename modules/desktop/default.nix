@@ -25,7 +25,7 @@ in {
       "${pkgs.spice-gtk}/bin/spice-client-glib-usb-acl-helper";
     security.wrappers.spice-client-glib-usb-acl-helper.owner = "root";
     security.wrappers.spice-client-glib-usb-acl-helper.group = "root";
-    users.groups.usb = {};
+    users.groups.usb = { };
     # let all usb devices be in the usb group
     services.udev.extraRules = ''
       KERNEL=="*", SUBSYSTEMS=="usb", MODE="0664", GROUP="usb"
@@ -52,6 +52,11 @@ in {
       yubikey.enable = true;
       virtualisation.enable = true;
     };
+
+    # enable virtualbox
+    virtualisation.virtualbox.host.enable = true;
+    users.extraGroups.vboxusers.members = [ "user-with-access-to-virtualbox" ];
+    virtualisation.virtualbox.host.enableExtensionPack = true;
 
     programs.dconf.enable = true;
     services.gvfs.enable = true;
