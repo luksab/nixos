@@ -91,6 +91,7 @@ in {
 
     jdk
     ansible
+    vagrant
     cargo
     rustc
     rustfmt
