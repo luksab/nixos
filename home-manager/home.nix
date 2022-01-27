@@ -103,6 +103,7 @@ in {
     xournalpp
     prusa-slicer
     element-desktop
+    rhythmbox
   ];
 
   # Certain Rust tools won't work without this
