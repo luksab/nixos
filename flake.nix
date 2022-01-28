@@ -2,7 +2,7 @@
   description = "My main system flake";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable-small";
     nixpkgs-master.url = "github:nixos/nixpkgs/master";
 
     flake-utils.url = "github:numtide/flake-utils";
