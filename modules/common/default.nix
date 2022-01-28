@@ -42,31 +42,29 @@ in {
     };
 
     services.journald.extraConfig = ''
-      SystemMaxUse=1G
+        SystemMaxUse=1G
     '';
 
     nix = {
       package = pkgs.nixFlakes;
       extraOptions = ''
-        experimental-features = nix-command flakes
+        experimental-features = nix-command flakes ca-references
       '';
 
-      settings = {
-        # binary cache -> build by DroneCI
-        trusted-public-keys = mkIf (cfg.disable-cache != true)
-          [ "cache.lounge.rocks:uXa8UuAEQoKFtU8Om/hq6d7U+HgcrduTVr8Cfl6JuaY=" ];
-        substituters = mkIf (cfg.disable-cache != true) [
-          "https://cache.nixos.org"
-          "https://cache.lounge.rocks?priority=50"
-        ];
-        trusted-substituters = mkIf (cfg.disable-cache != true) [
-          "https://cache.lounge.rocks"
-          "https://cache.nixos.org"
-        ];
+      # binary cache -> build by DroneCI
+      binaryCachePublicKeys = mkIf (cfg.disable-cache != true)
+        [ "cache.lounge.rocks:uXa8UuAEQoKFtU8Om/hq6d7U+HgcrduTVr8Cfl6JuaY=" ];
+      binaryCaches = mkIf (cfg.disable-cache != true) [
+        "https://cache.nixos.org"
+        "https://cache.lounge.rocks?priority=50"
+      ];
+      trustedBinaryCaches = mkIf (cfg.disable-cache != true) [
+        "https://cache.lounge.rocks"
+        "https://cache.nixos.org"
+      ];
 
-        # Save space by hardlinking store files
-        auto-optimise-store = true;
-      };
+      # Save space by hardlinking store files
+      autoOptimiseStore = true;
 
       # Clean up old generations after 30 days
       gc = {
