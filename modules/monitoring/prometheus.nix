@@ -84,7 +84,21 @@ in {
           job_name = "node-stats";
           static_configs = [{ targets = cfg.nodeTargets; }];
         }
+        {
+          job_name = "hass";
+          metrics_path = "/api/prometheus";
+          bearer_token_file = "/var/src/secrets/home-assistant.token";
+          scheme = "https";
+          static_configs = [{ targets = [ "ha.luksab.de:443" ]; }];
+        }
       ];
     };
+
+    system.activationScripts.setup-home-assistant-token =
+      stringAfter [ "users" "groups" ] ''
+        echo setting up secrets...
+        chmod +xr /var/src/secrets/
+        chmod +r /var/src/secrets/home-assistant.token
+      '';
   };
 }
