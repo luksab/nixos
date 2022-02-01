@@ -21,15 +21,7 @@ in {
 
     environment.systemPackages = [ pkgs.rpiplay pkgs.librsvg pkgs.spice-gtk ];
     security.polkit.enable = true;
-    security.wrappers.spice-client-glib-usb-acl-helper.source =
-      "${pkgs.spice-gtk}/bin/spice-client-glib-usb-acl-helper";
-    security.wrappers.spice-client-glib-usb-acl-helper.owner = "root";
-    security.wrappers.spice-client-glib-usb-acl-helper.group = "root";
-    users.groups.usb = { };
-    # let all usb devices be in the usb group
-    services.udev.extraRules = ''
-      KERNEL=="*", SUBSYSTEMS=="usb", MODE="0664", GROUP="usb"
-    '';
+    virtualisation.spiceUSBRedirection.enable = true;
     hardware.logitech.wireless.enableGraphical = true;
     hardware.logitech.wireless.enable = true;
     networking.firewall = {
