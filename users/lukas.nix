@@ -13,5 +13,5 @@
     ];
   };
 
-  nix.allowedUsers = [ "lukas" ];
+  nix.settings.allowed-users = [ "lukas" ];
 }
