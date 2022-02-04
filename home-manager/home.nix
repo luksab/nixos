@@ -104,6 +104,7 @@ in {
     prusa-slicer
     element-desktop
     rhythmbox
+    davinci-resolve
   ];
 
   # Certain Rust tools won't work without this

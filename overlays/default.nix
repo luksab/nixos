@@ -12,6 +12,7 @@ self: super: {
   shortcut = super.pkgs.callPackage ../packages/shortcut { };
   wrapOBS = super.pkgs.callPackage ../packages/ndi/obs-wrapper.nix { };
   ndi = super.pkgs.callPackage ../packages/ndi { };
+  davinci-resolve = super.pkgs.callPackage ../packages/davinci-resolve { };
   objectbox-bin = super.pkgs.callPackage ../packages/objectbox-bin { };
   #polymc = super.qt5.callPackage ../packages/polymc { };
   polymc = super.polymc.override { msaClientID = "d4434167-7a48-4be7-b463-647b1580e072"; };
