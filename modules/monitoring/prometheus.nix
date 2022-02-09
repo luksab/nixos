@@ -32,7 +32,8 @@ in {
 
     services.prometheus = {
       enable = true;
-      extraFlags = [ "--log.level=debug" ];
+      extraFlags = [ "--log.level=debug" "--storage.tsdb.retention.size=10GB" ];
+      retentionTime = "10y";
       # environmentFile = /var/src/secrets/prometheus/envfile;
 
       scrapeConfigs = [
