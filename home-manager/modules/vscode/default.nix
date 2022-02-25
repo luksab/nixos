@@ -48,8 +48,8 @@ in {
         }] ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [{
           name = "remote-containers";
           publisher = "ms-vscode-remote";
-          version = "0.209.6";
-          sha256 = "sha256-SOYTUBY8EGLTYhNkQC56apAwgV0feCe9ydU8UOtRdbc=";
+          version = "0.217.4";
+          sha256 = "sha256-YYoFdqrJLdq8uhx3cKA6nvxCa9Ac4jVxp9dOo4wF5cQ=";
         }];
     };
   };
