@@ -69,7 +69,6 @@ in {
     mtools
     sshfs
     filezilla
-    binutils-unwrapped
     glib
     glibc
     coreutils
@@ -96,6 +95,7 @@ in {
     vagrant
     cargo
     rustc
+    clang
     rustfmt
     clippy
 
