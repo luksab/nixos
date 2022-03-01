@@ -4,6 +4,7 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable-small";
     nixpkgs-master.url = "github:nixos/nixpkgs/master";
+    nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-21.11";
 
     flake-utils.url = "github:numtide/flake-utils";
 
@@ -31,6 +32,7 @@
             {
               _module.args.overlay-master = self.overlay-master;
             }
+            { _module.args.overlay-stable = self.overlay-stable; }
 
             # Add home-manager option to all configs
             ({ ... }: {
@@ -48,7 +50,7 @@
                   # and root e.g. `nix-channel --remove nixos`. `nix-channel
                   # --list` should be empty for all users afterwards
                   nix.nixPath = [ "nixpkgs=${nixpkgs}" ];
-                  nixpkgs.overlays = [ self.overlay self.overlay-master ];
+                  nixpkgs.overlays = [ self.overlay self.overlay-master self.overlay-stable ];
                 }
                 baseCfg
                 home-manager.nixosModules.home-manager
@@ -72,6 +74,13 @@
 
       overlay-master = final: prev: {
         master = import nixpkgs-master {
+          system = "x86_64-linux";
+          config.allowUnfree = true;
+        };
+      };
+
+      overlay-stable = final: prev: {
+        stable = import nixpkgs-stable {
           system = "x86_64-linux";
           config.allowUnfree = true;
         };

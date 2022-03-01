@@ -15,14 +15,15 @@ self: super: {
   davinci-resolve = super.pkgs.callPackage ../packages/davinci-resolve { };
   objectbox-bin = super.pkgs.callPackage ../packages/objectbox-bin { };
   #polymc = super.qt5.callPackage ../packages/polymc { };
-  polymc = super.polymc.override { msaClientID = "d4434167-7a48-4be7-b463-647b1580e072"; };
-  obs-studio-plugins.obs-ndi = super.obs-studio-plugins.obs-ndi.overrideAttrs (old: {
-    buildInputs = [ super.obs-studio super.qt5.qtbase self.ndi ];
-  });
+  polymc = super.polymc.override {
+    msaClientID = "d4434167-7a48-4be7-b463-647b1580e072";
+  };
+  obs-studio-plugins.obs-ndi = super.obs-studio-plugins.obs-ndi.overrideAttrs
+    (old: { buildInputs = [ super.obs-studio super.qt5.qtbase self.ndi ]; });
   obs = (self.wrapOBS {
     plugins = with super.obs-studio-plugins; [
       self.obs-studio-plugins.obs-ndi
-      obs-websocket
+      self.stable.obs-studio-plugins.obs-websocket
       obs-move-transition
     ];
   });
@@ -44,7 +45,8 @@ self: super: {
   # spotify = self.unstable.spotify;
   # vscode = self.unstable.vscode;
   # vscode-extensions = self.master.vscode-extensions;
-  vsliveshare-new = super.pkgs.callPackage ../packages/ms-vsliveshare-vsliveshare { };
+  vsliveshare-new =
+    super.pkgs.callPackage ../packages/ms-vsliveshare-vsliveshare { };
   # krita = self.unstable.krita;
   # lutris = self.unstable.lutris;
   # youtube-dl = self.unstable.youtube-dl;
