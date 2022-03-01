@@ -21,8 +21,9 @@
     wireguard = {
       enable = true;
       ips = [ "10.31.69.107/24" ];
-      allowedIPs = [ "10.31.69.0/24" "10.31.70.0/24" "185.163.117.233" "90.130.70.73" "152.70.53.164" ];
+      allowedIPs = [ "10.31.69.0/24" ];
     };
+    nameserver.enable = true;
   };
 
   services.xserver.screenSection = ''
