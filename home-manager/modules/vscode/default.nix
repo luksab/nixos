@@ -46,6 +46,11 @@ in {
           version = "0.3.1";
           sha256 = "sha256-eO6WhCY53qdbba6XexaLQRLExoQOR/8XG2bbf2PmeCo=";
         }] ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [{
+          name = "errorlens";
+          publisher = "usernamehw";
+          version = "3.4.1";
+          sha256 = "sha256-cJ1/jfCU+Agiyi1Qdd0AfyOTzwxOEfox4vLSJ0/UKNc=";
+        }] ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [{
           name = "remote-containers";
           publisher = "ms-vscode-remote";
           version = "0.217.4";
