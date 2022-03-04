@@ -51,6 +51,11 @@ in {
           version = "3.4.1";
           sha256 = "sha256-cJ1/jfCU+Agiyi1Qdd0AfyOTzwxOEfox4vLSJ0/UKNc=";
         }] ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [{
+          name = "liveserver";
+          publisher = "ritwickdey";
+          version = "5.7.4";
+          sha256 = "sha256-fkn61huZJdeYH3tde5pDuBI5jgLsCFSa895gJ0J7r6M=";
+        }] ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [{
           name = "remote-containers";
           publisher = "ms-vscode-remote";
           version = "0.217.4";
