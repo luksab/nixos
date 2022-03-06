@@ -105,6 +105,8 @@ in {
     element-desktop
     rhythmbox
     davinci-resolve
+    google-chrome-dev
+    firefox
   ];
 
   # Certain Rust tools won't work without this
