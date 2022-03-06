@@ -105,7 +105,6 @@ in {
     element-desktop
     rhythmbox
     davinci-resolve
-    google-chrome-dev
     firefox
   ];
 
