@@ -14,7 +14,16 @@ sudo nixos-rebuild switch --flake .
 nix-build ./krops.nix -A all && ./result
 ```
 
-# TODO
-- fix graphics glitches on laptop
-## look at:
-- configuration options generated from nix code (low priority)
+# patch individual executables
+- get requirements
+```
+nix-shell -p file patchelf
+```
+- get current interpreter
+```
+file $(which file)
+```
+- patch
+```
+sudo patchelf --set-interpreter [interpreter] [executable]
+```
