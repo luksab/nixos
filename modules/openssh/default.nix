@@ -16,5 +16,8 @@ in {
       allowSFTP = true;
     };
 
+    # Enable mosh
+    programs.mosh.enable = true;
+    
   };
 }
