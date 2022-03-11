@@ -21,7 +21,8 @@ in {
       min-port = 49000;
       max-port = 50000;
       use-auth-secret = true;
-      static-auth-secret = "ae4nz89opse45vt7nz8ionmu89opasce45tzegahuo"; # very secure password :)
+      static-auth-secret =
+        "ae4nz89opse45vt7nz8ionmu89opasce45tzegahuo"; # very secure password :)
       realm = "turn.luksab.de";
       cert = "${config.security.acme.certs.${realm}.directory}/full.pem";
       pkey = "${config.security.acme.certs.${realm}.directory}/key.pem";
@@ -75,27 +76,29 @@ in {
     # };
     # configure synapse to point users to coturn
     services.matrix-synapse = with config.services.coturn; {
-      turn_uris = [
-        "turn:${realm}:3478?transport=udp"
-        "turn:${realm}:3478?transport=tcp"
-      ];
-      turn_shared_secret = static-auth-secret;
-      turn_user_lifetime = "1h";
+      settings = {
+        turn_uris = [
+          "turn:${realm}:3478?transport=udp"
+          "turn:${realm}:3478?transport=tcp"
+        ];
+        turn_shared_secret = static-auth-secret;
+        turn_user_lifetime = "1h";
+
+        server_name = "${cfg.host}";
+        enable_registration = false;
+        listeners = [{
+          port = 8008;
+          type = "http";
+          tls = false;
+          x_forwarded = true;
+          resources = [{
+            names = [ "client" "federation" ];
+            compress = false;
+          }];
+        }];
+      };
 
       enable = true;
-      server_name = "${cfg.host}";
-      enable_registration = false;
-      listeners = [{
-        port = 8008;
-        bind_address = "::1";
-        type = "http";
-        tls = false;
-        x_forwarded = true;
-        resources = [{
-          names = [ "client" "federation" ];
-          compress = false;
-        }];
-      }];
     };
 
     services.postgresql.enable = true;
