@@ -31,6 +31,7 @@ in {
     traceroute
 
     jdk
+    code-server
   ];
 
   # Imports

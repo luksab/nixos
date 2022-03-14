@@ -106,6 +106,8 @@ in {
     rhythmbox
     davinci-resolve
     firefox
+
+    code-server
   ];
 
   # Certain Rust tools won't work without this
