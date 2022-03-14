@@ -154,6 +154,13 @@
           ];
         };
 
+        olafArm = defFlakeSystem "aarch64-linux" {
+          imports = [
+            # Machine specific config
+            (import (./machines/olafArm/configuration.nix) { inherit self; })
+          ];
+        };
+
       };
     } //
 

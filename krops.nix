@@ -65,6 +65,7 @@ in rec {
 
   majaArm = createHost "majaArm" "root@val.luksab.de";
   rapaArm = createHost "rapaArm" "root@152.70.59.189";
+  olafArm = createHost "olafArm" "root@158.101.211.244";
 
   pi4b = createHost "pi4b" "root@192.168.178.55";
 
