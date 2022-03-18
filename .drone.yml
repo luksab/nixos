@@ -75,7 +75,7 @@ name: build arm
 
 platform:
   os: linux
-  arch: amd64
+  arch: arm64
 
 clone:
   depth: 1
