@@ -29,12 +29,14 @@ in {
       ${pkgs.xcompmgr}/bin/xcompmgr &
       ${pkgs.feh}/bin/feh --bg-fill --randomize Pictures/backgrounds
     '';
-    pointerCursor = {
-      package = pkgs.gnome.adwaita-icon-theme;
-      name = "Adwaita";
-      size = 32;
-    };
   };
+
+  gtk.cursorTheme = {
+    package = pkgs.gnome.adwaita-icon-theme;
+    name = "Adwaita";
+    size = 32;
+  };
+
   # Remove in next release of home-manager
   home.file.".icons/default/index.theme".text = ''
     [icon theme]
