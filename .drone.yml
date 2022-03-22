@@ -38,7 +38,20 @@ steps:
 
   - name: Build laptop
     commands:
-      - nix build -v -L '.#nixosConfigurations.laptop.config.system.build.toplevel' --show-trace --option binary-caches "https://cache.nixos.org"
+      - nix build -v -L '.#nixosConfigurations.laptop.config.system.build.toplevel'
+  
+  - name: show closure size
+    commands:
+    - nix path-info --closure-size -h $(readlink -f result)  
+
+  - name: upload laptop to binary cache via s3
+    commands:
+    - nix copy --to 's3://example-nix-cache?scheme=https&region=eu-central-1&endpoint=s3.lounge.rocks' $(nix-store -qR result/) -L
+    environment:
+      AWS_ACCESS_KEY_ID:
+        from_secret: aws_key
+      AWS_SECRET_ACCESS_KEY:
+        from_secret: aws_secret
 
 trigger:
   event:
@@ -61,7 +74,20 @@ steps:
 
   - name: Build desktop
     commands:
-      - nix build -v -L '.#nixosConfigurations.desktop.config.system.build.toplevel' --show-trace --option binary-caches "https://cache.nixos.org"
+      - nix build -v -L '.#nixosConfigurations.desktop.config.system.build.toplevel'
+  
+  - name: show closure size
+    commands:
+    - nix path-info --closure-size -h $(readlink -f result)
+    
+  - name: upload desktop to binary cache via s3
+    commands:
+    - nix copy --to 's3://example-nix-cache?scheme=https&region=eu-central-1&endpoint=s3.lounge.rocks' $(nix-store -qR result/) -L
+    environment:
+      AWS_ACCESS_KEY_ID:
+        from_secret: aws_key
+      AWS_SECRET_ACCESS_KEY:
+        from_secret: aws_secret
 
 trigger:
   event:
@@ -84,7 +110,20 @@ steps:
 
   - name: Build arm
     commands:
-      - nix build -v -L '.#nixosConfigurations.arm.config.system.build.toplevel' --show-trace --option binary-caches "https://cache.nixos.org"
+      - nix build -v -L '.#nixosConfigurations.arm.config.system.build.toplevel'
+  
+  - name: show closure size
+    commands:
+    - nix path-info --closure-size -h $(readlink -f result)
+  
+  - name: upload desktop to binary cache via s3
+    commands:
+    - nix copy --to 's3://example-nix-cache?scheme=https&region=eu-central-1&endpoint=s3.lounge.rocks' $(nix-store -qR result/) -L
+    environment:
+      AWS_ACCESS_KEY_ID:
+        from_secret: aws_key
+      AWS_SECRET_ACCESS_KEY:
+        from_secret: aws_secret
 
 trigger:
   event:
@@ -94,7 +133,7 @@ trigger:
 ---
 kind: pipeline
 type: exec
-name: build flake update
+name: build flake update x86
 
 platform:
   os: linux
@@ -107,12 +146,10 @@ steps:
 
   - name: create result-old files
     commands:
-      - nix build -v '.#nixosConfigurations.laptop.config.system.build.toplevel' --option binary-caches "https://cache.nixos.org"
+      - nix build -v '.#nixosConfigurations.laptop.config.system.build.toplevel'
       - mv result laptop-old
-      - nix build -v '.#nixosConfigurations.desktop.config.system.build.toplevel' --option binary-caches "https://cache.nixos.org"
+      - nix build -v '.#nixosConfigurations.desktop.config.system.build.toplevel'
       - mv result desktop-old
-      - nix build -v '.#nixosConfigurations.arm.config.system.build.toplevel' --option binary-caches "https://cache.nixos.org"
-      - mv result arm-old
 
   - name: flake update
     commands:
@@ -130,23 +167,65 @@ steps:
 
   - name: Build laptop
     commands:
-      - nix build -v '.#nixosConfigurations.laptop.config.system.build.toplevel' --option binary-caches "https://cache.nixos.org"
+      - nix build -v '.#nixosConfigurations.laptop.config.system.build.toplevel'
       - mv result laptop-new
 
   - name: Build desktop
     commands:
-      - nix build -v '.#nixosConfigurations.desktop.config.system.build.toplevel' --option binary-caches "https://cache.nixos.org"
+      - nix build -v '.#nixosConfigurations.desktop.config.system.build.toplevel'
       - mv result desktop-new
-
-  - name: Build arm
-    commands:
-      - nix build -v '.#nixosConfigurations.arm.config.system.build.toplevel' --option binary-caches "https://cache.nixos.org"
-      - mv result arm-new
 
   - name: Print report
     commands:
       - echo "laptop:" && nix store diff-closures $(readlink -f laptop-old) $(readlink -f laptop-new)
       - echo "desktop:" && nix store diff-closures $(readlink -f desktop-old) $(readlink -f desktop-new)
+
+trigger:
+  branch:
+    - main
+  event:
+    - cron
+
+---
+kind: pipeline
+type: exec
+name: build flake update arm
+
+platform:
+  os: linux
+  arch: arm64
+
+clone:
+  depth: 1
+
+steps:
+
+  - name: create result-old files
+    commands:
+      - nix build -v '.#nixosConfigurations.arm.config.system.build.toplevel'
+      - mv result arm-old
+
+  - name: flake update
+    commands:
+      - nix --experimental-features "nix-command flakes" flake update
+
+  - name: Show git diff
+    commands:
+      - git diff
+
+  - name: Show flake info
+    commands:
+      - nix --experimental-features "nix-command flakes" flake show
+      - nix --experimental-features "nix-command flakes" flake metadata
+      - nix --experimental-features "nix-command flakes" flake check
+
+  - name: Build arm
+    commands:
+      - nix build -v '.#nixosConfigurations.arm.config.system.build.toplevel'
+      - mv result arm-new
+
+  - name: Print report
+    commands:
       - echo "arm:" && nix store diff-closures $(readlink -f arm-old) $(readlink -f arm-new)
 
 trigger:
