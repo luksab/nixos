@@ -33,6 +33,9 @@
             allow 91.65.93.7;
             allow 88.152.15.128;
             allow 158.101.219.227;
+            # netcup-x86-runner-1.lounge.rocks
+            allow 89.58.12.139;
+            allow 2a03:4000:60:ece::;
             deny all;'';
         };
       };
