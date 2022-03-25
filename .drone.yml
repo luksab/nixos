@@ -15,7 +15,7 @@ steps:
     commands:
       - nix flake show
       - nix flake metadata
-      - nix flake check
+      # - nix flake check
 
 trigger:
   event:
