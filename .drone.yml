@@ -213,12 +213,6 @@ steps:
     commands:
       - git diff
 
-  - name: Show flake info
-    commands:
-      - nix --experimental-features "nix-command flakes" flake show
-      - nix --experimental-features "nix-command flakes" flake metadata
-      - nix --experimental-features "nix-command flakes" flake check
-
   - name: Build arm
     commands:
       - nix build -v '.#nixosConfigurations.arm.config.system.build.toplevel'
