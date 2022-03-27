@@ -57,11 +57,13 @@ in {
           [ "cache.lounge.rocks:uXa8UuAEQoKFtU8Om/hq6d7U+HgcrduTVr8Cfl6JuaY=" ];
         substituters = mkIf (cfg.disable-cache != true) [
           "https://cache.nixos.org"
-          "https://cache.lounge.rocks?priority=50"
+          "https://cache.lounge.rocks?priority=100"
+          "https://s3.lounge.rocks/nix-cache?priority=50"
         ];
         trusted-substituters = mkIf (cfg.disable-cache != true) [
           "https://cache.lounge.rocks"
           "https://cache.nixos.org"
+          "https://s3.lounge.rocks/nix-cache/"
         ];
 
         # Save space by hardlinking store files
