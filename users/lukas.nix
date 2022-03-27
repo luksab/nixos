@@ -3,7 +3,14 @@
   users.users.lukas = {
     isNormalUser = true;
     home = "/home/lukas";
-    extraGroups = [ "wheel" "video" "networkmanager" "docker" "dialout" "usb" ]; # Enable ‘sudo’ for the user.
+    extraGroups = [
+      "wheel"
+      "video"
+      "networkmanager"
+      "docker"
+      "dialout"
+      "usb"
+    ]; # Enable ‘sudo’ for the user.
     shell = pkgs.zsh;
     openssh.authorizedKeys.keyFiles = [
       (builtins.fetchurl {

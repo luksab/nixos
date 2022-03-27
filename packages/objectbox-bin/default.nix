@@ -6,7 +6,8 @@ stdenv.mkDerivation rec {
   arch = "linux-aarch64";
 
   src = builtins.fetchurl {
-    url = "https://github.com/objectbox/objectbox-c/releases/download/${version}/objectbox-${arch}.tar.gz";
+    url =
+      "https://github.com/objectbox/objectbox-c/releases/download/${version}/objectbox-${arch}.tar.gz";
     sha256 = "sha256:0zm7y1pc8jdkq54jl67ikl93kqxzhs5cz50a6f1z1ym4jjhsbs8d";
   };
   # src = fetchFromGitHub {
@@ -33,7 +34,8 @@ stdenv.mkDerivation rec {
   meta = with lib; {
     homepage = "https://objectbox.io/";
     description = "ObjectBox is a superfast database for objects.";
-    platforms = [ "x86_64-linux" "armv6l-linux" "armv7l-linux" "aarch64-linux" ];
+    platforms =
+      [ "x86_64-linux" "armv6l-linux" "armv7l-linux" "aarch64-linux" ];
     hydraPlatforms = [ ];
     license = licenses.asl20;
   };

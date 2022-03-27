@@ -29,10 +29,10 @@
             # Make inputs and overlay accessible as module parameters
             { _module.args.inputs = inputs; }
             { _module.args.self-overlay = self.overlay; }
+            { _module.args.overlay-master = self.overlay-master; }
             {
-              _module.args.overlay-master = self.overlay-master;
+              _module.args.overlay-stable = self.overlay-stable;
             }
-            { _module.args.overlay-stable = self.overlay-stable; }
 
             # Add home-manager option to all configs
             ({ ... }: {
@@ -50,7 +50,8 @@
                   # and root e.g. `nix-channel --remove nixos`. `nix-channel
                   # --list` should be empty for all users afterwards
                   nix.nixPath = [ "nixpkgs=${nixpkgs}" ];
-                  nixpkgs.overlays = [ self.overlay self.overlay-master self.overlay-stable ];
+                  nixpkgs.overlays =
+                    [ self.overlay self.overlay-master self.overlay-stable ];
                 }
                 baseCfg
                 home-manager.nixosModules.home-manager

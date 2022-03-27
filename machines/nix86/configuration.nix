@@ -11,7 +11,10 @@
   home-manager.users.lukas = {
     imports = [
       ../../home-manager/home-server.nix
-      { nixpkgs.overlays = [ self.overlay self.overlay-master self.overlay-stable ]; }
+      {
+        nixpkgs.overlays =
+          [ self.overlay self.overlay-master self.overlay-stable ];
+      }
     ];
   };
 
@@ -20,9 +23,15 @@
     efiInstallAsRemovable = true;
     device = "nodev";
   };
-  fileSystems."/boot" = { device = "/dev/disk/by-uuid/1F17-62E7"; fsType = "vfat"; };
+  fileSystems."/boot" = {
+    device = "/dev/disk/by-uuid/1F17-62E7";
+    fsType = "vfat";
+  };
   boot.initrd.kernelModules = [ "nvme" ];
-  fileSystems."/" = { device = "/dev/sda3"; fsType = "xfs"; };
+  fileSystems."/" = {
+    device = "/dev/sda3";
+    fsType = "xfs";
+  };
 
   boot.cleanTmpDir = true;
   networking.interfaces.ens3.useDHCP = true;

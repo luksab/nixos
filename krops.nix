@@ -9,20 +9,18 @@ let
   pkgs = import "${krops}/pkgs" { };
 
   source = name:
-    lib.evalSource [
-      {
+    lib.evalSource [{
 
-        # Copy over the whole repo. By default nixos-rebuild will use the
-        # currents system hostname to lookup the right nixos configuration in
-        # `nixosConfigurations` from flake.nix
-        machine-config.file = toString ./.;
+      # Copy over the whole repo. By default nixos-rebuild will use the
+      # currents system hostname to lookup the right nixos configuration in
+      # `nixosConfigurations` from flake.nix
+      machine-config.file = toString ./.;
 
-        secrets.pass = {
-          dir = toString /home/lukas/.local/share/password-store;
-          name = "${name}";
-        };
-      }
-    ];
+      secrets.pass = {
+        dir = toString /home/lukas/.local/share/password-store;
+        name = "${name}";
+      };
+    }];
 
   command = targetPath: ''
     nix-shell -p git --run '

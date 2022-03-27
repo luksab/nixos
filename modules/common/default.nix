@@ -19,7 +19,13 @@ in {
 
     mayniklas.var.mainUser = "lukas";
 
-    environment.systemPackages = with pkgs; [ git nixfmt usbutils pciutils config.boot.kernelPackages.perf ];
+    environment.systemPackages = with pkgs; [
+      git
+      nixfmt
+      usbutils
+      pciutils
+      config.boot.kernelPackages.perf
+    ];
 
     programs.mtr.enable = true;
 

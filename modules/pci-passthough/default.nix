@@ -15,7 +15,10 @@ in {
     # CHANGE: intel_iommu enables iommu for intel CPUs with VT-d
     # use amd_iommu if you have an AMD CPU with AMD-Vi
     # boot.kernelParams = [ "intel_iommu=on" ];
-    boot.kernelParams = [ "pcie_acs_override=downstream,multifunction" "intel_iommu=on,iglx_off" ];
+    boot.kernelParams = [
+      "pcie_acs_override=downstream,multifunction"
+      "intel_iommu=on,iglx_off"
+    ];
     boot.kernelPatches = [{
       name = "add-acs-overrides";
       patch = ./add-acs-overrides.patch;
@@ -35,7 +38,6 @@ in {
       done
       modprobe -i vfio-pci
     '';
-
 
     environment.systemPackages = with pkgs; [ virtmanager qemu OVMF ];
 

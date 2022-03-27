@@ -23,12 +23,7 @@ in {
   config = mkIf cfg.enable {
 
     systemd.services.shortcut = {
-      path = [
-        pkgs.libusb
-        pkgs.nodejs
-        pkgs.nodePackages.npm
-        pkgs.bash
-      ];
+      path = [ pkgs.libusb pkgs.nodejs pkgs.nodePackages.npm pkgs.bash ];
       after = [ "network-online.target" ];
       wants = [ "network-online.target" ];
       wantedBy = [ "default.target" ];
@@ -49,7 +44,7 @@ in {
         User = cfg.user;
         Group = cfg.group;
         WorkingDirectory = toString "/var/shortcut";
-        Restart = "on-failure"; 
+        Restart = "on-failure";
         StartLimitBurst = 0; # just restart as many times as needed
 
         ExecStart = "${pkgs.nodejs}/bin/node dist/index.js";

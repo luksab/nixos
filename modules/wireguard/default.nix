@@ -12,8 +12,7 @@ in {
     };
     allowedIPs = mkOption {
       type = types.listOf types.str;
-      default =
-        [ "10.31.69.0/24" "2a03:4000:1c:6c3::/64" ];
+      default = [ "10.31.69.0/24" "2a03:4000:1c:6c3::/64" ];
       description = "ips to tunnel";
     };
   };

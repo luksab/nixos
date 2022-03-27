@@ -5,5 +5,5 @@ with lib; {
   xsession.initExtra = ''
     ${pkgs.srandrd}/bin/srandrd xinput map-to-output 10 eDP-1
     xinput map-to-output 10 eDP-1
-    '';
+  '';
 }

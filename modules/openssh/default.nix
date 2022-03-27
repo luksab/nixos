@@ -18,6 +18,6 @@ in {
 
     # Enable mosh
     programs.mosh.enable = true;
-    
+
   };
 }
