@@ -34,8 +34,6 @@
     Option         "TripleBuffer" "on"
   '';
 
-  virtualisation.docker.enable = true;
-
   boot = {
     loader = {
       grub = {
