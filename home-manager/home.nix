@@ -110,6 +110,7 @@ in {
     firefox
 
     code-server
+    x11vnc
   ];
 
   # Certain Rust tools won't work without this
