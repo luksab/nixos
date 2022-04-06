@@ -15,6 +15,13 @@ in {
   };
 
   config = mkIf cfg.enable {
+    # Enable X forwarding
+    programs.ssh = {
+      forwardX11 = true;
+      setXAuthLocation = true;
+    };
+
+    services.openssh.forwardX11 = true;
 
     # Enable the X11 windowing system.
     services.xserver = {
