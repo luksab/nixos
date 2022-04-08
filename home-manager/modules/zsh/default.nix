@@ -18,6 +18,7 @@ in {
       # this works
       export NIXPKGS_ALLOW_UNFREE=1
       alias p="nix-shell -p "
+      n(){nix run "nixpkgs#''${1}"} # n = nix run package
     '';
 
     history = {
