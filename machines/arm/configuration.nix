@@ -17,7 +17,7 @@
     wireguard = {
       enable = true;
       ips = [ "10.31.69.6/24" ];
-      allowedIPs = [ "10.31.69.0/24" "10.31.70.0/24" ];
+      allowedIPs = [ "10.31.69.0/24" "10.31.70.0/24" "192.168.178.0/24" ];
     };
 
     lukas-bot.enable = true;
