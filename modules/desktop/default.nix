@@ -83,6 +83,7 @@ in {
       scrcpy.enable = true;
       steam.enable = config.luksab.arch == "x86_64";
       metrics = { node.enable = true; };
+      xrdp.enable = true;
     };
   };
 }
