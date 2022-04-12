@@ -108,6 +108,7 @@ in {
     rhythmbox
     davinci-resolve
     firefox
+    pdfpc
 
     code-server
     x11vnc
