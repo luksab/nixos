@@ -25,7 +25,9 @@ in {
       usbutils
       pciutils
       config.boot.kernelPackages.perf
+      config.boot.kernelPackages.usbip
     ];
+    boot.kernelModules = [ "vhci-hcd" ];
 
     programs.mtr.enable = true;
 
