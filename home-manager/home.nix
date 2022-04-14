@@ -106,7 +106,8 @@ in {
     prusa-slicer
     element-desktop
     rhythmbox
-    davinci-resolve
+    # davinci-resolve
+    kdenlive
     firefox
     pdfpc
 
