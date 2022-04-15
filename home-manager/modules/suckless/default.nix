@@ -34,6 +34,8 @@ in {
       st
       dwmblocks
 
+      libsForQt5.konqueror
+
       xcompmgr
       feh
       acpi
