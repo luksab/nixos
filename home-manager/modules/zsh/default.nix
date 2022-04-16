@@ -17,6 +17,7 @@ in {
       bindkey '^f' fzf-file-widget
       # this works
       export NIXPKGS_ALLOW_UNFREE=1
+      export PATH="/home/lukas/.cargo/bin:$PATH"
       alias p="nix-shell -p "
       n(){nix run "nixpkgs#''${1}"} # n = nix run package
     '';
