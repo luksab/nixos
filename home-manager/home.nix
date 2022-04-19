@@ -10,7 +10,7 @@ in {
 
   luksab = {
     suckless.enable = true;
-    mime.enable = true;
+    # mime.enable = true;
     services.dunst.enable = true;
     ssh.enable = true;
     #programs.vim.enable = true;
@@ -29,12 +29,6 @@ in {
       ${pkgs.xcompmgr}/bin/xcompmgr &
       ${pkgs.feh}/bin/feh --bg-fill --randomize Pictures/backgrounds
     '';
-  };
-
-  gtk.cursorTheme = {
-    package = pkgs.gnome.adwaita-icon-theme;
-    name = "Adwaita";
-    size = 32;
   };
 
   # Remove in next release of home-manager
@@ -128,7 +122,7 @@ in {
   imports = [
     #./modules/devolopment
     ./modules/git
-    ./modules/gtk
+    # ./modules/gtk
     ../modules/options
     ./modules/suckless
     ./modules/dunst
