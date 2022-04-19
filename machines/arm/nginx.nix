@@ -5,9 +5,9 @@
   };
   services.nginx.virtualHosts = {
     "ocp.luksab.de" = {
-      forceSSL = true;
+      enableSSL = true;
       enableACME = true;
-      root = "/var/www/overviewer";
+      locations."/" = { proxyPass = "http://127.0.0.1:7878"; };
     };
     "luksab.de" = {
       forceSSL = true;
