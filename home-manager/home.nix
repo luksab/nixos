@@ -94,6 +94,7 @@ in {
     clang
     rustfmt
     clippy
+    file
 
     gcr
     xournalpp
