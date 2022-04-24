@@ -56,7 +56,7 @@ in {
       displayManager.lightdm = {
         enable = true;
         greeters.gtk.iconTheme = {
-          package = pkgs.gnome-breeze;
+          package = pkgs.libsForQt5.breeze-gtk;
           name = "Breeze-gtk";
         };
       };
