@@ -101,4 +101,44 @@
     device = "/dev/disk/by-uuid/4D62-2CB3";
     fsType = "vfat";
   };
+
+  #SAMBA qmk
+  services.samba-wsdd.enable =
+    true; # make shares visible for windows 10 clients
+  networking.firewall.interfaces.virbr0.allowedTCPPorts = [
+    5357 # wsdd
+  ];
+  networking.firewall.interfaces.virbr0.allowedUDPPorts = [
+    3702 # wsdd
+  ];
+  services.samba = {
+    enable = true;
+    securityType = "user";
+    # openFirewall = true;
+    extraConfig = ''
+      workgroup = WORKGROUP
+      server string = smbnix
+      netbios name = smbnix
+      security = user 
+      #use sendfile = yes
+      #max protocol = smb2
+      # note: localhost is the ipv6 localhost ::1
+      hosts allow = 192.168.122.1/24 127.0.0.1 localhost
+      hosts deny = 0.0.0.0/0
+      guest account = nobody
+      map to guest = bad user
+    '';
+    shares = {
+      public = {
+        path = "/home/lukas/qmk_firmware/";
+        browseable = "yes";
+        "read only" = "yes";
+        "guest ok" = "yes";
+        "create mask" = "0644";
+        "directory mask" = "0755";
+        # "force user" = "lukas";
+        # "force group" = "groupname";
+      };
+    };
+  };
 }
