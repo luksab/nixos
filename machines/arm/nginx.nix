@@ -15,6 +15,18 @@
       root = "/var/www/luksab.de";
       locations = { "/" = { extraConfig = "access_log off;"; }; };
     };
+    "sabatschus.de" = {
+      forceSSL = true;
+      enableACME = true;
+      root = "/var/www/luksab.de";
+      locations = { "/" = { extraConfig = "access_log off;"; }; };
+    };
+    "lukas.sabatschus.de" = {
+      forceSSL = true;
+      enableACME = true;
+      root = "/var/www/luksab.de";
+      locations = { "/" = { extraConfig = "access_log off;"; }; };
+    };
     "turn.luksab.de" = {
       forceSSL = true;
       enableACME = true;
