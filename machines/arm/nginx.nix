@@ -75,5 +75,7 @@
     "luksab.de".email = "lukassabatschus@gmail.com";
     "status.luksab.de".email = "lukassabatschus@gmail.com";
     "private.luksab.de".email = "lukassabatschus@gmail.com";
+    "lukas.sabatschus.de".email = "lukassabatschus@gmail.com";
+    "sabatschus.de".email = "lukassabatschus@gmail.com";
   };
 }
