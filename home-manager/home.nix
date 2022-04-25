@@ -81,7 +81,6 @@ in {
     pavucontrol
     cloc
     krita
-    barrier
     gnome.gnome-system-monitor
     dig
     traceroute
