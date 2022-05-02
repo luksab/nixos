@@ -29,7 +29,7 @@
     configurationLimit = 2;
   };
   fileSystems."/boot" = {
-    device = "/dev/disk/by-uuid/0E01-9111";
+    device = "/dev/disk/by-uuid/A368-4D28";
     fsType = "vfat";
   };
   boot.initrd.kernelModules = [ "nvme" ];
