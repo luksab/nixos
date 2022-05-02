@@ -14,6 +14,8 @@
     openssh.enable = true;
     server.enable = true;
 
+    service.unifi.enable = true;
+
     wireguard = {
       enable = true;
       ips = [ "10.31.69.6/24" ];
