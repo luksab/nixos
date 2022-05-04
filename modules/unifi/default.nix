@@ -35,13 +35,14 @@ in {
     services.unifi = {
       enable = true;
       unifiPackage = pkgs.unifi;
+      openFirewall = true;
     };
 
     # Open firewall ports
-    networking.firewall = {
-      allowedUDPPorts = [ 3478 ];
-      allowedTCPPorts = [ 8080 8883 ];
-    };
+    # networking.firewall = {
+    #   allowedUDPPorts = [ 3478 ];
+    #   allowedTCPPorts = [ 8080 8883 ];
+    # };
 
     security.acme = {
       acceptTerms = true;
