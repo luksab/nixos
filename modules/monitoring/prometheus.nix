@@ -34,6 +34,7 @@ in {
       enable = true;
       extraFlags = [ "--log.level=debug" "--storage.tsdb.retention.size=10GB" ];
       retentionTime = "10y";
+      checkConfig = false; # because tokens aren't in place on the CI
       # environmentFile = /var/src/secrets/prometheus/envfile;
 
       scrapeConfigs = [
