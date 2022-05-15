@@ -104,6 +104,7 @@ in {
     kdenlive
     firefox
     pdfpc
+    kicad-small
 
     code-server
     x11vnc
