@@ -77,5 +77,5 @@ in rec {
     (lib.concatStringsSep "\n" [ laptop pi4b2 ]);
 
   servers = pkgs.writeScript "deploy-servers"
-    (lib.concatStringsSep "\n" [ arm majaArm pi4b nix86 ]);
+    (lib.concatStringsSep "\n" [ arm majaArm nix86 ]);
 }
