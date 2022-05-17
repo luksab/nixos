@@ -28,6 +28,12 @@ in {
       .screenlayout/default.sh &
       ${pkgs.xcompmgr}/bin/xcompmgr &
       ${pkgs.feh}/bin/feh --bg-fill --randomize Pictures/backgrounds
+
+      xrandr --newmode "2384x1577" 319.61  2384 2560 2824 3264  1577 1578 1581 1632  -HSync +Vsync
+      xrandr --addmode VIRTUAL1 2384x1577
+
+      xrandr --newmode "1904x1259"  201.39  1904 2032 2240 2576  1259 1260 1263 1303  -HSync +Vsync
+      xrandr --addmode VIRTUAL1 1904x1259
     '';
   };
 

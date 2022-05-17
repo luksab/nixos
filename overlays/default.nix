@@ -95,4 +95,6 @@ self: super: {
     patches = [ ../packages/suckless/st.patch ];
     fetchSubmodules = true;
   }));
+
+  vaapiIntel = super.vaapiIntel.override { enableHybridCodec = true; };
 }

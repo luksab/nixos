@@ -2,7 +2,9 @@
 { self, ... }: {
   networking.hostName = "laptop"; # Define your hostname.
 
-  imports = [ ../../users/lukas.nix ../../users/root.nix ];
+  imports = [ ../../users/lukas.nix ../../users/root.nix ./intel_gpu.nix ];
+
+  networking.firewall.allowedTCPPorts = [ 3131 ];
 
   #allow aarch64 emulation
   boot.binfmt.emulatedSystems = [ "aarch64-linux" "armv6l-linux" ];
@@ -29,10 +31,17 @@
     nameserver.enable = true;
   };
 
-  services.xserver.screenSection = ''
-    Option         "AllowIndirectGLXProtocol" "off"
-    Option         "TripleBuffer" "on"
-  '';
+  services.xserver = {
+    videoDrivers = [ "intel" ];
+    screenSection = ''
+      Option         "AllowIndirectGLXProtocol" "off"
+      Option         "TripleBuffer" "on"
+    '';
+    deviceSection = ''
+      Option "VirtualHeads" "1"
+    '';
+    exportConfiguration = true;
+  };
 
   boot = {
     loader = {
