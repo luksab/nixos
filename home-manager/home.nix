@@ -114,6 +114,8 @@ in {
 
     code-server
     x11vnc
+
+    deskreen
   ];
 
   # Certain Rust tools won't work without this

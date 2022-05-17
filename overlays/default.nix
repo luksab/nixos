@@ -47,6 +47,8 @@ self: super: {
   # vscode-extensions = self.master.vscode-extensions;
   vsliveshare-new =
     super.pkgs.callPackage ../packages/ms-vsliveshare-vsliveshare { };
+  deskreen =
+    super.pkgs.callPackage ../packages/deskreen { };
   # krita = self.unstable.krita;
   # lutris = self.unstable.lutris;
   # youtube-dl = self.unstable.youtube-dl;
