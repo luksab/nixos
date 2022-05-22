@@ -5,6 +5,8 @@ in {
   options.luksab.desktop = { enable = mkEnableOption "enable desktop"; };
 
   config = mkIf cfg.enable {
+    luksab.user.lukas.home-manager.desktop = true;
+
     # Enable sound.
     sound.enable = true;
     hardware.pulseaudio = {

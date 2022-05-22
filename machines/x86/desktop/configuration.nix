@@ -1,22 +1,12 @@
 { self, ... }: {
   networking.hostName = "desktop"; # Define your hostname.
 
-  imports = [ ../../users/lukas.nix ../../users/root.nix ./nameserver.nix ];
+  imports = [ ./nameserver.nix ];
 
   # allow aarch64 emulation
   boot.binfmt.emulatedSystems = [ "aarch64-linux" "armv6l-linux" ];
   # ntfs support
   boot.supportedFilesystems = [ "ntfs" ];
-
-  home-manager.users.lukas = {
-    imports = [
-      ../../home-manager/home.nix
-      {
-        nixpkgs.overlays =
-          [ self.overlay self.overlay-master self.overlay-stable ];
-      }
-    ];
-  };
 
   networking.firewall.allowedTCPPorts = [ 24800 ];
 

@@ -1,20 +1,29 @@
-{ lib, config, pkgs, inputs, ... }:
+{ lib, config, pkgs, nixpkgs, flake-self, ... }:
 with lib;
 let cfg = config.luksab.common;
 
 in {
-  imports = [ ../../users/lukas.nix ../../users/root.nix ];
-
   options.luksab.common = {
     enable = mkEnableOption "enable basics";
     disable-cache = mkEnableOption "not use binary-cache";
   };
 
   config = mkIf cfg.enable {
+    nixpkgs.overlays = [ flake-self.overlays.default flake-self.overlays.master flake-self.overlays.stable ];
+
+    # home-manager.users.lukas.imports =
+    #   [{ nixpkgs.overlays = [ flake-self.overlays.default ]; }];
+    # already done in flake
+
     luksab = {
       openssh.enable = true;
       zsh.enable = true;
       wg_hosts.enable = true;
+
+      user = {
+        lukas = { enable = true; };
+        root.enable = true;
+      };
     };
 
     mayniklas.var.mainUser = "lukas";
@@ -96,8 +105,9 @@ in {
             flake_input_last_modified{input="${i}",${
               concatStringsSep "," (mapAttrsToList (n: v: ''${n}="${v}"'')
                 (filterAttrs (n: v: (builtins.typeOf v) == "string")
-                  inputs."${i}"))
-            }} ${toString inputs."${i}".lastModified}'') (attrNames inputs))}
+                  flake-self.inputs."${i}"))
+            }} ${toString flake-self.inputs."${i}".lastModified}'')
+          (attrNames flake-self.inputs))}
       '';
     };
 

@@ -19,71 +19,25 @@
 
   outputs = { self, ... }@inputs:
     with inputs;
-    let
+    {
 
-      # Function to create defult (common) system config options
-      defFlakeSystem = systemArch: baseCfg:
-        nixpkgs.lib.nixosSystem {
-          system = "${systemArch}";
-          modules = [
-            # Make inputs and overlay accessible as module parameters
-            { _module.args.inputs = inputs; }
-            { _module.args.self-overlay = self.overlay; }
-            { _module.args.overlay-master = self.overlay-master; }
-            {
-              _module.args.overlay-stable = self.overlay-stable;
-            }
+      overlays = {
 
-            # Add home-manager option to all configs
-            ({ ... }: {
-              imports = builtins.attrValues self.nixosModules ++ [
-                mayniklas.nixosModules.yubikey
-                mayniklas.nixosModules.virtualisation
-                mayniklas.nixosModules.options
-              ] ++ [
-                {
-                  # Set the $NIX_PATH entry for nixpkgs. This is necessary in
-                  # this setup with flakes, otherwise commands like `nix-shell
-                  # -p pkgs.htop` will keep using an old version of nixpkgs.
-                  # With this entry in $NIX_PATH it is possible (and
-                  # recommended) to remove the `nixos` channel for both users
-                  # and root e.g. `nix-channel --remove nixos`. `nix-channel
-                  # --list` should be empty for all users afterwards
-                  nix.nixPath = [ "nixpkgs=${nixpkgs}" ];
-                  nixpkgs.overlays =
-                    [ self.overlay self.overlay-master self.overlay-stable ];
-                }
-                baseCfg
-                home-manager.nixosModules.home-manager
-                # DONT set useGlobalPackages! It's not necessary in newer
-                # home-manager versions and does not work with configs using
-                # `nixpkgs.config`
-                { home-manager.useUserPackages = true; }
-              ];
-              # Let 'nixos-version --json' know the Git revision of this flake.
-              system.configurationRevision =
-                nixpkgs.lib.mkIf (self ? rev) self.rev;
-              nix.registry.nixpkgs.flake = nixpkgs;
-            })
-          ];
+        # Expose overlay to flake outputs, to allow using it from other flakes.
+        default = final: prev: (import ./overlays inputs) final prev;
+
+        master = final: prev: {
+          master = import nixpkgs-master {
+            system = "x86_64-linux";
+            config.allowUnfree = true;
+          };
         };
 
-    in {
-
-      # Expose overlay to flake outputs, to allow using it from other flakes.
-      overlay = final: prev: (import ./overlays) final prev;
-
-      overlay-master = final: prev: {
-        master = import nixpkgs-master {
-          system = "x86_64-linux";
-          config.allowUnfree = true;
-        };
-      };
-
-      overlay-stable = final: prev: {
-        stable = import nixpkgs-stable {
-          system = "x86_64-linux";
-          config.allowUnfree = true;
+        stable = final: prev: {
+          stable = import nixpkgs-stable {
+            system = "x86_64-linux";
+            config.allowUnfree = true;
+          };
         };
       };
 
@@ -92,77 +46,72 @@
       nixosModules = builtins.listToAttrs (map (x: {
         name = x;
         value = import (./modules + "/${x}");
-      }) (builtins.attrNames (builtins.readDir ./modules)));
+      }) (builtins.attrNames (builtins.readDir ./modules)))
+
+        //
+
+        {
+          home-manager = { config, pkgs, lib, ... }: {
+            imports = [
+              home-manager.nixosModules.home-manager
+              ./home-manager/home.nix
+              ./home-manager/home-server.nix
+            ];
+            home-manager.users.lukas.imports = [{
+              nixpkgs.overlays = [
+                self.overlays.default
+                self.overlays.master
+                self.overlays.stable
+              ];
+            }];
+          };
+        };
 
       # Each subdirectory in ./machins is a host. Add them all to
       # nixosConfiguratons. Host configurations need a file called
       # configuration.nix that will be read first
-      nixosConfigurations = {
+      nixosConfigurations = builtins.listToAttrs (map (x: {
+        name = x;
+        value = nixpkgs.lib.nixosSystem {
 
-        laptop = defFlakeSystem "x86_64-linux" {
-          imports = [
-            # Machine specific config
-            (import (./machines/laptop/configuration.nix) { inherit self; })
+          # Make inputs and the flake itself accessible as module parameters.
+          # Technically, adding the inputs is redundant as they can be also
+          # accessed with flake-self.inputs.X, but adding them individually
+          # allows to only pass what is needed to each module.
+          specialArgs = { flake-self = self; } // inputs;
+
+          system = "x86_64-linux";
+
+          modules = [
+            (./machines/x86 + "/${x}/configuration.nix")
+            { imports = builtins.attrValues self.nixosModules; }
+            mayniklas.nixosModules.yubikey
+            mayniklas.nixosModules.virtualisation
+            mayniklas.nixosModules.options
           ];
         };
+      }) (builtins.attrNames (builtins.readDir ./machines/x86)))
+        // builtins.listToAttrs (map (x: {
+          name = x;
+          value = nixpkgs.lib.nixosSystem {
 
-        desktop = defFlakeSystem "x86_64-linux" {
-          imports = [
-            # Machine specific config
-            (import (./machines/desktop/configuration.nix) { inherit self; })
-          ];
-        };
+            # Make inputs and the flake itself accessible as module parameters.
+            # Technically, adding the inputs is redundant as they can be also
+            # accessed with flake-self.inputs.X, but adding them individually
+            # allows to only pass what is needed to each module.
+            specialArgs = { flake-self = self; } // inputs;
 
-        nix86 = defFlakeSystem "x86_64-linux" {
-          imports = [
-            # Machine specific config
-            (import (./machines/nix86/configuration.nix) { inherit self; })
-          ];
-        };
+            system = "aarch64-linux";
 
-        arm = defFlakeSystem "aarch64-linux" {
-          imports = [
-            # Machine specific config
-            (import (./machines/arm/configuration.nix) { inherit self; })
-          ];
-        };
-
-        pi4b = defFlakeSystem "aarch64-linux" {
-          imports = [
-            # Machine specific config
-            (import (./machines/pi4b/configuration.nix) { inherit self; })
-          ];
-        };
-
-        pi4b2 = defFlakeSystem "aarch64-linux" {
-          imports = [
-            # Machine specific config
-            (import (./machines/pi4b2/configuration.nix) { inherit self; })
-          ];
-        };
-
-        majaArm = defFlakeSystem "aarch64-linux" {
-          imports = [
-            # Machine specific config
-            (import (./machines/majaArm/configuration.nix) { inherit self; })
-          ];
-        };
-
-        rapaArm = defFlakeSystem "aarch64-linux" {
-          imports = [
-            # Machine specific config
-            (import (./machines/rapaArm/configuration.nix) { inherit self; })
-          ];
-        };
-
-        olafArm = defFlakeSystem "aarch64-linux" {
-          imports = [
-            # Machine specific config
-            (import (./machines/olafArm/configuration.nix) { inherit self; })
-          ];
-        };
-
-      };
+            modules = [
+              (./machines/aarch64 + "/${x}/configuration.nix")
+              { imports = builtins.attrValues self.nixosModules; }
+              mayniklas.nixosModules.yubikey
+              mayniklas.nixosModules.virtualisation
+              mayniklas.nixosModules.options
+            ];
+          };
+        }) (builtins.attrNames (builtins.readDir ./machines/aarch64)));
     } //
 
     # (flake-utils.lib.eachSystem [ "aarch64-linux" "i686-linux" "x86_64-linux" ])
@@ -170,7 +119,8 @@
       let
         pkgs = import nixpkgs {
           inherit system;
-          overlays = [ self.overlay ];
+          overlays =
+            [ self.overlays.default self.overlays.master self.overlays.stable ];
           config = {
             allowUnsupportedSystem = true;
             allowUnfree = true;

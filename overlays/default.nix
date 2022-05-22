@@ -1,4 +1,9 @@
-self: super: {
+inputs:
+let
+  # Pass flake inputs to overlay so we can use the sources pinned in flake.lock
+  # instead of having to keep sha256 hashes in each package for src
+  inherit inputs;
+in self: super: {
   # Custom packages. Will be made available on all machines and used where
   # needed.
   larbs_scripts = super.pkgs.callPackage ../packages/larbs_scripts { };
@@ -47,8 +52,7 @@ self: super: {
   # vscode-extensions = self.master.vscode-extensions;
   vsliveshare-new =
     super.pkgs.callPackage ../packages/ms-vsliveshare-vsliveshare { };
-  deskreen =
-    super.pkgs.callPackage ../packages/deskreen { };
+  deskreen = super.pkgs.callPackage ../packages/deskreen { };
   # krita = self.unstable.krita;
   # lutris = self.unstable.lutris;
   # youtube-dl = self.unstable.youtube-dl;

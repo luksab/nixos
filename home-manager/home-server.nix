@@ -1,54 +1,63 @@
-{ config, pkgs, ... }:
-let
+{ lib, pkgs, config, ... }:
+with lib;
+let cfg = config.luksab.user.lukas.home-manager;
 
 in {
-  # Let Home Manager install and manage itself.
-  programs.home-manager.enable = true;
+  options.luksab.user.lukas.home-manager = {
+    enable = mkEnableOption "activate headless home-manager profile for lukas";
+  };
 
-  programs.command-not-found.enable = true;
+  config = mkIf cfg.enable {
+    home-manager.useUserPackages = true;
 
-  # Home Manager needs a bit of information about you and the
-  # paths it should manage.
-  home.username = "lukas";
-  home.homeDirectory = "/home/lukas";
+    home-manager.users.lukas = {
+      programs.home-manager.enable = true;
 
-  # Allow "unfree" licenced packages
-  nixpkgs.config = { allowUnfree = true; };
+      programs.command-not-found.enable = true;
 
-  # Install these packages for my user
-  home.packages = with pkgs; [
-    screen
-    htop
+      # Home Manager needs a bit of information about you and the
+      # paths it should manage.
+      home.username = "lukas";
+      home.homeDirectory = "/home/lukas";
 
-    gcc
-    iperf3
-    nmap
-    unzip
-    vim
-    youtube-dl
-    cloc
-    dig
-    traceroute
+      # Allow "unfree" licenced packages
+      nixpkgs.config = { allowUnfree = true; };
 
-    jdk
-    code-server
-  ];
+      # Install these packages for my user
+      home.packages = with pkgs; [
+        screen
+        htop
 
-  # Imports
-  imports = [
-    #./modules/vim
-    ../modules/options
-    ./modules/git
-    ./modules/zsh
-  ];
+        iperf3
+        nmap
+        unzip
+        vim
+        youtube-dl
+        cloc
+        dig
+        traceroute
 
-  # This value determines the Home Manager release that your
-  # configuration is compatible with. This helps avoid breakage
-  # when a new Home Manager release introduces backwards
-  # incompatible changes.
-  #
-  # You can update Home Manager without changing this value. See
-  # the Home Manager release notes for a list of state version
-  # changes in each release.
-  home.stateVersion = "21.11";
+        jdk
+        code-server
+      ];
+
+      # Imports
+      imports = [
+        #./modules/vim
+        ../modules/options
+        ./modules/git
+        ./modules/zsh
+      ];
+
+      # This value determines the Home Manager release that your
+      # configuration is compatible with. This helps avoid breakage
+      # when a new Home Manager release introduces backwards
+      # incompatible changes.
+      #
+      # You can update Home Manager without changing this value. See
+      # the Home Manager release notes for a list of state version
+      # changes in each release.
+      home.stateVersion = "21.11";
+    };
+  };
 }

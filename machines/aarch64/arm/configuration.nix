@@ -1,5 +1,5 @@
-{ self, ... }: {
-  imports = [ ../../users/lukas.nix ../../users/root.nix ./nginx.nix ];
+{ mayniklas, ... }: {
+  imports = [ ./nginx.nix ];
   networking.hostName = "arm";
   networking.nameservers = [ "10.31.69.1" ];
 
@@ -82,16 +82,6 @@
         outputdir = "/var/www/overviewer"
       '';
     };
-  };
-
-  home-manager.users.lukas = {
-    imports = [
-      ../../home-manager/home-server.nix
-      {
-        nixpkgs.overlays =
-          [ self.overlay self.overlay-master self.overlay-stable ];
-      }
-    ];
   };
 
   boot.loader.grub = {

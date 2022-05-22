@@ -1,25 +1,23 @@
 { self, ... }: {
-  imports = [ ../../users/lukas.nix ../../users/root.nix ];
-  networking.hostName = "majaArm";
+  imports = [ ./minecraft.nix ];
+  networking.hostName = "olafArm";
 
   luksab = {
     qemu-guest.enable = true;
     openssh.enable = true;
     server.enable = true;
-
-    minecraft-server = {
+    wireguard = {
       enable = true;
-      openFirewall = true;
+      ips = [ "10.31.69.208/24" ];
+      allowedIPs = [
+        "10.31.69.0/24"
+        "185.163.117.233"
+        "90.130.70.73"
+        "91.65.93.7"
+        "152.70.53.164"
+        "192.168.178.0/24"
+      ];
     };
-  };
-  home-manager.users.lukas = {
-    imports = [
-      ../../home-manager/home-server.nix
-      {
-        nixpkgs.overlays =
-          [ self.overlay self.overlay-master self.overlay-stable ];
-      }
-    ];
   };
 
   boot.loader.grub = {
@@ -45,11 +43,11 @@
   #  prefixLength = 24;
   #} ];
   networking.firewall.allowPing = true;
-  networking.firewall.allowedTCPPorts = [ 22 80 443 25565 ];
-  networking.firewall.allowedUDPPorts = [ 24454 19132 ];
+  networking.firewall.allowedTCPPorts = [ 22 80 443 25565 5201 ];
+  networking.firewall.allowedUDPPorts = [ 24454 19132 5201 ];
 
   users.users.root.openssh.authorizedKeys.keys = [
-    "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQD0rI0jOEIGoY3kQR5ErapABGPPCXv10OrBBTpniqOxdKc8d56f69/24LxmLTeSjo6VuME6Y4CcdEKl8PnVrp1kaAsqfMbjzzU/W7hGPUeTYutu69tgnWXc6g9Vf/oTzGgclY5TDZ1+QA9+wNiNdLxd2J9pzuVzyISHlO7sn8Vk+8rpV6r/MgCUYNVQvWDYi3jEu1Mp9YXn28rvG1pMuvn5hT28jZYC9A9TNFGtAb9BtVpRNWMDPMnlD6VdH8utBVb16yAD3DTY+Orb0TWjsrQQ7utMqrBulPyjD1//mTQhKggSww4lgn/sLzmi5xxgAGKFUn+N579bdlI4c7M+ZqWpHIJE3IXH2ux+iUjypcTBNgXpfS5neDVo08fE56QWLMcoqHOACi6p1jwK+6GaDSJpySwus2nj1vC7KXbSGZWJYCNSliuQOsqd/lXPt/q2qwADLl+2uy/jPy1iCYJrd8WsjZi98m2VSsGY+Z99a1GSZ3tEvqxn4IZQx9p1aizaDt0= lukas@desktop"
+    "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDmioxcsRY28SODmEq+x4F283PhBD5pnfEEYVabMASIzG10QUDVlXfcXGQrWj/TNldhSviWx7VXjZGCi4bZYIfvPOlk3Lo467UAsQb4rJWEJJDeMwm9AWkbMFqtXOJAezGCWXp6cSQ6U7hqwd7JFtI3My1Z1/bqor/gavIYVJrpnakyHq3QZ/U936CS5hn84QhS3UzfUUo38D5HKipa7Y7uLMW3jOIF7OTgjjVfS4CnywcU7vA1zTRi/EOHd+3vGshMqLkp40BzKoMfv2Lla7ust/G+942FwH83lm+g0bW6gLd7R3Mkjj2M1ESnJl5PTqPk3dDO+HBXFLYBgTOIPTcz5KtB50BiGJqQ0lhfMAQOCvb+prVSBzfGvdWFq0ElIHJpHgWEvKkfRdz7cZdjeilRggBAYUPxDUOEnWN/xQ3tjXNM44G/oLmWgnLpo87p5dfyS7P+fMZbCaYN3P2VQysgWh6MHWaxbBgcp5edYxWzHcyg1HFq6WvrWCWOMjFpUp6rtY/e0UM4aAHX4mVYLFHrESGWzZ/cy47hji9z0HjJTGa1bLPU63wn1tRSqHSCtDJQY44uKCYgvxkqiMRSMXCI3O6JWRNdb+Ectf+xAnabvATEizy+S5G9QOB0r1570ttFx4o3QlA0OxOXFTmKX7v+WqoImLXTwateFzNqn1F32w== cardno:000617113149"
   ];
 
   #  services.nginx.enable = true;

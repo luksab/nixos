@@ -1,4 +1,4 @@
-{ lib, config, ... }:
+{ lib, config, home-manager, ... }:
 with lib;
 let cfg = config.luksab.server;
 in {
@@ -8,5 +8,7 @@ in {
     services.fail2ban.enable = true;
 
     luksab.common.enable = true;
+
+    luksab.user.lukas.home-manager.enable = true;
   };
 }

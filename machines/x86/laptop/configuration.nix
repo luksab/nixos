@@ -2,23 +2,12 @@
 { self, ... }: {
   networking.hostName = "laptop"; # Define your hostname.
 
-  imports = [ ../../users/lukas.nix ../../users/root.nix ./intel_gpu.nix ];
+  imports = [ ./intel_gpu.nix ];
 
   networking.firewall.allowedTCPPorts = [ 3131 ];
 
   #allow aarch64 emulation
   boot.binfmt.emulatedSystems = [ "aarch64-linux" "armv6l-linux" ];
-
-  home-manager.users.lukas = {
-    imports = [
-      ../../home-manager/home.nix
-      ../../home-manager/modules/touchscreen
-      {
-        nixpkgs.overlays =
-          [ self.overlay self.overlay-master self.overlay-stable ];
-      }
-    ];
-  };
 
   luksab = {
     firmware.enable = true;
