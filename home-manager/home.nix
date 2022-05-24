@@ -115,6 +115,7 @@ in {
         kdenlive
         firefox
         pdfpc
+        kicad-unstable
         # kicad-small
 
         code-server
