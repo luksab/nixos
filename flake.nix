@@ -41,57 +41,67 @@
         };
       };
 
+      formatter.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.nixpkgs-fmt;
+      formatter.aarch64-linux = nixpkgs.legacyPackages.aarch64-linux.nixpkgs-fmt;
+
       # Output all modules in ./modules to flake. Modules should be in
       # individual subdirectories and contain a default.nix file
-      nixosModules = builtins.listToAttrs (map (x: {
-        name = x;
-        value = import (./modules + "/${x}");
-      }) (builtins.attrNames (builtins.readDir ./modules)))
+      nixosModules = builtins.listToAttrs
+        (map
+          (x: {
+            name = x;
+            value = import (./modules + "/${x}");
+          })
+          (builtins.attrNames (builtins.readDir ./modules)))
 
-        //
+      //
 
-        {
-          home-manager = { config, pkgs, lib, ... }: {
-            imports = [
-              home-manager.nixosModules.home-manager
-              ./home-manager/home.nix
-              ./home-manager/home-server.nix
+      {
+        home-manager = { config, pkgs, lib, ... }: {
+          imports = [
+            home-manager.nixosModules.home-manager
+            ./home-manager/home.nix
+            ./home-manager/home-server.nix
+          ];
+          home-manager.users.lukas.imports = [{
+            nixpkgs.overlays = [
+              self.overlays.default
+              self.overlays.master
+              self.overlays.stable
             ];
-            home-manager.users.lukas.imports = [{
-              nixpkgs.overlays = [
-                self.overlays.default
-                self.overlays.master
-                self.overlays.stable
-              ];
-            }];
-          };
+          }];
         };
+      };
 
       # Each subdirectory in ./machins is a host. Add them all to
       # nixosConfiguratons. Host configurations need a file called
       # configuration.nix that will be read first
-      nixosConfigurations = builtins.listToAttrs (map (x: {
-        name = x;
-        value = nixpkgs.lib.nixosSystem {
+      nixosConfigurations = builtins.listToAttrs
+        (map
+          (x: {
+            name = x;
+            value = nixpkgs.lib.nixosSystem {
 
-          # Make inputs and the flake itself accessible as module parameters.
-          # Technically, adding the inputs is redundant as they can be also
-          # accessed with flake-self.inputs.X, but adding them individually
-          # allows to only pass what is needed to each module.
-          specialArgs = { flake-self = self; } // inputs;
+              # Make inputs and the flake itself accessible as module parameters.
+              # Technically, adding the inputs is redundant as they can be also
+              # accessed with flake-self.inputs.X, but adding them individually
+              # allows to only pass what is needed to each module.
+              specialArgs = { flake-self = self; } // inputs;
 
-          system = "x86_64-linux";
+              system = "x86_64-linux";
 
-          modules = [
-            (./machines/x86 + "/${x}/configuration.nix")
-            { imports = builtins.attrValues self.nixosModules; }
-            mayniklas.nixosModules.yubikey
-            mayniklas.nixosModules.virtualisation
-            mayniklas.nixosModules.options
-          ];
-        };
-      }) (builtins.attrNames (builtins.readDir ./machines/x86)))
-        // builtins.listToAttrs (map (x: {
+              modules = [
+                (./machines/x86 + "/${x}/configuration.nix")
+                { imports = builtins.attrValues self.nixosModules; }
+                mayniklas.nixosModules.yubikey
+                mayniklas.nixosModules.virtualisation
+                mayniklas.nixosModules.options
+              ];
+            };
+          })
+          (builtins.attrNames (builtins.readDir ./machines/x86)))
+      // builtins.listToAttrs (map
+        (x: {
           name = x;
           value = nixpkgs.lib.nixosSystem {
 
@@ -111,7 +121,8 @@
               mayniklas.nixosModules.options
             ];
           };
-        }) (builtins.attrNames (builtins.readDir ./machines/aarch64)));
+        })
+        (builtins.attrNames (builtins.readDir ./machines/aarch64)));
     } //
 
     # (flake-utils.lib.eachSystem [ "aarch64-linux" "i686-linux" "x86_64-linux" ])
@@ -126,7 +137,8 @@
             allowUnfree = true;
           };
         };
-      in rec {
+      in
+      rec {
 
         packages = flake-utils.lib.flattenTree {
           larbs_scripts = pkgs.larbs_scripts;
