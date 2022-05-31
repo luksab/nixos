@@ -27,3 +27,9 @@ file $(which file)
 ```
 sudo patchelf --set-interpreter [interpreter] [executable]
 ```
+
+# setup pre-commit hook
+```
+nix-shell -p pre-commit
+pre-commit install
+```
