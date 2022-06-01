@@ -1,7 +1,8 @@
 { lib, config, pkgs, ... }:
 with lib;
 let cfg = config.luksab.desktop;
-in {
+in
+{
   options.luksab.desktop = { enable = mkEnableOption "enable desktop"; };
 
   config = mkIf cfg.enable {
@@ -55,10 +56,10 @@ in {
       virtualisation.enable = true;
     };
 
-    # enable virtualbox
-    virtualisation.virtualbox.host.enable = true;
-    users.extraGroups.vboxusers.members = [ "lukas" ];
-    virtualisation.virtualbox.host.enableExtensionPack = true;
+    # # enable virtualbox
+    # virtualisation.virtualbox.host.enable = true;
+    # users.extraGroups.vboxusers.members = [ "lukas" ];
+    # virtualisation.virtualbox.host.enableExtensionPack = true;
 
     programs.dconf.enable = true;
     services.gvfs.enable = true;
