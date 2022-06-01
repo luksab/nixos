@@ -113,7 +113,7 @@ in {
         rhythmbox
         # davinci-resolve
         kdenlive
-        firefox
+        firefox-bin
         pdfpc
         kicad-unstable
         # kicad-small
