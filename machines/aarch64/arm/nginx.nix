@@ -27,6 +27,12 @@
       root = "/var/www/luksab.de";
       locations = { "/" = { extraConfig = "access_log off;"; }; };
     };
+    "flares.science" = {
+      forceSSL = true;
+      enableACME = true;
+      root = "/var/www/flares.science";
+      locations = { "/" = { extraConfig = "access_log off;"; }; };
+    };
     "turn.luksab.de" = {
       forceSSL = true;
       enableACME = true;
@@ -76,6 +82,7 @@
     "status.luksab.de".email = "lukassabatschus@gmail.com";
     "private.luksab.de".email = "lukassabatschus@gmail.com";
     "lukas.sabatschus.de".email = "lukassabatschus@gmail.com";
+    "flares.science".email = "lukassabatschus@gmail.com";
     "sabatschus.de".email = "lukassabatschus@gmail.com";
   };
 }
