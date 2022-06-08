@@ -3,7 +3,8 @@ let
   # Pass flake inputs to overlay so we can use the sources pinned in flake.lock
   # instead of having to keep sha256 hashes in each package for src
   inherit inputs;
-in self: super: {
+in
+self: super: {
   # Custom packages. Will be made available on all machines and used where
   # needed.
   larbs_scripts = super.pkgs.callPackage ../packages/larbs_scripts { };
@@ -41,7 +42,8 @@ in self: super: {
   # polkit = self.master.polkit;
 
   # override with newer version from nixpkgs-unstable (home-manager related)
-  discord = self.master.discord;
+  # discord = self.master.discord;
+  discord = super.pkgs.callPackage ../packages/discord { };
   # cargo = self.unstable.cargo;
   # neovim-unwrapped = self.unstable.neovim-unwrapped;
   # obs-studio = self.unstable.obs-studio;
