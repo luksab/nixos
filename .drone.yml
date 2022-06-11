@@ -133,12 +133,6 @@ steps:
     commands:
       - git diff
 
-  - name: Show flake info
-    commands:
-      - nix --experimental-features "nix-command flakes" flake show
-      - nix --experimental-features "nix-command flakes" flake metadata
-      - nix --experimental-features "nix-command flakes" flake check
-
   - name: Build laptop
     commands:
       - nix build -v '.#nixosConfigurations.laptop.config.system.build.toplevel'
