@@ -2,7 +2,8 @@
 with lib;
 let cfg = config.luksab.user.lukas.home-manager;
 
-in {
+in
+{
   options.luksab.user.lukas.home-manager = {
     desktop = mkEnableOption "activate deskop home-manager profile for lukas";
   };
@@ -87,6 +88,7 @@ in {
         unzip
         vim
         vlc
+        tev
         youtube-dl
         foliate
         pavucontrol
@@ -122,6 +124,7 @@ in {
         x11vnc
 
         deskreen
+        remmina
       ];
 
       # Certain Rust tools won't work without this
