@@ -10,7 +10,8 @@ let
       # other python packages you want
     ];
   python-with-my-packages = pkgs.python3.withPackages my-python-packages;
-in {
+in
+{
   options.luksab.programs.vscode.enable = mkEnableOption "enable vscode";
   config = mkIf cfg.enable {
     home.packages = [ python-with-my-packages ];
@@ -38,28 +39,28 @@ in {
         ] ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [{
           name = "wgsl";
           publisher = "polymeilex";
-          version = "0.1.11";
-          sha256 = "sha256-u1vZ+iQASORBGa/Ck9bXz45iUQaL0Xc0tDLlAN5l6Ow=";
+          version = "0.1.12";
+          sha256 = "sha256-TaLcyBW3kuG/iu2ImWHXQjxkq92nJc1F91K6gqJLMtQ=";
         }] ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [{
           name = "wgsl-analyzer";
           publisher = "wgsl-analyzer";
-          version = "0.3.1";
-          sha256 = "sha256-eO6WhCY53qdbba6XexaLQRLExoQOR/8XG2bbf2PmeCo=";
+          version = "0.4.5";
+          sha256 = "sha256-uBWVzShMYpdQT2PNeqopfAfkAsopwl9os6bAiUUht2Y=";
         }] ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [{
           name = "errorlens";
           publisher = "usernamehw";
-          version = "3.4.1";
-          sha256 = "sha256-cJ1/jfCU+Agiyi1Qdd0AfyOTzwxOEfox4vLSJ0/UKNc=";
+          version = "3.5.1";
+          sha256 = "sha256-DjmCjwX6gEtloPZKxpTl485FacRpsfiVP0ZnCUteq58=";
         }] ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [{
           name = "liveserver";
           publisher = "ritwickdey";
-          version = "5.7.4";
-          sha256 = "sha256-fkn61huZJdeYH3tde5pDuBI5jgLsCFSa895gJ0J7r6M=";
+          version = "5.7.5";
+          sha256 = "sha256-rKe746kwXoJx46K7+beBrjTPUCt8IgyeGg7okCW60ik=";
         }] ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [{
           name = "remote-containers";
           publisher = "ms-vscode-remote";
-          version = "0.217.4";
-          sha256 = "sha256-YYoFdqrJLdq8uhx3cKA6nvxCa9Ac4jVxp9dOo4wF5cQ=";
+          version = "0.240.0";
+          sha256 = "sha256-/GcWLTC4aXN+9Ld85szfW8V+PKcxE+qZOX7OrXHCqrM=";
         }];
     };
   };
