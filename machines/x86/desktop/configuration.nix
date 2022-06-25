@@ -57,9 +57,6 @@
   };
 
   services.xserver = {
-    screenSection = ''
-      "metamodes" "DP-0: nvidia-auto-select +1920+0 {ForceCompositionPipeline=On}, DVI-D-0: nvidia-auto-select +0+0 {ForceCompositionPipeline=On}, DP-3: nvidia-auto-select +5760+0 {ForceCompositionPipeline=On}"
-    '';
     videoDrivers = [ "nvidia" ];
   };
 
