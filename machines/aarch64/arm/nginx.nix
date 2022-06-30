@@ -33,7 +33,7 @@
       root = "/var/www/flares.science";
       locations = { "/" = { extraConfig = "access_log off;"; }; };
       locations = {
-        "/flare-gen" = { basicAuthFile = "/var/www/flares.science/users"; };
+        "/flare-gen" = { basicAuthFile = "/var/www/users"; };
       };
     };
     "turn.luksab.de" = {
