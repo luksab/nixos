@@ -32,6 +32,9 @@
       enableACME = true;
       root = "/var/www/flares.science";
       locations = { "/" = { extraConfig = "access_log off;"; }; };
+      locations = {
+        "/flare-gen" = { basicAuthFile = "/var/www/flares.science/users"; };
+      };
     };
     "turn.luksab.de" = {
       forceSSL = true;
