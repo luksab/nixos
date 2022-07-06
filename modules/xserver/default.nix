@@ -1,7 +1,8 @@
 { lib, pkgs, config, ... }:
 with lib;
 let cfg = config.luksab.xserver;
-in {
+in
+{
 
   options.luksab.xserver = {
     enable = mkEnableOption "activate xserver";
@@ -36,6 +37,8 @@ in {
         touchpad.accelSpeed = "-0.15";
       };
 
+      windowManager.dwm.enable = true;
+
       desktopManager = {
         xterm.enable = false;
         session = [{
@@ -52,6 +55,8 @@ in {
         enable = true;
         user = "lukas";
       };
+
+      displayManager.defaultSession = "none+dwm";
 
       displayManager.lightdm = {
         enable = true;

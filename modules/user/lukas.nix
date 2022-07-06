@@ -1,7 +1,8 @@
 { lib, pkgs, config, ... }:
 with lib;
 let cfg = config.luksab.user.lukas;
-in {
+in
+{
   options.luksab.user.lukas = {
     enable = mkEnableOption "activate user lukas";
   };
@@ -19,6 +20,7 @@ in {
         "dialout"
         "usb"
       ]; # Enable ‘sudo’ for the user.
+      # password = "123"; # enable for testing in VM
       shell = pkgs.zsh;
       openssh.authorizedKeys.keyFiles = [
         (builtins.fetchurl {

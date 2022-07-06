@@ -29,7 +29,7 @@ in
 
       xsession = {
         enable = true;
-        windowManager.command = "dwm";
+        # windowManager.command = "dwm";
         initExtra = ''
           .screenlayout/default.sh &
           ${pkgs.xcompmgr}/bin/xcompmgr &
@@ -52,13 +52,17 @@ in
       '';
       # home.file.".icons/default".source = "${pkgs.vanilla-dmz}/share/icons/Vanilla-DMZ";
 
-      services.unclutter = {
-        enable = true;
-        timeout = 5;
-      };
+      services = {
+        unclutter = {
+          enable = true;
+          timeout = 5;
+        };
 
-      # enable bluetooth media control
-      services.mpris-proxy.enable = true;
+        syncthing.enable = true;
+
+        # enable bluetooth media control
+        mpris-proxy.enable = true;
+      };
 
       # Allow "unfree" licenced packages
       nixpkgs.config = { allowUnfree = true; };

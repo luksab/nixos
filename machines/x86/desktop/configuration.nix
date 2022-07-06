@@ -2,6 +2,10 @@
   networking.hostName = "desktop"; # Define your hostname.
 
   imports = [ ./nameserver.nix ];
+  # ++ [ # enable for VM
+  #   <nixpkgs/nixos/modules/profiles/qemu-guest.nix>
+  #   <nixpkgs/nixos/modules/virtualisation/qemu-vm.nix>
+  # ];
 
   # allow aarch64 emulation
   boot.binfmt.emulatedSystems = [ "aarch64-linux" "armv6l-linux" ];
@@ -40,6 +44,13 @@
     };
     cleanTmpDir = true;
 
+    growPartition = true;
+    initrd.availableKernelModules =
+      [ "xhci_pci" "nvme" "usb_storage" "sd_mod" "rtsx_pci_sdmmc" ];
+    initrd.kernelModules = [ "dm-snapshot" ];
+    kernelModules = [ "kvm-intel" ];
+    extraModulePackages = [ ];
+
     initrd.luks = {
       reusePassphrases = true;
       gpgSupport = true;
@@ -56,9 +67,7 @@
     };
   };
 
-  services.xserver = {
-    videoDrivers = [ "nvidia" ];
-  };
+  services.xserver = { videoDrivers = [ "nvidia" ]; };
 
   virtualisation.docker = {
     enable = true;
@@ -78,15 +87,22 @@
 
   security.sudo.wheelNeedsPassword = false;
 
-  boot.initrd.availableKernelModules =
-    [ "xhci_pci" "nvme" "usb_storage" "sd_mod" "rtsx_pci_sdmmc" ];
-  boot.initrd.kernelModules = [ "dm-snapshot" ];
-  boot.kernelModules = [ "kvm-intel" ];
-  boot.extraModulePackages = [ ];
+  # virtualisation = { # enable for VM
+  #   diskSize = 8000; # MB
+  #   memorySize = 2048; # MB
+  #   # qemu.options = [
+  #   #   "-virtfs local,path=${mount_host_path},security_model=none,mount_tag=${mount_tag}"
+  #   # ];
+
+  #   # We don't want to use tmpfs, otherwise the nix store's size will be bounded
+  #   # by a fraction of available RAM.
+  #   writableStoreUseTmpfs = false;
+  # };
 
   fileSystems."/" = {
     device = "/dev/disk/by-uuid/0ff11b4a-f7f8-4eba-90c4-4cef4a87dc33";
     fsType = "ext4";
+    autoResize = true;
   };
 
   fileSystems."/boot" = {
