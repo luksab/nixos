@@ -32,9 +32,7 @@
       enableACME = true;
       root = "/var/www/flares.science";
       locations = { "/" = { extraConfig = "access_log off;"; }; };
-      locations = {
-        "/flare-gen" = { basicAuthFile = "/var/www/users"; };
-      };
+      locations = { "/flare-gen" = { basicAuthFile = "/var/www/users"; }; };
     };
     "turn.luksab.de" = {
       forceSSL = true;
@@ -47,6 +45,12 @@
       enableACME = true;
       root = "/var/www/private";
       locations = {
+        "/hooks/" = {
+          proxyPass = "http://127.0.0.1:9000";
+          # extraConfig = ''
+          #   proxy_set_header   Host $host;
+          # '';
+        };
         "/" = {
           extraConfig = ''
             allow 176.198.43.0;

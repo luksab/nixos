@@ -19,6 +19,11 @@
     };
 
     lukas-bot.enable = true;
+    webhook = {
+      enable = true;
+      user = "lukas";
+      group = "users";
+    };
 
     minecraft-server = {
       enable = false;
