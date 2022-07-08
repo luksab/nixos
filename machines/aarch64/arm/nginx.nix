@@ -34,6 +34,12 @@
       locations = { "/" = { extraConfig = "access_log off;"; }; };
       locations = { "/starburst/" = { basicAuthFile = "/var/www/users"; }; };
     };
+    "docs.flares.science" = {
+      forceSSL = true;
+      enableACME = true;
+      root = "/var/www/docs.flares.science";
+      locations = { "/" = { extraConfig = "access_log off;"; }; };
+    };
     "turn.luksab.de" = {
       forceSSL = true;
       enableACME = true;
@@ -90,6 +96,7 @@
     "private.luksab.de".email = "lukassabatschus@gmail.com";
     "lukas.sabatschus.de".email = "lukassabatschus@gmail.com";
     "flares.science".email = "lukassabatschus@gmail.com";
+    "docs.flares.science".email = "lukassabatschus@gmail.com";
     "sabatschus.de".email = "lukassabatschus@gmail.com";
   };
 }
