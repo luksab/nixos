@@ -30,9 +30,10 @@
     "flares.science" = {
       forceSSL = true;
       enableACME = true;
-      root = "/var/www/flares.science";
-      locations = { "/" = { extraConfig = "access_log off;"; }; };
-      locations = { "/starburst/" = { basicAuthFile = "/var/www/users"; }; };
+      # root = "/var/www/flares.science";
+      locations."/" = { proxyPass = "http://127.0.0.1:8081"; };
+      # locations = { "/" = { extraConfig = "access_log off;"; }; };
+      # locations = { "/starburst/" = { basicAuthFile = "/var/www/users"; }; };
     };
     "docs.flares.science" = {
       forceSSL = true;
