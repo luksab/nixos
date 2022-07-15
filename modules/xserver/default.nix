@@ -27,7 +27,7 @@ in
     # Enable the X11 windowing system.
     services.xserver = {
       layout = "de";
-      xkbOptions = "eurosign:e";
+      xkbOptions = "caps:escape,eurosign:e";
       enable = true;
       autorun = true;
       dpi = cfg.dpi;
