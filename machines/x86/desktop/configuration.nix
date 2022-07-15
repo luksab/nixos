@@ -40,6 +40,7 @@
         efiSupport = true;
         efiInstallAsRemovable = true;
         useOSProber = true;
+        memtest86.enable = true;
       };
     };
     cleanTmpDir = true;
