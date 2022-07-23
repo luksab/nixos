@@ -111,6 +111,11 @@
     fsType = "vfat";
   };
 
+  fileSystems."/mnt/nvme2" = {
+    device = "/dev/disk/by-uuid/bd66ca6c-a6c7-4071-87d2-f42dc4e08982";
+    fsType = "ext4";
+  };
+
   #SAMBA qmk
   services.samba-wsdd.enable =
     true; # make shares visible for windows 10 clients
