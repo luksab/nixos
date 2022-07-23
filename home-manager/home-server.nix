@@ -2,7 +2,8 @@
 with lib;
 let cfg = config.luksab.user.lukas.home-manager;
 
-in {
+in
+{
   options.luksab.user.lukas.home-manager = {
     enable = mkEnableOption "activate headless home-manager profile for lukas";
   };
@@ -22,6 +23,13 @@ in {
 
       # Allow "unfree" licenced packages
       nixpkgs.config = { allowUnfree = true; };
+
+      services = {
+        syncthing = {
+          enable = true;
+          extraOptions = [ "--gui-address=0.0.0.0:8384" ];
+        };
+      };
 
       # Install these packages for my user
       home.packages = with pkgs; [
