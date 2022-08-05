@@ -19,6 +19,7 @@
     };
 
     lukas-bot.enable = true;
+    notify-bot.enable = true;
     webhook = {
       enable = true;
       user = "lukas";

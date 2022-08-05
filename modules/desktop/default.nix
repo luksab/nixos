@@ -21,7 +21,7 @@ in
       options = [ "x-systemd.automount" "noauto" ];
     };
 
-    environment.systemPackages = [ pkgs.rpiplay pkgs.librsvg pkgs.spice-gtk ];
+    environment.systemPackages = [ pkgs.rpiplay pkgs.librsvg pkgs.spice-gtk pkgs.discord_notify_go ];
     security.polkit.enable = true;
     virtualisation.spiceUSBRedirection.enable = true;
     security.wrappers.spice-client-glib-usb-acl-helper.source =

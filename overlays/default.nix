@@ -44,6 +44,7 @@ self: super: {
   # override with newer version from nixpkgs-unstable (home-manager related)
   # discord = self.master.discord;
   discord = super.pkgs.callPackage ../packages/discord { };
+  discord_notify_go = super.pkgs.callPackage ../packages/discord_notify_go { };
   # cargo = self.unstable.cargo;
   # neovim-unwrapped = self.unstable.neovim-unwrapped;
   # obs-studio = self.unstable.obs-studio;
