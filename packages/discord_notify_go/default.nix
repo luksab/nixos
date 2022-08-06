@@ -5,8 +5,8 @@ buildGoModule {
   src = fetchFromGitHub {
     owner = "luksab";
     repo = "discord_notify_go";
-    rev = "a49a4397d683c87469105bb359733f6b1a99f72e";
-    sha256 = "sha256-ZCPfofhpFyoTKKrXdZI8rI5Uarrz6r8Y6wJ6PMbHgWA=";
+    rev = "29bfde51b63c715a7342e5b4037259a442a3471f";
+    sha256 = "sha256-7eFnNRTru4yTS3XyPOth0WGuDNOv6/oDhia+NmItUXA=";
   };
   vendorSha256 = "sha256-RaWIa8SFbnf+YVWml8PTkRfkSOeKUYC+jQz9qqLXeJo=";
 }
