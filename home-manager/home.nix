@@ -19,7 +19,7 @@ in
         # mime.enable = true;
         services.dunst.enable = true;
         ssh.enable = true;
-        #programs.vim.enable = true;
+        programs.vim.enable = true;
       };
 
       # Home Manager needs a bit of information about you and the
@@ -90,7 +90,6 @@ in
         nmap
         (lib.mkIf (config.luksab.arch == "x86_64") signal-desktop)
         unzip
-        vim
         vlc
         tev
         youtube-dl
@@ -142,7 +141,7 @@ in
 
       # Imports
       imports = [
-        #./modules/devolopment
+        ./modules/vim
         ./modules/git
         # ./modules/gtk
         ../modules/options

@@ -26,7 +26,7 @@ in
         (builtins.fetchurl {
           url = "https://github.com/luksab.keys";
           sha256 =
-            "sha256:06l3dqlh6z8y0y6nzkm3wlnxabjkb62m12piyb98cx5avnmasypb";
+            "sha256:01mk365sgizs2iq4w7zjrxqc8jkaii82p7w5nhcjxpv8dzx24pda";
         })
       ];
     };

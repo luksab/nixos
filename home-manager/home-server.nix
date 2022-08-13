@@ -21,6 +21,10 @@ in
       home.username = "lukas";
       home.homeDirectory = "/home/lukas";
 
+      luksab = {
+        programs.vim.enable = true;
+      };
+
       # Allow "unfree" licenced packages
       nixpkgs.config = { allowUnfree = true; };
 
@@ -39,7 +43,6 @@ in
         iperf3
         nmap
         unzip
-        vim
         youtube-dl
         cloc
         dig
@@ -51,7 +54,7 @@ in
 
       # Imports
       imports = [
-        #./modules/vim
+        ./modules/vim
         ../modules/options
         ./modules/git
         ./modules/zsh
