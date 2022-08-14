@@ -28,6 +28,7 @@ in
           arrterian.nix-env-selector
           ms-vscode-remote.remote-ssh
           matklad.rust-analyzer
+          serayuzgur.crates
           (lib.mkIf (config.luksab.arch == "x86_64") pkgs.vsliveshare-new)
           james-yu.latex-workshop
           valentjn.vscode-ltex
