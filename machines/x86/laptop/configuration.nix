@@ -64,20 +64,7 @@
   networking.useDHCP = false;
   networking.interfaces.wlp0s20f3.useDHCP = true;
 
-  # networking.wireless.enable = true;
-  # networking.wireless.interfaces = [ "wlp0s20f3" ];
-  # networking.wireless.networks = {
-  #   Salami = { # SSID with no spaces or special characters
-  #     psk = "ckqc-go05-m2kn";
-  #   };
-  # };
   networking.networkmanager.enable = true;
-
-  # {
-  #   xsession.enable = true;
-  #   xsession.windowManager.command = "dwm";
-  #   #xsession.scriptPath = ".hm-xsession";
-  # };
 
   hardware.acpilight.enable = true;
   security.sudo.wheelNeedsPassword = false;
