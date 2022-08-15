@@ -42,8 +42,6 @@
     growPartition = true;
     initrd.availableKernelModules =
       [ "xhci_pci" "nvme" "usb_storage" "sd_mod" "rtsx_pci_sdmmc" ];
-    # initrd.kernelModules = [ "dm-snapshot" ];
-    # kernelModules = [ "kvm-intel" ];
     extraModulePackages = [ ];
 
     initrd.luks = {
@@ -69,10 +67,6 @@
 
   # blacklist acpi_cpufreq to use amd p states
   boot.kernelParams = [ "initcall_blacklist=acpi_cpufreq_init" ];
-
-  # networking.interfaces.eno1.useDHCP = true;
-  # networking.interfaces.enp8s0.useDHCP = true;
-  # networking.interfaces.wlp7s0.useDHCP = true;
 
   networking.networkmanager.enable = true;
 
