@@ -67,6 +67,8 @@
 
   networking.useDHCP = false;
 
+  boot.kernelParams = [ "initcall_blacklist=acpi_cpufreq_init" ];
+
   # networking.interfaces.eno1.useDHCP = true;
   # networking.interfaces.enp8s0.useDHCP = true;
   # networking.interfaces.wlp7s0.useDHCP = true;

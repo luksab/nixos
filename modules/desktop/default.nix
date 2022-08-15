@@ -21,6 +21,8 @@ in
       options = [ "x-systemd.automount" "noauto" ];
     };
 
+    boot.kernelPackages = pkgs.linuxPackages_latest;
+
     environment.systemPackages = [ pkgs.rpiplay pkgs.librsvg pkgs.spice-gtk pkgs.discord_notify_go ];
     security.polkit.enable = true;
     virtualisation.spiceUSBRedirection.enable = true;
