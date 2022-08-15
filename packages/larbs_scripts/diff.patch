@@ -1,5 +1,22 @@
+diff --git a/.local/bin/statusbar/sb-battery b/.local/bin/statusbar/sb-battery
+index 93cbe08..327af9e 100755
+--- a/.local/bin/statusbar/sb-battery
++++ b/.local/bin/statusbar/sb-battery
+@@ -10,9 +10,9 @@ case $BLOCK_BUTTON in
+ 🔌: charging
+ ⚡: charged
+ ❗: battery very low!
+-- Scroll to change adjust xbacklight." ;;
+-	4) xbacklight -inc 10 ;;
+-	5) xbacklight -dec 10 ;;
++- Scroll to change adjust light." ;;
++	4) light -A 1 ;;
++	5) light -U 1 ;;
+ 	6) "$TERMINAL" -e "$EDITOR" "$0" ;;
+ esac
+ 
 diff --git a/.local/bin/sysact b/.local/bin/sysact
-index 451815d..f65f5fc 100755
+index 451815d..c1d8746 100755
 --- a/.local/bin/sysact
 +++ b/.local/bin/sysact
 @@ -1,9 +1,6 @@
@@ -9,7 +26,7 @@ index 451815d..f65f5fc 100755
 -	*systemd*) ctl='systemctl' ;;
 -	*) ctl='loginctl' ;;
 -esac
-+ctl='systemctl'
++ctl='systemctl' ;;
  
  case "$(printf "🔒 lock\n🚪 leave dwm\n♻️ renew dwm\n🐻 hibernate\n💤 sleep\n🔃 reboot\n🖥️shutdown\n📺 display off" | dmenu -i -p 'Action: ')" in
  	'🔒 lock') slock ;;

@@ -29,6 +29,7 @@ in {
 
     home.packages = with pkgs; [
       larbs_scripts
+      light
       dwm
       dmenu
       st
