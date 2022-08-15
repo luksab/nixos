@@ -53,10 +53,10 @@
         root = {
           # lsblk -o +UUID
           # └─nvme0n1p2
-          device = "/dev/disk/by-uuid/dc9c877a-a56c-49b5-bb5a-a1f9a17b8296";
+          device = "/dev/disk/by-uuid/68e1ecd5-0cc9-4e62-85fe-6cd600b6de46";
           gpgCard = {
-            publicKey = ./yubikey-public.asc;
-            encryptedPass = ./pw.gpg;
+            publicKey = ../desktop/yubikey-public.asc;
+            encryptedPass = ../desktop/pw.gpg;
           };
         };
       };
@@ -90,14 +90,14 @@
   fileSystems."/" = {
     # lsblk -o +UUID
     #      └─vg-root
-    device = "/dev/disk/by-uuid/0ff11b4a-f7f8-4eba-90c4-4cef4a87dc33";
+    device = "/dev/disk/by-uuid/3f7994ed-4810-40d6-aca1-274b2736404f";
     fsType = "ext4";
   };
 
   fileSystems."/boot" = {
     # lsblk -o +UUID
     #      └─nvme0n1p1
-    device = "/dev/disk/by-uuid/4D62-2CB3";
+    device = "/dev/disk/by-uuid/D9B0-E901";
     fsType = "vfat";
   };
 }
