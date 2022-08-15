@@ -1,7 +1,7 @@
 { self, ... }: {
   networking.hostName = "crimson"; # Define your hostname.
 
-  imports = [ ];
+  imports = [ ./amd_gpu.nix ./hardware.nix ];
   # ++ [ # enable for VM
   #   <nixpkgs/nixos/modules/profiles/qemu-guest.nix>
   #   <nixpkgs/nixos/modules/virtualisation/qemu-vm.nix>
@@ -67,6 +67,7 @@
 
   networking.useDHCP = false;
 
+  # blacklist acpi_cpufreq to use amd p states
   boot.kernelParams = [ "initcall_blacklist=acpi_cpufreq_init" ];
 
   # networking.interfaces.eno1.useDHCP = true;
