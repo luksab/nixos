@@ -66,8 +66,8 @@ self: super: {
     src = super.pkgs.fetchFromGitHub {
       owner = "luksab";
       repo = "dwm";
-      rev = "f324e7fc187d7ed284bd50e34a0616b279dac7ba";
-      sha256 = "sha256-tl9GOn5qG8kXLhmARIqJUBMRw6fTfCv7sJifxI5Ug8I=";
+      rev = "e5eef626223e5a566a90847e5c55cefccc9d0280";
+      sha256 = "sha256-KZyMWRmbgIlAdktM3fsj+O6oZ/D4V7mMXqaCkxKGR/U=";
       name = "dwm";
     };
   }));
