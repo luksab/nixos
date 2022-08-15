@@ -73,6 +73,8 @@ in
       General = { Enable = "Source,Sink,Media,Socket"; };
     };
 
+    programs.light.enable = true;
+
     programs.kdeconnect.enable = true;
     programs.slock.enable = true;
 
