@@ -26,7 +26,7 @@ index 451815d..c1d8746 100755
 -	*systemd*) ctl='systemctl' ;;
 -	*) ctl='loginctl' ;;
 -esac
-+ctl='systemctl' ;;
++ctl='systemctl'
  
  case "$(printf "🔒 lock\n🚪 leave dwm\n♻️ renew dwm\n🐻 hibernate\n💤 sleep\n🔃 reboot\n🖥️shutdown\n📺 display off" | dmenu -i -p 'Action: ')" in
  	'🔒 lock') slock ;;
