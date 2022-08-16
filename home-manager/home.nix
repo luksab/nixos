@@ -115,6 +115,7 @@ in
         xournalpp
         prusa-slicer
         element-desktop
+        mattermost-desktop
         rhythmbox
         # davinci-resolve
         kdenlive
