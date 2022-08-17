@@ -1,0 +1,1 @@
+xinput map-to-output "RAYD0001:00 2386:4B4E" eDP
