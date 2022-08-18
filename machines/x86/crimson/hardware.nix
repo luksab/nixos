@@ -11,7 +11,7 @@
   hardware.firmware = [ pkgs.rtw89-firmware ];
 
   powerManagement.enable = true;
-  powerManagement.cpuFreqGovernor = "schedutil";
+  powerManagement.cpuFreqGovernor = "conservative";
 
   boot = {
     kernelModules = [ "acpi_call" "amd-pstate" ];
