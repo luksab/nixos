@@ -13,6 +13,8 @@ in {
       discord
       zoom-us
       obs
+      radeontop
+      radeon-profile
     ];
   };
 }
