@@ -160,7 +160,6 @@
     };
     cleanTmpDir = true;
 
-    growPartition = true;
     initrd.availableKernelModules =
       [ "xhci_pci" "nvme" "usb_storage" "sd_mod" "rtsx_pci_sdmmc" ];
     extraModulePackages = [ ];
@@ -185,9 +184,6 @@
   virtualisation.docker = { enable = true; };
 
   networking.useDHCP = false;
-
-  # blacklist acpi_cpufreq to use amd p states
-  boot.kernelParams = [ "initcall_blacklist=acpi_cpufreq_init" ];
 
   networking.networkmanager.enable = true;
 
