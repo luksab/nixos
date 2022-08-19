@@ -7,6 +7,13 @@
 
   boot.blacklistedKernelModules = [ "raydium_i2c_ts" ];
 
+  systemd.user.services.configure_touch = {
+    path = [ pkgs.xorg.xinput ];
+    script = builtins.readFile ./configure_touch.sh;
+    wantedBy = [ "graphical-session.target" ];
+    partOf = [ "graphical-session.target" ];
+  };
+
   # Wifi support
   hardware.firmware = [ pkgs.rtw89-firmware ];
 
