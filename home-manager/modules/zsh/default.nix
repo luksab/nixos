@@ -18,6 +18,9 @@ in {
       # this works
       export NIXPKGS_ALLOW_UNFREE=1
       export PATH="/home/lukas/.cargo/bin:$PATH"
+      alias gc='git commit'
+      alias gs='git status'
+      alias gp='git push'
       alias p="nix-shell -p "
       n(){nix run "nixpkgs#''${1}"} # n = nix run package
     '';
