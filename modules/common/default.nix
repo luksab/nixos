@@ -40,6 +40,10 @@ in {
 
     programs.mtr.enable = true;
 
+    # count total uptime
+    services.tuptime.enable = true;
+    services.tuptime.timer.enable = true;
+
     # Allow unfree at system level
     nixpkgs.config.allowUnfree = true;
 
