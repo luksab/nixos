@@ -14,9 +14,6 @@
     partOf = [ "graphical-session.target" ];
   };
 
-  # Wifi support
-  hardware.firmware = [ pkgs.rtw89-firmware ];
-
   powerManagement.enable = true;
   powerManagement.cpuFreqGovernor = "conservative";
 
