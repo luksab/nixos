@@ -1,7 +1,18 @@
 { lib, config, pkgs, ... }: {
   # AMD GPU stuff
   boot.initrd.kernelModules = [ "amdgpu" ];
-  services.xserver.videoDrivers = [ "amdgpu" ];
+  services.xserver = {
+    videoDrivers = [ "amdgpu" ];
+    # screenSection = ''
+    #   Option         "AllowIndirectGLXProtocol" "off"
+    #   Option         "TripleBuffer" "on"
+    # '';
+    deviceSection = ''
+      Identifier     "AMD Graphics"
+      Driver         "amdgpu"
+      Option         "TearFree" "true"
+    '';
+  };
 
   hardware.opengl.extraPackages = with pkgs; [
     rocm-opencl-icd
