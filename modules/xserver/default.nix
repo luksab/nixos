@@ -18,7 +18,7 @@ in
   config = mkIf cfg.enable {
     # Enable X forwarding
     programs.ssh = {
-      forwardX11 = true;
+      forwardX11 = false;
       setXAuthLocation = true;
     };
 
