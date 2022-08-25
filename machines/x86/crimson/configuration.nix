@@ -1,7 +1,7 @@
 { self, ... }: {
   networking.hostName = "crimson"; # Define your hostname.
 
-  imports = [ ./amd_gpu.nix ./hardware.nix ];
+  imports = [ ./amd_gpu.nix ./hardware.nix ./nameserver.nix ];
   # ++ [ # enable for VM
   #   <nixpkgs/nixos/modules/profiles/qemu-guest.nix>
   #   <nixpkgs/nixos/modules/virtualisation/qemu-vm.nix>
