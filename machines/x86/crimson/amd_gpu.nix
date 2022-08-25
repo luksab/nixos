@@ -3,13 +3,7 @@
   boot.initrd.kernelModules = [ "amdgpu" ];
   services.xserver = {
     videoDrivers = [ "amdgpu" ];
-    # screenSection = ''
-    #   Option         "AllowIndirectGLXProtocol" "off"
-    #   Option         "TripleBuffer" "on"
-    # '';
     deviceSection = ''
-      Identifier     "AMD Graphics"
-      Driver         "amdgpu"
       Option         "TearFree" "true"
     '';
   };
