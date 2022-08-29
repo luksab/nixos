@@ -13,6 +13,7 @@ in {
       discord
       zoom-us
       obs
+      ryzenadj
       radeontop
       radeon-profile
     ];
