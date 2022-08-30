@@ -1,8 +1,7 @@
 { lib, config, pkgs, ... }:
 with lib;
 let cfg = config.luksab.desktop;
-in
-{
+in {
   options.luksab.desktop = { enable = mkEnableOption "enable desktop"; };
 
   config = mkIf cfg.enable {
@@ -23,7 +22,8 @@ in
 
     boot.kernelPackages = pkgs.linuxPackages_latest;
 
-    environment.systemPackages = [ pkgs.rpiplay pkgs.librsvg pkgs.spice-gtk pkgs.discord_notify_go ];
+    environment.systemPackages =
+      [ pkgs.rpiplay pkgs.librsvg pkgs.spice-gtk pkgs.discord_notify_go ];
     security.polkit.enable = true;
     virtualisation.spiceUSBRedirection.enable = true;
     security.wrappers.spice-client-glib-usb-acl-helper.source =
@@ -77,6 +77,13 @@ in
 
     programs.kdeconnect.enable = true;
     programs.slock.enable = true;
+    systemd.user.services.xss-lock = {
+      serviceConfig.ExecStart = "${pkgs.xss-lock}/bin/xss-lock --session \${XDG_SESSION_ID} -- /run/wrappers/bin/slock";
+
+      wantedBy = [ "graphical-session.target" ];
+      partOf = [ "graphical-session.target" ];
+    };
+    systemd.services.NetworkManager-wait-online.enable = false;
 
     luksab = {
       common.enable = true;
