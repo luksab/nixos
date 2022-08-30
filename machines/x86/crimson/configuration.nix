@@ -21,13 +21,12 @@
   luksab = {
     firmware.enable = true;
     desktop.enable = true;
-    # disable wireguard for now
-    # wireguard = {
-    #   enable = true;
-    #   ips = [ "10.31.69.101/24" ];
-    #   allowedIPs = [ "10.31.69.0/24" ];
-    #   # allowedIPs = [ "0.0.0.0/0" ];
-    # };
+    wireguard = {
+      enable = true;
+      ips = [ "10.31.69.109/24" ];
+      allowedIPs = [ "10.31.69.0/24" ];
+      # allowedIPs = [ "0.0.0.0/0" ];
+    };
   };
 
   # Automatically configure monitors with autorandr
