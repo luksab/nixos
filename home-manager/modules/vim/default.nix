@@ -51,6 +51,9 @@ in
         cmp-buffer
         cmp-path
         cmp-spell
+        # Github copilot
+        pkgs.copilot-vim
+        # pkgs.copilot-cmp
         dashboard-nvim
         orgmode
         onedark-nvim
@@ -81,6 +84,17 @@ in
           " neovide settings
           set guifont=FiraCode\ Nerd\ Font:h7
           let g:neovide_cursor_vfx_mode = "railgun"
+          " turn hybrid line numbers on
+          :set number relativenumber
+          :set nu rnu
+          " turn mouse on
+          set mouse+=a
+          " barbar config
+          " Move to previous/next
+          nnoremap <silent>    <A-,> <Cmd>BufferPrevious<CR>
+          nnoremap <silent>    <A-.> <Cmd>BufferNext<CR>
+          nnoremap <silent>    <C-p> <Cmd>BufferPick<CR>
+          nnoremap <silent>    <A-c> <Cmd>BufferClose<CR>
 
           luafile ${builtins.toString ./config/init_lua.lua}
         ''

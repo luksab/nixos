@@ -61,6 +61,9 @@ self: super: {
   # youtube-dl = self.unstable.youtube-dl;
   # zoom-us = self.unstable.zoom-us;
 
+  copilot-cmp = super.pkgs.callPackage ../packages/copilot-cmp { };
+  copilot-vim = super.pkgs.callPackage ../packages/copilot-vim { };
+
   # suckless packages
   dwm = (super.dwm.overrideAttrs (oldAttrs: rec {
     src = super.pkgs.fetchFromGitHub {
