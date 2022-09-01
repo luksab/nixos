@@ -16,6 +16,7 @@
   # enroll with `sudo fprintd-enroll lukas`
   services.fprintd.enable = true;
   security.pam.services.login.fprintAuth = true;
+  # security.pam.services.slock.fprintAuth = true;
   security.pam.services.sudo.fprintAuth = true;
 
   luksab = {

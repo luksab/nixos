@@ -77,6 +77,7 @@ in {
 
     programs.kdeconnect.enable = true;
     programs.slock.enable = true;
+    security.wrappers."slock".source = pkgs.lib.mkForce "${pkgs.slock}/bin/slock-pam";
     systemd.user.services.xss-lock = {
       serviceConfig.ExecStart = "${pkgs.xss-lock}/bin/xss-lock --session \${XDG_SESSION_ID} -- /run/wrappers/bin/slock";
 

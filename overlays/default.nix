@@ -64,6 +64,8 @@ self: super: {
   copilot-cmp = super.pkgs.callPackage ../packages/copilot-cmp { };
   copilot-vim = super.pkgs.callPackage ../packages/copilot-vim { };
 
+  slock = super.pkgs.callPackage ../packages/slock { };
+
   # suckless packages
   dwm = (super.dwm.overrideAttrs (oldAttrs: rec {
     src = super.pkgs.fetchFromGitHub {
@@ -107,6 +109,7 @@ self: super: {
     patches = [ ../packages/suckless/st.patch ];
     fetchSubmodules = true;
   }));
+
 
   vaapiIntel = super.vaapiIntel.override { enableHybridCodec = true; };
 }
