@@ -55,13 +55,10 @@
             mode = "3440x1440";
             rate = "60.00";
           };
-          DisplayPort-5 = {
-            enable = false;
-          };
+          DisplayPort-5 = { enable = false; };
         };
         hooks.postswitch = {
-          "configure_touch" =
-            builtins.readFile ./configure_touch.sh;
+          "configure_touch" = builtins.readFile ./configure_touch.sh;
         };
       };
       "work2" = {
@@ -84,13 +81,10 @@
             mode = "3440x1440";
             rate = "60.00";
           };
-          DisplayPort-5 = {
-            enable = false;
-          };
+          DisplayPort-5 = { enable = false; };
         };
         hooks.postswitch = {
-          "configure_touch" =
-            builtins.readFile ./configure_touch.sh;
+          "configure_touch" = builtins.readFile ./configure_touch.sh;
         };
       };
       "laptop" = {
@@ -103,19 +97,12 @@
             enable = true;
             mode = "1920x1080";
           };
-          DisplayPort-3 = {
-            enable = false;
-          };
-          DisplayPort-2 = {
-            enable = false;
-          };
-          DisplayPort-5 = {
-            enable = false;
-          };
+          DisplayPort-3 = { enable = false; };
+          DisplayPort-2 = { enable = false; };
+          DisplayPort-5 = { enable = false; };
         };
         hooks.postswitch = {
-          "configure_touch" =
-            builtins.readFile ./configure_touch.sh;
+          "configure_touch" = builtins.readFile ./configure_touch.sh;
         };
       };
       "default" = {
@@ -128,19 +115,12 @@
             enable = true;
             mode = "1920x1080";
           };
-          DisplayPort-3 = {
-            enable = false;
-          };
-          DisplayPort-2 = {
-            enable = false;
-          };
-          DisplayPort-5 = {
-            enable = false;
-          };
+          DisplayPort-3 = { enable = false; };
+          DisplayPort-2 = { enable = false; };
+          DisplayPort-5 = { enable = false; };
         };
         hooks.postswitch = {
-          "configure_touch" =
-            builtins.readFile ./configure_touch.sh;
+          "configure_touch" = builtins.readFile ./configure_touch.sh;
         };
       };
     };

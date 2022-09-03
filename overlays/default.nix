@@ -3,8 +3,7 @@ let
   # Pass flake inputs to overlay so we can use the sources pinned in flake.lock
   # instead of having to keep sha256 hashes in each package for src
   inherit inputs;
-in
-self: super: {
+in self: super: {
   # Custom packages. Will be made available on all machines and used where
   # needed.
   larbs_scripts = super.pkgs.callPackage ../packages/larbs_scripts { };
@@ -65,6 +64,7 @@ self: super: {
   copilot-vim = super.pkgs.callPackage ../packages/copilot-vim { };
 
   slock = super.pkgs.callPackage ../packages/slock { };
+  # fprintd = super.pkgs.callPackage ../packages/fprintd { };
 
   # suckless packages
   dwm = (super.dwm.overrideAttrs (oldAttrs: rec {
@@ -109,7 +109,6 @@ self: super: {
     patches = [ ../packages/suckless/st.patch ];
     fetchSubmodules = true;
   }));
-
 
   vaapiIntel = super.vaapiIntel.override { enableHybridCodec = true; };
 }
