@@ -24,6 +24,7 @@
     desktop.enable = true;
     wireguard = {
       enable = true;
+      # server = "2a03:4000:1c:6c3::1:51820";
       ips = [ "10.31.69.109/24" ];
       allowedIPs = [ "10.31.69.0/24" ];
       # allowedIPs = [ "0.0.0.0/0" ];

@@ -15,6 +15,11 @@ in {
       default = [ "10.31.69.0/24" "2a03:4000:1c:6c3::/64" ];
       description = "ips to tunnel";
     };
+    server = mkOption {
+      type = types.str;
+      default = "185.194.142.8:51820";
+      description = "Server to connect to";
+    };
   };
 
   config = mkIf cfg.enable {
@@ -32,7 +37,7 @@ in {
       peers = [{
         publicKey = "ZxfxvKgR9xXdYwwKQdkURq7k5NEK2AypLEPM8jVnwlg=";
         allowedIPs = cfg.allowedIPs;
-        endpoint = "185.194.142.8:51820";
+        endpoint = cfg.server;
         persistentKeepalive = 15;
       }];
     };
