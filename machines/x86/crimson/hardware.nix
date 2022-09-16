@@ -25,6 +25,44 @@
     wantedBy = [ "multi-user.target" ];
   };
 
+  networking.networkmanager.enableFccUnlock = true;
+  # AT+CGDCONT=1,"IPV4V6","internet.v6.telekom"
+  systemd.services.ModemManager.enable = true;
+  # dbus-send --system --dest=org.freedesktop.ModemManager1 --print-reply /org/freedesktop/ModemManager1 org.freedesktop.DBus.Introspectable.Introspect
+
+  systemd.services.startModemManager = {
+    enable = true;
+    path = [ pkgs.dbus ];
+    script = ''
+      dbus-send --system --dest=org.freedesktop.ModemManager1 --print-reply /org/freedesktop/ModemManager1 org.freedesktop.DBus.Introspectable.Introspect
+    '';
+    wantedBy = [ "multi-user.target" ];
+  };
+
+  systemd.services.fccUnlock = {
+    enable = true;
+    serviceConfig = {
+      # sleep 10s before starting the service
+      ExecStartPre = "${pkgs.coreutils}/bin/sleep 10";
+      ExecStart = "${pkgs.lenovo_wwan_dpr}/bin/fcc_unlock_v2";
+    };
+    wantedBy = [ "multi-user.target" ];
+  };
+
+  # environment.systemPackages = [ pkgs.jool-cli ];
+  # systemd.services.jool = {
+  #   serviceConfig = {
+  #     ExecStartPre = "${pkgs.kmod}/bin/modprobe jool";
+  #     ExecStart =
+  #       "${pkgs.jool-cli}/bin/jool instance add default --netfilter --pool6 64:ff9b::/96";
+  #     ExecStop = "${pkgs.jool-cli}/bin/jool instance remove default";
+  #     Type = "oneshot";
+  #     RemainAfterExit = true;
+  #   };
+  #   wantedBy = [ "multi-user.target" ];
+  #   after = [ "network.target" ];
+  # };
+
   powerManagement.enable = true;
   powerManagement.cpuFreqGovernor = "conservative";
 

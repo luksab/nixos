@@ -9,5 +9,5 @@
         options edns0
       '';
     };
-  networking.nameservers = [ "1.1.1.1" ];
+  networking.nameservers = [ "2001:4860:4860::8888" "1.1.1.1" ];
 }

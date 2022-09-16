@@ -65,6 +65,7 @@ in self: super: {
 
   slock = super.pkgs.callPackage ../packages/slock { };
   # fprintd = super.pkgs.callPackage ../packages/fprintd { };
+  lenovo_wwan_dpr = super.pkgs.callPackage ../packages/lenovo-wwan-dpr { };
 
   # suckless packages
   dwm = (super.dwm.overrideAttrs (oldAttrs: rec {
