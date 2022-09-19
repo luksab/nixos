@@ -27,18 +27,29 @@ FCC_OPS *fcc_ops;
 
 #define MBIM_DEVICE_PATH "/dev/wwan0mbim0"
 
-// #define MBIM2SAR_SO_PATH "/home/lukas/repos/lenovo_fcc_unlock/snap/usr/lib/mbim2sar.so"
-#define MBIM2SAR_SO_PATH "mbim2sar.so"
+#define MBIM2SAR_SO_PATH "/bin/mbim2sar.so"
 
 static char *DEVICE_PATH = MBIM_DEVICE_PATH;
 
 int main()
 {
-    void *dlHandle = dlopen(MBIM2SAR_SO_PATH, 1);
+    char cwd[1024];
+    if (getcwd(cwd, sizeof(cwd)) != NULL)
+    {
+    }
+    else
+    {
+        perror("getcwd() error");
+        return 1;
+    }
+
+    strcat(cwd, MBIM2SAR_SO_PATH);
+
+    void *dlHandle = dlopen(cwd, 1);
     if (dlHandle == 0)
     {
         dlclose(dlHandle);
-        fprintf(stderr, "dlopen(%s) failed\n", MBIM2SAR_SO_PATH);
+        fprintf(stderr, "dlopen(%s) failed\n", cwd);
         return 1;
     }
     fcc_ops = dlsym(dlHandle, "fcc_ops");

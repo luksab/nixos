@@ -45,6 +45,7 @@
       # sleep 10s before starting the service
       ExecStartPre = "${pkgs.coreutils}/bin/sleep 10";
       ExecStart = "${pkgs.lenovo_wwan_dpr}/bin/lenovo_wwan_dpr";
+      WorkingDirectory = "${pkgs.lenovo_wwan_dpr}";
     };
     wantedBy = [ "multi-user.target" ];
   };

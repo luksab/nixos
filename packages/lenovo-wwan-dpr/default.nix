@@ -21,12 +21,7 @@ in stdenv.mkDerivation {
       sha512 =
         "e2b51ef0c7d438f2bebc1d3feceaa039c023818fffd2407260301b122e54d6629e242128205c11037f82cb46cab53cbf2a0901784bf732b386d61b794ad59252";
     })
-    (fetchurl {
-      url =
-        "https://gist.githubusercontent.com/joar/416f37fe81558f5be0d5131018eb7f2a/raw/b6a2a83620b044efc2d13aee86910743969218de/fcc-unlock.c";
-      sha512 =
-        "sha512-UzpYVGkCh37Cm2aDXytkIZL5Jsyv4yS7KjYwRrD8MBi9U6uj07P1FQBk6Jl8crL8OiAAbV53P18pN+yWxhH7Hw==";
-    })
+    ./fcc-unlock.c
   ];
 
   buildInputs = [ squashfsTools makeWrapper ];
@@ -49,6 +44,7 @@ in stdenv.mkDerivation {
     # sudo env VERBOSE=1 ./fcc-unlock
     mkdir -p $out/bin
     cp fcc-unlock $out/bin/lenovo_wwan_dpr
+    cp usr/lib/mbim2sar.so $out/bin/mbim2sar.so
 
     runHook postInstall
   '';
