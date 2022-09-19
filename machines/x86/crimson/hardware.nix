@@ -44,11 +44,12 @@
     serviceConfig = {
       # sleep 10s before starting the service
       ExecStartPre = "${pkgs.coreutils}/bin/sleep 10";
-      ExecStart = "${pkgs.lenovo_wwan_dpr}/bin/fcc_unlock_v2";
+      ExecStart = "${pkgs.lenovo_wwan_dpr}/bin/lenovo_wwan_dpr";
     };
     wantedBy = [ "multi-user.target" ];
   };
 
+  environment.systemPackages = [ pkgs.lenovo_wwan_dpr ];
   # environment.systemPackages = [ pkgs.jool-cli ];
   # systemd.services.jool = {
   #   serviceConfig = {

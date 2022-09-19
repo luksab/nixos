@@ -11,7 +11,7 @@ let
   ];
 
 in stdenv.mkDerivation {
-  pname = "lenovo-wwan-dpr";
+  pname = "lenovo_wwan_dpr";
   inherit version;
 
   srcs = [
@@ -48,7 +48,7 @@ in stdenv.mkDerivation {
     gcc $(echo $srcs | awk '{print $2}') -o fcc-unlock
     # sudo env VERBOSE=1 ./fcc-unlock
     mkdir -p $out/bin
-    cp fcc-unlock $out/bin/fcc_unlock_v2
+    cp fcc-unlock $out/bin/lenovo_wwan_dpr
 
     runHook postInstall
   '';
