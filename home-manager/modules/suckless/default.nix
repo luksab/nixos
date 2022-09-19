@@ -38,6 +38,7 @@ in {
 
       xcompmgr
       feh
+      mpv
       acpi
       pamixer
       maim
