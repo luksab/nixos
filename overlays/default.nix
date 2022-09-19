@@ -82,8 +82,8 @@ in self: super: {
     src = super.pkgs.fetchFromGitHub {
       owner = "LukeSmithxyz";
       repo = "dwmblocks";
-      rev = "66f31c307adbdcc2505239260ecda24a49eea7af";
-      sha256 = "sha256-j3wCRyl1+0D2XcdqhE5Zgf53bEXhcaU4dvdyYG9LZ2g=";
+      rev = "5a6fa8d550c11552480f10e660073ca294d446b1";
+      sha256 = "sha256-3dutuQwYFg+oaIQ5cGL7lWapuzEWTeE/Kn0suEkCbLo=";
     };
     patches = [ ../packages/suckless/dwmblocks.patch ];
   }));
@@ -92,8 +92,8 @@ in self: super: {
     src = super.pkgs.fetchFromGitHub {
       owner = "LukeSmithxyz";
       repo = "dmenu";
-      rev = "3a6bc67fbd6df190b002d33f600a6465cad9cfb8";
-      sha256 = "sha256-qwOcJqYGMftFwayfYA3XM0xaOo6ALV4gu1HpFRapbFg=";
+      rev = "705b3c7c9f74fd1c370c6ed994e821135bb7acd4";
+      sha256 = "sha256-AeG58ztzQ6WugV4nKwDTz+/Dqiq3dWUvkYXlkgh9YiY=";
     };
   }));
 
@@ -103,11 +103,11 @@ in self: super: {
     src = super.pkgs.fetchFromGitHub {
       owner = "LukeSmithxyz";
       repo = "st";
-      rev = "e053bd6036331cc7d14f155614aebc20f5371d3a";
-      sha256 = "sha256-WwjuNxWoeR/ppJxJgqD20kzrn1kIfgDarkTOedX/W4k=";
+      rev = "ebf6f66fe1b9df9209e1e007622c628520f60f05";
+      sha256 = "sha256-PzPNf8dRnMHr+NokWEnM2nsgOB86jpFeBuUVBLYYXdM=";
       name = "st";
     };
-    patches = [ ../packages/suckless/st.patch ];
+    # patches = [ ../packages/suckless/st.patch ];
     fetchSubmodules = true;
   }));
 

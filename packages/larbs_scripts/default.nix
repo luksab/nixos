@@ -2,13 +2,13 @@
 
 stdenv.mkDerivation rec {
   pname = "larbs-scripts";
-  version = "5f3576da169c7dc15dfb7e7d6e2f71db27583354";
+  version = "c20acc474f7054f65c6ee410c0e26dcbcfc89927";
 
   src = fetchFromGitHub {
     owner = "LukeSmithxyz";
     repo = "voidrice";
     rev = version;
-    sha256 = "sha256-toR8QjILQwlztp8AViy3gNEWdilZVBF4xyinVYfCx5s=";
+    sha256 = "sha256-V2Ehmr6hMdkBlXsDMcfLLxGj+xCs3Sx2rOX6HImsNtY=";
   };
 
   patches = [ ./diff.patch ];
