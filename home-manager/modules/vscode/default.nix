@@ -10,8 +10,7 @@ let
       # other python packages you want
     ];
   python-with-my-packages = pkgs.python3.withPackages my-python-packages;
-in
-{
+in {
   options.luksab.programs.vscode.enable = mkEnableOption "enable vscode";
   config = mkIf cfg.enable {
     home.packages = [ python-with-my-packages ];

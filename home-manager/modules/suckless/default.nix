@@ -46,5 +46,7 @@ in {
       notify-desktop
       lm_sensors
     ];
+
+    xdg.configFile."feh/themes" = { text = "feh --force-aliasing"; };
   };
 }
