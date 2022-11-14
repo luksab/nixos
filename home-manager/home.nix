@@ -2,8 +2,7 @@
 with lib;
 let cfg = config.luksab.user.lukas.home-manager;
 
-in
-{
+in {
   options.luksab.user.lukas.home-manager = {
     desktop = mkEnableOption "activate deskop home-manager profile for lukas";
   };
@@ -72,7 +71,7 @@ in
         libnotify
         brightnessctl
         htop
-        polymc
+        prismlauncher
         arandr
 
         dolphin

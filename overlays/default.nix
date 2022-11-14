@@ -19,8 +19,7 @@ in self: super: {
   ndi = super.pkgs.callPackage ../packages/ndi { };
   davinci-resolve = super.pkgs.callPackage ../packages/davinci-resolve { };
   objectbox-bin = super.pkgs.callPackage ../packages/objectbox-bin { };
-  #polymc = super.qt5.callPackage ../packages/polymc { };
-  polymc = super.polymc.override {
+  prismlauncher = super.prismlauncher.override {
     msaClientID = "d4434167-7a48-4be7-b463-647b1580e072";
   };
   obs-studio-plugins.obs-ndi = super.obs-studio-plugins.obs-ndi.overrideAttrs
