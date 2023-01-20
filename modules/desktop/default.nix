@@ -1,7 +1,8 @@
 { lib, config, pkgs, ... }:
 with lib;
 let cfg = config.luksab.desktop;
-in {
+in
+{
   options.luksab.desktop = { enable = mkEnableOption "enable desktop"; };
 
   config = mkIf cfg.enable {
@@ -20,7 +21,7 @@ in {
       options = [ "x-systemd.automount" "noauto" ];
     };
 
-    boot.kernelPackages = pkgs.linuxPackages_latest;
+    boot.kernelPackages = pkgs.linuxPackages_5_15;
 
     environment.systemPackages =
       [ pkgs.rpiplay pkgs.librsvg pkgs.spice-gtk pkgs.discord_notify_go ];
