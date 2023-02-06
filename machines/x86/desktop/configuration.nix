@@ -69,6 +69,8 @@
   };
 
   services.xserver = { videoDrivers = [ "nvidia" ]; };
+  
+  nixpkgs.config.cudaSupport = true;
 
   # virtualisation.docker = {
   #   enable = true;
