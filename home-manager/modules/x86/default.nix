@@ -8,7 +8,7 @@ in {
     home.packages = with pkgs; [
       brave
       # google-chrome-dev
-      enpass
+      bitwarden
       spotify
       discord
       zoom-us
