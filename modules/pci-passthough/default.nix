@@ -44,7 +44,7 @@ in {
     virtualisation.libvirtd.enable = true;
 
     # CHANGE: add your own user here
-    users.groups.libvirtd.members = [ "root" "lukas" ];
+    users.groups.libvirtd.members = [ "root" "emma" ];
 
     # CHANGE: use 
     #     ls /nix/store/*OVMF*/FV/OVMF{,_VARS}.fd | tail -n2 | tr '\n' : | sed -e 's/:$//'

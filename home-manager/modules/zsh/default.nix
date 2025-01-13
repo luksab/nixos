@@ -8,7 +8,7 @@ in {
     autocd = true;
     dotDir = ".config/zsh";
 
-    sessionVariables = { ZDOTDIR = "/home/lukas/.config/zsh"; };
+    sessionVariables = { ZDOTDIR = "/home/emma/.config/zsh"; };
 
     initExtra = ''
       bindkey '^k' up-line-or-search
@@ -17,7 +17,7 @@ in {
       bindkey '^f' fzf-file-widget
       # this works
       export NIXPKGS_ALLOW_UNFREE=1
-      export PATH="/home/lukas/.cargo/bin:$PATH"
+      export PATH="/home/emma/.cargo/bin:$PATH"
       alias gc='git commit'
       alias gs='git status'
       alias gp='git push'

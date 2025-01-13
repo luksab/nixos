@@ -53,7 +53,7 @@ in
 
       displayManager.autoLogin = {
         enable = true;
-        user = "lukas";
+        user = "emma";
       };
 
       displayManager.defaultSession = "none+dwm";

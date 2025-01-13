@@ -13,7 +13,7 @@ in
 
     repo = mkOption {
       type = types.str;
-      default = "git@git.luksab.de:lukas/webhooks.git";
+      default = "git@git.luksab.de:emma/webhooks.git";
     };
 
     user = mkOption {

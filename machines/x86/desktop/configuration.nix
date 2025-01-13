@@ -145,13 +145,13 @@
     '';
     shares = {
       public = {
-        path = "/home/lukas/qmk_firmware/";
+        path = "/home/emma/qmk_firmware/";
         browseable = "yes";
         "read only" = "yes";
         "guest ok" = "yes";
         "create mask" = "0644";
         "directory mask" = "0755";
-        # "force user" = "lukas";
+        # "force user" = "emma";
         # "force group" = "groupname";
       };
     };

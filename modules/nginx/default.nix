@@ -6,7 +6,7 @@ in {
     enable = mkEnableOption "activate nginx";
     email = mkOption {
       type = types.str;
-      default = "lukassabatschus@gmail.com";
+      default = "emmasabatschus@gmail.com";
       description = ''
         acme Email address
       '';

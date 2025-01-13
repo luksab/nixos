@@ -21,7 +21,7 @@
       root = "/var/www/luksab.de";
       locations = { "/" = { extraConfig = "access_log off;"; }; };
     };
-    "lukas.sabatschus.de" = {
+    "emma.sabatschus.de" = {
       forceSSL = true;
       enableACME = true;
       root = "/var/www/luksab.de";
@@ -94,13 +94,13 @@
   };
   security.acme.acceptTerms = true;
   security.acme.certs = {
-    "ocp.luksab.de".email = "lukassabatschus@gmail.com";
-    "luksab.de".email = "lukassabatschus@gmail.com";
-    "status.luksab.de".email = "lukassabatschus@gmail.com";
-    "private.luksab.de".email = "lukassabatschus@gmail.com";
-    "lukas.sabatschus.de".email = "lukassabatschus@gmail.com";
-    "flares.science".email = "lukassabatschus@gmail.com";
-    "docs.flares.science".email = "lukassabatschus@gmail.com";
-    "sabatschus.de".email = "lukassabatschus@gmail.com";
+    "ocp.luksab.de".email = "emmasabatschus@gmail.com";
+    "luksab.de".email = "emmasabatschus@gmail.com";
+    "status.luksab.de".email = "emmasabatschus@gmail.com";
+    "private.luksab.de".email = "emmasabatschus@gmail.com";
+    "emma.sabatschus.de".email = "emmasabatschus@gmail.com";
+    "flares.science".email = "emmasabatschus@gmail.com";
+    "docs.flares.science".email = "emmasabatschus@gmail.com";
+    "sabatschus.de".email = "emmasabatschus@gmail.com";
   };
 }

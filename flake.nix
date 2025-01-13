@@ -63,7 +63,7 @@
             ./home-manager/home.nix
             ./home-manager/home-server.nix
           ];
-          home-manager.users.lukas.imports = [{
+          home-manager.users.emma.imports = [{
             nixpkgs.overlays = [
               self.overlays.default
               self.overlays.master

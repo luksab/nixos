@@ -17,7 +17,7 @@ let
       machine-config.file = toString ./.;
 
       secrets.pass = {
-        dir = toString /home/lukas/.local/share/password-store;
+        dir = toString /home/emma/.local/share/password-store;
         name = "${name}";
       };
     }];

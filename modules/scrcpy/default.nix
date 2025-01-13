@@ -9,7 +9,7 @@ in {
   config = mkIf cfg.enable {
 
     programs.adb.enable = true;
-    users.users.lukas.extraGroups = [ "adbusers" ];
+    users.users.emma.extraGroups = [ "adbusers" ];
 
     environment.systemPackages = with pkgs; [ scrcpy ];
   };

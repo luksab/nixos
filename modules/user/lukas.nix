@@ -1,17 +1,17 @@
 { lib, pkgs, config, ... }:
 with lib;
-let cfg = config.luksab.user.lukas;
+let cfg = config.luksab.user.emma;
 in
 {
-  options.luksab.user.lukas = {
-    enable = mkEnableOption "activate user lukas";
+  options.luksab.user.emma = {
+    enable = mkEnableOption "activate user emma";
   };
 
   config = mkIf cfg.enable {
     # Define a user account. Don't forget to set a password with ‘passwd’.
-    users.users.lukas = {
+    users.users.emma = {
       isNormalUser = true;
-      home = "/home/lukas";
+      home = "/home/emma";
       extraGroups = [
         "wheel"
         "video"
@@ -31,6 +31,6 @@ in
       ];
     };
 
-    nix.settings.allowed-users = [ "lukas" ];
+    nix.settings.allowed-users = [ "emma" ];
   };
 }

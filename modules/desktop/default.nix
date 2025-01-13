@@ -6,7 +6,7 @@ in
   options.luksab.desktop = { enable = mkEnableOption "enable desktop"; };
 
   config = mkIf cfg.enable {
-    luksab.user.lukas.home-manager.desktop = true;
+    luksab.user.emma.home-manager.desktop = true;
 
     # Enable sound.
     sound.enable = true;
@@ -61,7 +61,7 @@ in
 
     # # enable virtualbox
     # virtualisation.virtualbox.host.enable = true;
-    # users.extraGroups.vboxusers.members = [ "lukas" ];
+    # users.extraGroups.vboxusers.members = [ "emma" ];
     # virtualisation.virtualbox.host.enableExtensionPack = true;
 
     programs.dconf.enable = true;

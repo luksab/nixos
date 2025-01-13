@@ -9,6 +9,6 @@ in {
 
     luksab.common.enable = true;
 
-    luksab.user.lukas.home-manager.enable = true;
+    luksab.user.emma.home-manager.enable = true;
   };
 }

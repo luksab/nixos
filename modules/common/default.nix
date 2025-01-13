@@ -11,7 +11,7 @@ in {
   config = mkIf cfg.enable {
     nixpkgs.overlays = [ flake-self.overlays.default flake-self.overlays.master flake-self.overlays.stable ];
 
-    # home-manager.users.lukas.imports =
+    # home-manager.users.emma.imports =
     #   [{ nixpkgs.overlays = [ flake-self.overlays.default ]; }];
     # already done in flake
 
@@ -21,12 +21,12 @@ in {
       wg_hosts.enable = true;
 
       user = {
-        lukas = { enable = true; };
+        emma = { enable = true; };
         root.enable = true;
       };
     };
 
-    mayniklas.var.mainUser = "lukas";
+    mayniklas.var.mainUser = "emma";
 
     environment.systemPackages = with pkgs; [
       git

@@ -9,8 +9,8 @@ in {
 
     acmeMail = mkOption {
       type = types.str;
-      default = "lukassabatschus@gmail.com";
-      example = "lukassabatschus@gmail.com";
+      default = "emmasabatschus@gmail.com";
+      example = "emmasabatschus@gmail.com";
       description = "Mail to use for ACME";
     };
 
